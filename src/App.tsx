@@ -1,16 +1,18 @@
-import project01 from "@/assets/project-01.jpg";
-import project02 from "@/assets/project-02.jpg";
-import project03 from "@/assets/project-03.jpg";
-import project04 from "@/assets/project-04.jpg";
+const imageModules = import.meta.glob("@/assets/p_*.png", {
+  eager: true,
+  import: "default",
+});
 
-const images = [project01, project02, project03, project04];
+const images = Object.entries(imageModules)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, src]) => src as string);
 
 export default function App() {
   return (
     <div className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-background text-foreground">
       {images.map((src, i) => (
         <section
-          key={i}
+          key={src}
           className="h-screen w-full snap-start snap-always flex items-center justify-center p-6 md:p-12"
         >
           <img
@@ -29,12 +31,11 @@ export default function App() {
             href="mailto:hello@joanesunzueta.com"
             className="text-3xl md:text-6xl font-light tracking-tight hover:opacity-60 transition-opacity"
           >
-            hello@joanesunzueta.com
+            joanes.unzueta@gmail.com
           </a>
           <div className="mt-12 flex justify-center gap-8 text-xs tracking-[0.3em] text-muted-foreground uppercase">
-            <a href="#" className="hover:text-foreground transition-colors">LinkedIn</a>
-            <a href="#" className="hover:text-foreground transition-colors">Behance</a>
-            <a href="#" className="hover:text-foreground transition-colors">Instagram</a>
+            <a href="https://www.linkedin.com/in/joanes-unzueta/" className="hover:text-foreground transition-colors">LinkedIn</a>
+            <a href="tel:+46761937969" className="hover:text-foreground transition-colors">+46 761 937 969</a>
           </div>
         </div>
       </section>
