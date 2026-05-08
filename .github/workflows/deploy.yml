@@ -22,6 +22,15 @@ jobs:
       - uses: oven-sh/setup-bun@v2
       - run: bun install --frozen-lockfile
       - run: bun run build
+      - name: Inspect build output
+        run: |
+          ls -la
+          ls -la dist
+          cat dist/index.html
+      - name: Debug dist
+          run: |
+            ls -R dist
+            cat dist/index.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
