@@ -6,7 +6,7 @@ const imageModules = import.meta.glob("./assets/p_*.png", {
 const images = Object.entries(imageModules)
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([, src]) => src as string);
-  
+
 export default function App() {
   return (
     <div className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-background text-foreground">
