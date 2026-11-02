@@ -7,32 +7,34 @@ import { flowChairName, projectContext } from "../projects";
 export function FlowChair() {
   return (
     <>
-      <section className="hero light" id="flow">
+      <section className="hero-bleed light" id="flow">
+        <Photo
+          className="bleed"
+          src="images/web/flow-joint-closeup.webp"
+          alt={`Close-up of a curved plywood joint on the ${flowChairName}, showing the layered edge.`}
+          width={1615}
+          height={1113}
+        />
+        <div className="bleed-scrim" aria-hidden="true" />
         <div className="hero-copy">
-          <p className="num">/02</p>
-          <div>
+          <div className="bleed-title">
+            <p className="num">/02</p>
             <h2>
               <span lang="ja">フロー</span>
               <span className="sr-only"> {flowChairName}</span>
             </h2>
-            <p className="aka">{flowChairName}</p>
-            <p className="project-meta">{projectContext.flowChair}</p>
-            <p className="subtitle">Breaking the rules of CNC</p>
-            <p>
-              An exploration of seamless, flowing edges designed for CNC manufacturing. By pushing
-              against the usual rules of flat planes and sharp junctions, I aimed to create a piece
-              that feels continuous and sculptural while still being practical to produce — breaking
-              convention without losing functionality.
-            </p>
+            <div className="bleed-body">
+              <p className="aka">{flowChairName}</p>
+              <p className="project-meta">{projectContext.flowChair}</p>
+              <p className="subtitle">Breaking the rules of CNC</p>
+              <p>
+                An exploration of seamless, flowing edges designed for CNC manufacturing. By pushing
+                against the usual rules of flat planes and sharp junctions, I aimed to create a
+                piece that feels continuous and sculptural while still being practical to produce —
+                breaking convention without losing functionality.
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="hero-visual">
-          <Photo
-            src="images/web/flow-joint-closeup.webp"
-            alt={`Close-up of a curved plywood joint on the ${flowChairName}, showing the layered edge.`}
-            width={1615}
-            height={1113}
-          />
         </div>
         <EdgeLabel>{`${flowChairName} | 07`}</EdgeLabel>
       </section>
@@ -97,22 +99,27 @@ export function FlowChair() {
       </section>
 
       <section className="final" id="flow-final">
+        <Photo
+          className="final-bg"
+          src="images/web/chair-photo.webp"
+          alt=""
+          width={768}
+          height={974}
+        />
+        <div className="final-scrim" aria-hidden="true" />
         <div className="copy">
           <h2>Final product</h2>
           <p className="subtitle">CNC without borders</p>
           <p>
             The finished chair: continuous, sculptural lines cut entirely on CNC from flat plywood
-            sheets. Drag to rotate the model.
+            sheets. Drag to orbit, scroll to zoom, or pull the pieces apart.
           </p>
         </div>
         <FlowViewer />
-        <Photo
-          src="images/web/chair-photo.webp"
-          alt={`Photograph of the finished ${flowChairName}, a light plywood armchair.`}
-          width={768}
-          height={974}
-          className="chair-still"
-        />
+        <p className="sr-only">
+          Photograph of the finished {flowChairName}, a light plywood armchair, sits behind this
+          section.
+        </p>
         <EdgeLabel>{`${flowChairName} | 09`}</EdgeLabel>
       </section>
 

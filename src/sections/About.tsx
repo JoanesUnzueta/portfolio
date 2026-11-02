@@ -3,7 +3,7 @@ import { Photo } from "../components/Photo";
 
 export function About() {
   return (
-    <section className="about" id="about">
+    <section className="about tone-dark" id="about">
       <Photo
         src="images/web/intro-swing.webp"
         alt="Joanes Unzueta in silhouette, sitting on a swing above the sea at sunset."

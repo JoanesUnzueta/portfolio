@@ -67,12 +67,26 @@ a {
   justify-content: space-between;
   height: var(--nav);
   padding: 0 1.4rem;
-  background: rgb(229 229 229 / 92%);
-  backdrop-filter: blur(12px);
+  background: transparent;
+  color: #111;
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.nav.solid {
+  background: rgb(229 229 229 / 90%);
+  backdrop-filter: blur(14px);
+}
+
+.nav.dark {
+  color: #fff;
+}
+
+.nav.dark.solid {
+  background: rgb(12 12 12 / 72%);
 }
 
 .nav a {
@@ -129,6 +143,7 @@ section {
   max-height: 62vh;
   height: auto;
   object-fit: contain;
+  mix-blend-mode: darken;
 }
 
 .cover-foot {
@@ -339,6 +354,142 @@ p.project-meta {
   color: #c8c8c8;
 }
 
+.hero-bleed {
+  position: relative;
+  display: flex;
+  min-height: 100svh;
+  align-items: center;
+  overflow: hidden;
+  background: #101010;
+  color: #fff;
+}
+
+.hero-bleed.light {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.hero-bleed.adjust {
+  background: #161616;
+}
+
+.hero-bleed.adjust .num {
+  font-size: clamp(3.4rem, 6vw, 5.6rem);
+}
+
+.hero-bleed.adjust h2 {
+  font-size: clamp(3.2rem, 6.4vw, 6.1rem);
+}
+
+.hero-bleed.adjust img.bleed.crop {
+  width: 52%;
+  left: auto;
+  right: 0;
+  object-fit: contain;
+  object-position: center center;
+  transform: none;
+}
+
+.hero-bleed img.bleed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 72% center;
+}
+
+.hero-bleed.light img.bleed {
+  object-position: right 62%;
+}
+
+.hero-bleed img.bleed.crop {
+  object-fit: cover;
+  object-position: 74% center;
+}
+
+.bleed-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(8 8 8 / 78%) 0%,
+    rgb(8 8 8 / 46%) 34%,
+    rgb(8 8 8 / 0%) 62%
+  );
+}
+
+.hero-bleed.light .bleed-scrim {
+  background: linear-gradient(
+    90deg,
+    rgb(229 229 229 / 92%) 0%,
+    rgb(229 229 229 / 74%) 28%,
+    rgb(229 229 229 / 28%) 48%,
+    rgb(229 229 229 / 0%) 66%
+  );
+}
+
+.hero-bleed .hero-copy {
+  position: relative;
+  z-index: 1;
+  width: min(46rem, 58%);
+  padding: calc(var(--nav) + 2rem) 3rem 3rem 4.2rem;
+}
+
+.bleed-title {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 1.1rem;
+  align-items: end;
+}
+
+.bleed-title .num {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.bleed-title h2 {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.bleed-body {
+  grid-column: 2;
+}
+
+.hero-bleed .num {
+  margin: 0;
+  color: #b3b3b3;
+  font-size: clamp(4.6rem, 9vw, 8.4rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 0.78;
+}
+
+.hero-bleed.light .num {
+  color: #b3b3b3;
+}
+
+.hero-bleed h2 {
+  margin: 0;
+  font-size: clamp(4.4rem, 9.2vw, 8.6rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.82;
+  white-space: nowrap;
+}
+
+.hero-bleed .aka {
+  margin: 0.35rem 0 0.15rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.hero-bleed p {
+  max-width: 38ch;
+}
+
 .hero-visual {
   position: relative;
   min-height: 70vh;
@@ -470,7 +621,7 @@ blockquote footer {
 
 .trio {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.25rem;
   align-items: end;
 }
@@ -489,9 +640,11 @@ blockquote footer {
 .trio img,
 .bottle-stack > img:first-child {
   width: auto;
-  max-height: 54vh;
-  background: #fff;
-  padding: 1.2rem 0.8rem 0;
+  max-width: 100%;
+  max-height: min(62vh, 640px);
+  background: transparent;
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 .bottle-stack {
@@ -504,9 +657,9 @@ blockquote footer {
   width: 100%;
   height: 100%;
   max-height: none;
-  padding: 1.2rem 0.8rem 0;
   background: transparent;
   object-fit: contain;
+  object-position: center bottom;
   pointer-events: none;
 }
 
@@ -528,24 +681,22 @@ blockquote footer {
   justify-content: center;
 }
 
-.render-row {
+.render-gallery {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  align-items: end;
-  margin-top: 1.5rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-top: 1.4rem;
+  align-items: stretch;
 }
 
-.render-row img {
+.render-gallery img {
   width: 100%;
-  height: min(58vh, 640px);
-  object-fit: contain;
-}
-
-.render-row .group-shot {
   height: auto;
-  max-height: 28vh;
+  max-height: 68vh;
+  aspect-ratio: 2 / 3;
   object-fit: contain;
+  object-position: center center;
+  background: #111;
 }
 
 .wave {
@@ -625,35 +776,99 @@ blockquote footer {
 
 .final {
   display: grid;
-  grid-template-columns: 0.7fr 1.15fr 0.75fr;
-  gap: 1.25rem;
+  grid-template-columns: minmax(240px, 0.78fr) minmax(300px, 1.15fr);
+  gap: 1.5rem;
   align-items: center;
+  overflow: hidden;
+}
+
+.final-bg {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: min(42%, 520px);
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  object-position: left center;
+  pointer-events: none;
+}
+
+.final-scrim {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(229 229 229 / 78%) 0%,
+    rgb(229 229 229 / 88%) 26%,
+    #e5e5e5 46%,
+    #e5e5e5 100%
+  );
+  pointer-events: none;
+}
+
+.final .copy,
+.final .viewer-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.viewer-wrap {
+  position: relative;
+  z-index: 1;
 }
 
 .viewer {
+  position: relative;
   height: min(68vh, 640px);
-  min-height: 320px;
+  min-height: 360px;
+  overflow: hidden;
+  background: #e5e5e5;
 }
 
-.viewer model-viewer,
+.viewer canvas,
 .viewer img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: contain;
+}
+
+.explode {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.explode button {
+  border: 1px solid #111;
   background: transparent;
-  object-fit: contain;
-  --poster-color: transparent;
-  --progress-bar-color: transparent;
-  --progress-bar-height: 0px;
+  padding: 0.45rem 0.7rem;
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
-.viewer model-viewer::part(default-progress-bar) {
-  display: none;
+.explode button:hover {
+  background: #111;
+  color: #fff;
 }
 
-.chair-still {
+.explode label {
+  flex: 1;
+}
+
+.explode input[type="range"] {
   width: 100%;
-  max-height: 68vh;
-  object-fit: contain;
+  accent-color: #111;
 }
 
 .gallery .copy {
@@ -668,9 +883,10 @@ blockquote footer {
 
 .shots img {
   width: 100%;
-  height: 240px;
+  height: auto;
+  aspect-ratio: 16 / 9;
   object-fit: contain;
-  background: #fff;
+  background: #f3f3f3;
 }
 
 .mini-logo {
@@ -778,14 +994,25 @@ blockquote footer {
   .split,
   .construct,
   .final,
-  .trio,
-  .render-row,
+  .render-gallery,
   .shots,
   .pair,
   .result-grid {
     display: flex;
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .trio {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.55rem;
+    overflow: visible;
+  }
+
+  .trio img,
+  .bottle-stack > img:first-child {
+    max-height: 38vh;
   }
 
   .hero,
@@ -876,15 +1103,93 @@ blockquote footer {
     flex-wrap: wrap;
   }
 
-  .trio img,
-  .bottle-stack > img:first-child {
-    max-height: 46vh;
+  .render-gallery {
+    grid-template-columns: 1fr;
   }
 
-  .render-row img,
+  .render-gallery img,
   .shots img {
     height: auto;
     max-height: 70vh;
+  }
+
+  .final-bg {
+    left: auto;
+    right: 0;
+    width: 78%;
+    object-position: right 18%;
+    opacity: 0.28;
+  }
+
+  .final-scrim {
+    background: linear-gradient(
+      180deg,
+      rgb(229 229 229 / 94%) 0%,
+      rgb(229 229 229 / 88%) 38%,
+      rgb(229 229 229 / 84%) 100%
+    );
+  }
+
+  .hero-bleed {
+    min-height: 100svh;
+    align-items: flex-end;
+  }
+
+  .hero-bleed .hero-copy {
+    width: 100%;
+    padding: calc(var(--nav) + 1.2rem) 1.15rem 4.5rem;
+  }
+
+  .hero-bleed h2 {
+    font-size: clamp(3.2rem, 16vw, 4.6rem);
+  }
+
+  .hero-bleed .num {
+    font-size: clamp(2.6rem, 14vw, 3.6rem);
+  }
+
+  .bleed-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+  }
+
+  .hero-bleed h2 {
+    white-space: nowrap;
+    font-size: clamp(3rem, 14vw, 4.2rem);
+  }
+
+  .hero-bleed.adjust h2 {
+    font-size: clamp(2.4rem, 11vw, 3.3rem);
+  }
+
+  .hero-bleed.adjust img.bleed.crop {
+    top: 0;
+    bottom: auto;
+    left: 0;
+    width: 100%;
+    height: 56%;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+
+  .hero-bleed.light .bleed-scrim {
+    background: linear-gradient(
+      180deg,
+      rgb(229 229 229 / 8%) 0%,
+      rgb(229 229 229 / 55%) 42%,
+      rgb(229 229 229 / 94%) 100%
+    );
+  }
+
+  .hero-bleed:not(.light) .bleed-scrim {
+    background: linear-gradient(
+      180deg,
+      rgb(8 8 8 / 10%) 0%,
+      rgb(8 8 8 / 35%) 36%,
+      rgb(8 8 8 / 88%) 100%
+    );
   }
 
   .viewer {

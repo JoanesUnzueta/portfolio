@@ -3,28 +3,60 @@ import { EdgeLabel } from "../components/EdgeLabel";
 import { Photo } from "../components/Photo";
 import { projectContext } from "../projects";
 
+/** Swap these files when new Kixmi renders arrive. */
+const kixmiRenders = [
+  {
+    src: "images/web/kixmi-render-ice-transparent.webp",
+    alt: "Kixmi bottle standing in crushed ice, isolated on a transparent background.",
+    width: 1553,
+    height: 2293,
+  },
+  {
+    src: "images/web/kixmi-render-white.webp",
+    alt: "Kixmi bottle on a white background, showing the lips mark and KIXMI label.",
+    width: 1553,
+    height: 2293,
+  },
+  {
+    src: "images/web/kixmi-render-ice-dark.webp",
+    alt: "Kixmi bottle standing in crushed ice against a dark background.",
+    width: 1553,
+    height: 2293,
+  },
+  {
+    src: "images/web/kixmi-render-group-vidrala.webp",
+    alt: "Group render of the Kixmi bottle prepared for the Vidrala contest.",
+    width: 670,
+    height: 550,
+  },
+] as const;
+
 export function Kixmi() {
   return (
     <>
-      <section className="hero dark" id="kixmi">
+      <section className="hero-bleed tone-dark" id="kixmi">
+        <Photo
+          className="bleed crop"
+          src="images/web/kixmi-cover-closeup.webp"
+          alt="Kixmi bottle neck, deliberately cropped at the right edge, with KIXMI printed on the glass and condensation on the surface."
+          width={1920}
+          height={1080}
+        />
+        <div className="bleed-scrim" aria-hidden="true" />
         <div className="hero-copy">
-          <p className="num">/01</p>
-          <h2>Kixmi</h2>
-          <p className="subtitle">Berotu Morruak</p>
-          <p className="project-meta">{projectContext.kixmi}</p>
-          <p>
-            An award-winning glass packaging concept developed for a sustainability-focused
-            competition, proposing a low-impact production and recycling process through an
-            original, practical, and manufacturable design.
-          </p>
-        </div>
-        <div className="hero-visual">
-          <Photo
-            src="images/web/kixmi-cover-closeup.webp"
-            alt="Close-up of the Kixmi bottle neck, with KIXMI printed on the glass and condensation on the surface."
-            width={1920}
-            height={1080}
-          />
+          <div className="bleed-title">
+            <p className="num">/01</p>
+            <h2>Kixmi</h2>
+            <div className="bleed-body">
+              <p className="subtitle">Berotu Morruak</p>
+              <p className="project-meta">{projectContext.kixmi}</p>
+              <p>
+                An award-winning glass packaging concept developed for a sustainability-focused
+                competition, proposing a low-impact production and recycling process through an
+                original, practical, and manufacturable design.
+              </p>
+            </div>
+          </div>
         </div>
         <EdgeLabel>Kixmi | 03</EdgeLabel>
       </section>
@@ -140,32 +172,10 @@ export function Kixmi() {
             <footer>— Vidrala jury</footer>
           </blockquote>
         </div>
-        <div className="render-row">
-          <Photo
-            src="images/web/kixmi-render-ice-transparent.webp"
-            alt="Kixmi bottle standing in crushed ice, isolated on a transparent background."
-            width={1553}
-            height={2293}
-          />
-          <Photo
-            src="images/web/kixmi-render-white.webp"
-            alt="Kixmi bottle on a white background, showing the lips mark and KIXMI label."
-            width={1553}
-            height={2293}
-          />
-          <Photo
-            src="images/web/kixmi-render-ice-dark.webp"
-            alt="Kixmi bottle standing in crushed ice against a dark background."
-            width={1553}
-            height={2293}
-          />
-          <Photo
-            src="images/web/kixmi-render-group-vidrala.webp"
-            alt="Small group render of the Kixmi bottle prepared for the Vidrala contest."
-            width={670}
-            height={550}
-            className="group-shot"
-          />
+        <div className="render-gallery">
+          {kixmiRenders.map((render) => (
+            <Photo key={render.src} {...render} />
+          ))}
         </div>
         <EdgeLabel>Kixmi | 06</EdgeLabel>
       </section>

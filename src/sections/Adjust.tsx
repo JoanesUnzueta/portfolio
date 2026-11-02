@@ -5,24 +5,28 @@ import { projectContext } from "../projects";
 export function Adjust() {
   return (
     <>
-      <section className="hero dark adjust" id="adjust">
+      <section className="hero-bleed tone-dark adjust" id="adjust">
+        <Photo
+          className="bleed crop"
+          src="images/web/adjust-cover.webp"
+          alt="(AD)JUST clamp bleeding off the right edge: a black link with a steel shaft and knurled knob."
+          width={2560}
+          height={2121}
+        />
+        <div className="bleed-scrim" aria-hidden="true" />
         <div className="hero-copy">
-          <p className="num">/03</p>
-          <h2>(AD)JUST</h2>
-          <p className="subtitle">Tablet Holder Link</p>
-          <p className="project-meta">{projectContext.adjust}</p>
-          <p>
-            A wheelchair link for tablet holders: a tool-free clamp that helps people with special
-            needs keep their communication devices within reach.
-          </p>
-        </div>
-        <div className="hero-visual">
-          <Photo
-            src="images/web/adjust-cover.webp"
-            alt="Dark render of the (AD)JUST clamp, a curved black link with a metal pin."
-            width={2560}
-            height={2121}
-          />
+          <div className="bleed-title">
+            <p className="num">/03</p>
+            <h2>(AD)JUST</h2>
+            <div className="bleed-body">
+              <p className="subtitle">Tablet Holder Link</p>
+              <p className="project-meta">{projectContext.adjust}</p>
+              <p>
+                A wheelchair link for tablet holders: a tool-free clamp that helps people with
+                special needs keep their communication devices within reach.
+              </p>
+            </div>
+          </div>
         </div>
         <EdgeLabel>(AD)JUST | 11</EdgeLabel>
       </section>
