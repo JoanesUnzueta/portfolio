@@ -57,6 +57,7 @@ export function FlowViewer() {
         let explode = 0;
         let frame = 0;
         let anim = 0;
+        let frameModel: (() => void) | null = null;
 
         const apply = (value: number) => {
           explode = value;
@@ -64,6 +65,7 @@ export function FlowViewer() {
           for (const piece of pieces) {
             piece.object.position.copy(piece.origin).addScaledVector(piece.offset, value);
           }
+          frameModel?.();
         };
 
         const setExplode = (value: number) => {
@@ -101,22 +103,29 @@ export function FlowViewer() {
         scene.add(root);
 
         root.updateMatrixWorld(true);
+        const centeredAxes = [0, 0, 0];
         root.traverse((child: any) => {
           if (!(child instanceof THREE.Mesh)) return;
           const pieceBox = new THREE.Box3().setFromObject(child);
           const pieceCenter = pieceBox.getCenter(new THREE.Vector3());
           const pieceSize = pieceBox.getSize(new THREE.Vector3());
-          const direction = pieceCenter.clone();
-          if (direction.length() < 0.12) {
-            const minAxis = pieceSize.x < pieceSize.y && pieceSize.x < pieceSize.z ? 0 : pieceSize.y < pieceSize.z ? 1 : 2;
-            const sign = Math.sign(pieceCenter.getComponent(minAxis)) || 1;
-            direction.set(0, 0, 0);
-            direction.setComponent(minAxis, sign);
+          // Separate each board along its thinnest axis so the exploded view
+          // stays organized around the assembled chair instead of scattering radially.
+          const thicknessAxis =
+            pieceSize.x < pieceSize.y && pieceSize.x < pieceSize.z
+              ? 0
+              : pieceSize.y < pieceSize.z
+                ? 1
+                : 2;
+          let sign = Math.sign(pieceCenter.getComponent(thicknessAxis));
+          if (Math.abs(pieceCenter.getComponent(thicknessAxis)) < 0.035) {
+            sign = centeredAxes[thicknessAxis]++ % 2 === 0 ? 1 : -1;
           }
-          const reach = direction.length();
-          direction.y += Math.max(0.22, reach * 0.45);
+          const direction = new THREE.Vector3();
+          direction.setComponent(thicknessAxis, sign || 1);
+          direction.y += thicknessAxis === 1 ? 0 : 0.12;
           direction.normalize();
-          const travel = Math.min(0.28, 0.12 + reach * 0.32);
+          const travel = Math.min(0.3, Math.max(0.12, pieceSize.length() * 0.3));
           const worldOffset = direction.multiplyScalar(travel);
           const exploded = child.position.clone();
           if (child.parent) {
@@ -137,6 +146,23 @@ export function FlowViewer() {
         camera.position.set(fit * 2.4, fit * 1.15, fit * 2.6);
         controls.target.set(0, 0, 0);
         controls.update();
+        frameModel = () => {
+          root.updateMatrixWorld(true);
+          const bounds = new THREE.Box3().setFromObject(root);
+          const boundsSize = bounds.getSize(new THREE.Vector3());
+          const center = bounds.getCenter(new THREE.Vector3());
+          const radius = boundsSize.length() * 0.5;
+          const verticalFov = (camera.fov * Math.PI) / 180;
+          const horizontalFov = 2 * Math.atan(Math.tan(verticalFov * 0.5) * camera.aspect);
+          const requiredDistance =
+            (radius / Math.sin(Math.min(verticalFov, horizontalFov) * 0.5)) * 1.2;
+          const viewDirection = camera.position.clone().sub(controls.target).normalize();
+          const distance = Math.max(camera.position.distanceTo(controls.target), requiredDistance);
+          controls.target.copy(center);
+          camera.position.copy(center).addScaledVector(viewDirection, distance);
+          controls.update();
+        };
+        apply(explode);
         renderer.domElement.style.opacity = "1";
         node.querySelector("img")?.remove();
 
@@ -145,6 +171,7 @@ export function FlowViewer() {
           camera.aspect = node.clientWidth / node.clientHeight;
           camera.updateProjectionMatrix();
           renderer.setSize(node.clientWidth, node.clientHeight);
+          frameModel?.();
         };
         const observer = new ResizeObserver(onResize);
         observer.observe(node);
@@ -218,3 +245,4 @@ export function FlowViewer() {
     </div>
   );
 }
+
