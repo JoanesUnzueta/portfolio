@@ -16,6 +16,10 @@ dist-ssr
 .nitro
 *.local
 
+# Responsive derivatives of src/assets/P_*.png (scripts/optimize-slides.mjs)
+public/slides/
+.cache/
+
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars
