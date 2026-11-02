@@ -102,10 +102,9 @@ export function Kixmi() {
             <div className="bleed-body">
               <p className="subtitle">Berotu Morruak</p>
               <SpecLine items={projectSpecs.kixmi} />
-              <p>
-                An award-winning glass packaging concept developed for a sustainability-focused
-                competition, proposing a low-impact production and recycling process through an
-                original, practical, and manufacturable design.
+              <p className="lede">
+                An award-winning glass bottle for a sustainability competition. Low-impact, practical,
+                and ready to manufacture.
               </p>
             </div>
           </div>

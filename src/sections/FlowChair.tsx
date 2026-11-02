@@ -28,11 +28,9 @@ export function FlowChair() {
               <p className="aka">{flowChairName}</p>
               <p className="subtitle">Breaking the rules of CNC</p>
               <SpecLine items={projectSpecs.flowChair} />
-              <p>
-                An exploration of seamless, flowing edges designed for CNC manufacturing. By pushing
-                against the usual rules of flat planes and sharp junctions, I aimed to create a
-                piece that feels continuous and sculptural while still being practical to produce —
-                breaking convention without losing functionality.
+              <p className="lede">
+                Flowing edges, cut on CNC from flat plywood. Continuous and sculptural, and still
+                practical to make.
               </p>
             </div>
           </div>

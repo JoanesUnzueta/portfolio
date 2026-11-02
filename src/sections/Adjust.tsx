@@ -22,9 +22,9 @@ export function Adjust() {
             <div className="bleed-body">
               <p className="subtitle">Tablet Holder Link</p>
               <SpecLine items={projectSpecs.adjust} />
-              <p>
-                A wheelchair link for tablet holders: a tool-free clamp that helps people with
-                special needs keep their communication devices within reach.
+              <p className="lede">
+                A tool-free clamp for a wheelchair tablet holder. It keeps a communication device
+                within reach.
               </p>
             </div>
           </div>
