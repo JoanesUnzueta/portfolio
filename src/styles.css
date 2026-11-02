@@ -683,19 +683,37 @@ blockquote footer {
 
 .render-gallery {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: minmax(220px, 0.72fr) minmax(280px, 1.4fr);
+  grid-template-areas:
+    "lead lead"
+    "tall wide";
   gap: 0.85rem;
   margin-top: 1.4rem;
-  align-items: stretch;
+  align-items: start;
+}
+
+.render-gallery picture {
+  display: block;
+  margin: 0;
+  background: #111;
+}
+
+.render-gallery .lead {
+  grid-area: lead;
+}
+
+.render-gallery .tall {
+  grid-area: tall;
+}
+
+.render-gallery .wide {
+  grid-area: wide;
 }
 
 .render-gallery img {
   width: 100%;
   height: auto;
-  max-height: 68vh;
-  aspect-ratio: 2 / 3;
-  object-fit: contain;
-  object-position: center center;
+  object-fit: cover;
   background: #111;
 }
 
@@ -994,7 +1012,6 @@ blockquote footer {
   .split,
   .construct,
   .final,
-  .render-gallery,
   .shots,
   .pair,
   .result-grid {
@@ -1105,9 +1122,12 @@ blockquote footer {
 
   .render-gallery {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "lead"
+      "wide"
+      "tall";
   }
 
-  .render-gallery img,
   .shots img {
     height: auto;
     max-height: 70vh;

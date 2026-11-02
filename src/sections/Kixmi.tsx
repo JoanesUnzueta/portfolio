@@ -3,33 +3,77 @@ import { EdgeLabel } from "../components/EdgeLabel";
 import { Photo } from "../components/Photo";
 import { projectContext } from "../projects";
 
-/** Swap these files when new Kixmi renders arrive. */
-const kixmiRenders = [
+type KixmiRender = {
+  /** File stem in public/images/kixmi/. Drop or replace an entry to swap a render. */
+  name: string;
+  alt: string;
+  width: number;
+  height: number;
+  role: "lead" | "wide" | "tall";
+  widths: readonly number[];
+};
+
+/**
+ * Final-render gallery. Each name maps to AVIF and WebP files at the listed widths:
+ * public/images/kixmi/<name>-<width>.avif and .webp. Remove a row if a render is vetoed.
+ */
+const kixmiRenders: readonly KixmiRender[] = [
   {
-    src: "images/web/kixmi-render-ice-transparent.webp",
-    alt: "Kixmi bottle standing in crushed ice, isolated on a transparent background.",
-    width: 1553,
-    height: 2293,
+    name: "kixmi-gen-hero-ice",
+    role: "lead",
+    alt: "Product visualisation of the Kixmi bottle on ice in red light, with condensation and the lips label.",
+    width: 1152,
+    height: 864,
+    widths: [480, 768, 1152],
   },
   {
-    src: "images/web/kixmi-render-white.webp",
-    alt: "Kixmi bottle on a white background, showing the lips mark and KIXMI label.",
-    width: 1553,
-    height: 2293,
+    name: "kixmi-gen-trio-grey",
+    role: "wide",
+    alt: "Product visualisation of three Kixmi bottles in a row on a grey studio background.",
+    width: 1280,
+    height: 720,
+    widths: [640, 960, 1280],
   },
   {
-    src: "images/web/kixmi-render-ice-dark.webp",
-    alt: "Kixmi bottle standing in crushed ice against a dark background.",
-    width: 1553,
-    height: 2293,
+    name: "kixmi-gen-lifestyle",
+    role: "tall",
+    alt: "Product visualisation of a hand holding a Kixmi bottle at night, with lights behind it.",
+    width: 864,
+    height: 1152,
+    widths: [432, 648, 864],
   },
-  {
-    src: "images/web/kixmi-render-group-vidrala.webp",
-    alt: "Group render of the Kixmi bottle prepared for the Vidrala contest.",
-    width: 670,
-    height: 550,
-  },
-] as const;
+];
+
+function renderSrcSet(name: string, widths: readonly number[], ext: "avif" | "webp") {
+  return widths.map((width) => `${asset(`images/kixmi/${name}-${width}.${ext}`)} ${width}w`).join(", ");
+}
+
+function KixmiRenderShot({ shot }: { shot: KixmiRender }) {
+  const sizes =
+    shot.role === "lead"
+      ? "(min-width: 981px) min(1200px, 88vw), 100vw"
+      : shot.role === "wide"
+        ? "(min-width: 981px) 58vw, 100vw"
+        : "(min-width: 981px) 30vw, 100vw";
+  const fallback = asset(`images/kixmi/${shot.name}-${shot.widths[shot.widths.length - 1]}.webp`);
+
+  return (
+    <picture className={shot.role}>
+      <source type="image/avif" srcSet={renderSrcSet(shot.name, shot.widths, "avif")} sizes={sizes} />
+      <source type="image/webp" srcSet={renderSrcSet(shot.name, shot.widths, "webp")} sizes={sizes} />
+      <img
+        src={fallback}
+        srcSet={renderSrcSet(shot.name, shot.widths, "webp")}
+        sizes={sizes}
+        alt={shot.alt}
+        width={shot.width}
+        height={shot.height}
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
+  );
+}
 
 export function Kixmi() {
   return (
@@ -174,7 +218,7 @@ export function Kixmi() {
         </div>
         <div className="render-gallery">
           {kixmiRenders.map((render) => (
-            <Photo key={render.src} {...render} />
+            <KixmiRenderShot key={render.name} shot={render} />
           ))}
         </div>
         <EdgeLabel>Kixmi | 06</EdgeLabel>
