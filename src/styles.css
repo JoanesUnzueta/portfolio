@@ -298,7 +298,7 @@ section {
 }
 
 .hero .aka {
-  margin: 0.15rem 0 0.7rem;
+  margin: 0.15rem 0 0.2rem;
   font-size: 1.05rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -306,7 +306,7 @@ section {
 
 .subtitle {
   display: inline-block;
-  margin: 0 0 1rem;
+  margin: 0 0 0.55rem;
   padding-bottom: 0.28rem;
   border-bottom: 2px solid var(--accent);
   font-size: 1.05rem;
@@ -324,6 +324,19 @@ section {
 .compare-head p {
   max-width: 42ch;
   font-size: 0.95rem;
+}
+
+p.project-meta {
+  max-width: none;
+  margin: 0 0 1rem;
+  color: #6a6a6a;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.hero.dark p.project-meta {
+  color: #c8c8c8;
 }
 
 .hero-visual {
@@ -597,8 +610,8 @@ blockquote footer {
 
 .specs div {
   display: grid;
-  grid-template-columns: 8.5rem 1fr;
-  gap: 0.5rem;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 0.75rem;
   font-size: 0.86rem;
 }
 

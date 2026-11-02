@@ -1,6 +1,7 @@
+import { asset } from "../asset";
 import { EdgeLabel } from "../components/EdgeLabel";
 import { Photo } from "../components/Photo";
-import { asset } from "../asset";
+import { projectContext } from "../projects";
 
 export function Kixmi() {
   return (
@@ -10,6 +11,7 @@ export function Kixmi() {
           <p className="num">/01</p>
           <h2>Kixmi</h2>
           <p className="subtitle">Berotu Morruak</p>
+          <p className="project-meta">{projectContext.kixmi}</p>
           <p>
             An award-winning glass packaging concept developed for a sustainability-focused
             competition, proposing a low-impact production and recycling process through an

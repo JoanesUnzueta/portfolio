@@ -1,5 +1,6 @@
 import { EdgeLabel } from "../components/EdgeLabel";
 import { Photo } from "../components/Photo";
+import { projectContext } from "../projects";
 
 export function Adjust() {
   return (
@@ -9,6 +10,7 @@ export function Adjust() {
           <p className="num">/03</p>
           <h2>(AD)JUST</h2>
           <p className="subtitle">Tablet Holder Link</p>
+          <p className="project-meta">{projectContext.adjust}</p>
           <p>
             A wheelchair link for tablet holders: a tool-free clamp that helps people with special
             needs keep their communication devices within reach.
@@ -102,6 +104,7 @@ export function Adjust() {
         <div className="copy">
           <h2>Final renders</h2>
           <p className="subtitle">The result</p>
+          <p>Silicone grip pads on an aluminium frame.</p>
           <p>The final link mounted on a wheelchair frame, ready to carry a tablet holder.</p>
         </div>
         <div className="result-grid">

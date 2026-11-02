@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { asset } from "../asset";
+import { flowChairName } from "../projects";
 
 const posterPath = "images/web/flow-render-transparent-1.webp";
-const alt =
-  "Interactive 3D model of the Flow Chair, a plywood armchair. Drag to rotate and scroll to zoom.";
+const alt = `Interactive 3D model of the ${flowChairName}, a plywood armchair. Drag to rotate and scroll to zoom.`;
 
 export function FlowViewer() {
   const host = useRef<HTMLDivElement>(null);

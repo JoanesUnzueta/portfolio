@@ -1,7 +1,8 @@
+import { asset } from "../asset";
 import { EdgeLabel } from "../components/EdgeLabel";
 import { FlowViewer } from "../components/FlowViewer";
 import { Photo } from "../components/Photo";
-import { asset } from "../asset";
+import { flowChairName, projectContext } from "../projects";
 
 export function FlowChair() {
   return (
@@ -12,9 +13,10 @@ export function FlowChair() {
           <div>
             <h2>
               <span lang="ja">フロー</span>
-              <span className="sr-only"> Flow Chair</span>
+              <span className="sr-only"> {flowChairName}</span>
             </h2>
-            <p className="aka">Flow Chair</p>
+            <p className="aka">{flowChairName}</p>
+            <p className="project-meta">{projectContext.flowChair}</p>
             <p className="subtitle">Breaking the rules of CNC</p>
             <p>
               An exploration of seamless, flowing edges designed for CNC manufacturing. By pushing
@@ -27,12 +29,12 @@ export function FlowChair() {
         <div className="hero-visual">
           <Photo
             src="images/web/flow-joint-closeup.webp"
-            alt="Close-up of a curved plywood joint on the Flow Chair, showing the layered edge."
+            alt={`Close-up of a curved plywood joint on the ${flowChairName}, showing the layered edge.`}
             width={1615}
             height={1113}
           />
         </div>
-        <EdgeLabel>Flow Chair | 07</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 07`}</EdgeLabel>
       </section>
 
       <section className="construct" id="flow-construction">
@@ -49,24 +51,16 @@ export function FlowChair() {
           </p>
           <dl className="specs">
             <div>
-              <dt>Overall height</dt>
-              <dd>658 mm</dd>
-            </div>
-            <div>
-              <dt>Overall width</dt>
-              <dd>480 mm</dd>
+              <dt>Overall size</dt>
+              <dd>Approx. 480 × 480 × 658 mm (W × D × H)</dd>
             </div>
             <div>
               <dt>Seat height</dt>
               <dd>408 mm</dd>
             </div>
             <div>
-              <dt>Depth</dt>
-              <dd>391 mm</dd>
-            </div>
-            <div>
               <dt>Material</dt>
-              <dd>CNC-cut plywood</dd>
+              <dd>18 mm CNC-cut plywood</dd>
             </div>
             <div>
               <dt>Joinery</dt>
@@ -80,7 +74,7 @@ export function FlowChair() {
         </div>
         <Photo
           src="images/web/chair-technical.webp"
-          alt="CAD line render of the Flow Chair, shown in three-quarter view."
+          alt={`CAD line render of the ${flowChairName}, shown in three-quarter view.`}
           width={1366}
           height={1624}
           className="cad"
@@ -88,18 +82,18 @@ export function FlowChair() {
         <div className="drawings">
           <img
             src={asset("images/flow-dimensions.svg")}
-            alt="Dimensioned drawings of the Flow Chair: height 658 mm, width 480 mm, seat height 408 mm, depth 391 mm."
+            alt={`Dimensioned drawings of the ${flowChairName}. The CAD overall size is about 480 × 480 × 658 mm.`}
             width={690}
             height={260}
           />
           <img
             src={asset("images/flow-nesting.svg")}
-            alt="CNC nesting drawing showing the Flow Chair parts laid out on two sheets."
+            alt={`CNC nesting drawing showing the ${flowChairName} parts laid out on two sheets.`}
             width={570}
             height={430}
           />
         </div>
-        <EdgeLabel>Flow Chair | 08</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 08`}</EdgeLabel>
       </section>
 
       <section className="final" id="flow-final">
@@ -114,70 +108,70 @@ export function FlowChair() {
         <FlowViewer />
         <Photo
           src="images/web/chair-photo.webp"
-          alt="Photograph of the finished Flow Chair, a light plywood armchair."
+          alt={`Photograph of the finished ${flowChairName}, a light plywood armchair.`}
           width={768}
           height={974}
           className="chair-still"
         />
-        <EdgeLabel>Flow Chair | 09</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 09`}</EdgeLabel>
       </section>
 
       <section className="gallery" id="flow-in-use">
         <div className="copy">
           <h2>In use</h2>
-          <p className="subtitle">Flow Chair — final product</p>
+          <p className="subtitle">{flowChairName} — final product</p>
         </div>
         <div className="shots">
           <Photo
             src="images/web/flow-sitting-1.webp"
-            alt="A person sitting in the Flow Chair, seen from the side."
+            alt={`A person sitting in the ${flowChairName}, seen from the side.`}
             width={2560}
             height={1440}
           />
           <Photo
             src="images/web/flow-sitting-2.webp"
-            alt="A person sitting in the Flow Chair, seen from the front."
+            alt={`A person sitting in the ${flowChairName}, seen from the front.`}
             width={2560}
             height={1440}
           />
           <Photo
             src="images/web/flow-sitting-3.webp"
-            alt="A person sitting in the Flow Chair, seen from a three-quarter angle."
+            alt={`A person sitting in the ${flowChairName}, seen from a three-quarter angle.`}
             width={2560}
             height={1440}
           />
           <Photo
             src="images/web/flow-sitting-4.webp"
-            alt="A person sitting in the Flow Chair, another three-quarter view."
+            alt={`A person sitting in the ${flowChairName}, another three-quarter view.`}
             width={2560}
             height={1440}
           />
           <Photo
             src="images/web/flow-studio-1.webp"
-            alt="Studio photograph of the empty Flow Chair."
+            alt={`Studio photograph of the empty ${flowChairName}.`}
             width={2560}
             height={1440}
           />
           <Photo
             src="images/web/flow-studio-2.webp"
-            alt="Studio photograph of the Flow Chair from the side."
+            alt={`Studio photograph of the ${flowChairName} from the side.`}
             width={2560}
             height={1440}
           />
           <Photo
             src="images/web/flow-studio-3.webp"
-            alt="Studio photograph of the Flow Chair from behind."
+            alt={`Studio photograph of the ${flowChairName} from behind.`}
             width={2560}
             height={1440}
           />
           <Photo
             src="images/web/flow-render-transparent-2.webp"
-            alt="Render of the Flow Chair on a transparent background, three-quarter view."
+            alt={`Render of the ${flowChairName} on a transparent background, three-quarter view.`}
             width={1008}
             height={738}
           />
         </div>
-        <EdgeLabel>Flow Chair | 10</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 10`}</EdgeLabel>
       </section>
     </>
   );

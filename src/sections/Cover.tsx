@@ -1,4 +1,5 @@
 import { Photo } from "../components/Photo";
+import { flowChairName } from "../projects";
 
 export function Cover() {
   return (
@@ -23,7 +24,7 @@ export function Cover() {
             <span>01</span> Kixmi
           </a>
           <a href="#flow">
-            <span>02</span> Flow Chair
+            <span>02</span> {flowChairName}
           </a>
           <a href="#adjust">
             <span>03</span> (AD)JUST
