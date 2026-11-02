@@ -114,8 +114,9 @@ export function FlowViewer() {
             direction.setComponent(minAxis, sign);
           }
           const reach = direction.length();
+          direction.y += Math.max(0.22, reach * 0.45);
           direction.normalize();
-          const travel = Math.min(0.22, 0.08 + reach * 0.3);
+          const travel = Math.min(0.28, 0.12 + reach * 0.32);
           const worldOffset = direction.multiplyScalar(travel);
           const exploded = child.position.clone();
           if (child.parent) {

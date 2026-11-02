@@ -1,5 +1,6 @@
 import { Nav } from "./components/Nav";
 import { About } from "./sections/About";
+import { Methodology } from "./sections/Methodology";
 import { Adjust } from "./sections/Adjust";
 import { Contact } from "./sections/Contact";
 import { Cover } from "./sections/Cover";
@@ -13,6 +14,7 @@ export default function App() {
       <main>
         <Cover />
         <About />
+        <Methodology />
         <Kixmi />
         <FlowChair />
         <Adjust />

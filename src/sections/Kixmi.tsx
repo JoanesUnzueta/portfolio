@@ -88,11 +88,11 @@ export function Kixmi() {
     <>
       <section className="hero-bleed tone-dark" id="kixmi">
         <Photo
-          className="bleed crop"
-          src="images/web/kixmi-cover-closeup.webp"
-          alt="Kixmi bottle neck, deliberately cropped at the right edge, with KIXMI printed on the glass and condensation on the surface."
-          width={1920}
-          height={1080}
+          className="bleed bottle"
+          src="images/web/kixmi-full-bottle.webp"
+          alt="Product visualisation of the whole Kixmi bottle, with the cap and the vertical KIXMI logo on the neck."
+          width={1005}
+          height={1560}
         />
         <div className="bleed-scrim" aria-hidden="true" />
         <div className="hero-copy">
