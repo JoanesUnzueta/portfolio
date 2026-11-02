@@ -146,13 +146,13 @@ export function FlowViewer() {
 
         root.updateMatrixWorld(true);
         const timing = {
-          backrestTop: [0, 0.12],
-          backrestBottom: [0.12, 0.24],
-          armrestOutside: [0.24, 0.38],
-          armrestInside: [0.38, 0.52],
-          legsOutside: [0.52, 0.67],
-          legsInside: [0.67, 0.82],
-          seat: [0.82, 1],
+          backrestTop: [0, 0.25],
+          backrestBottom: [0.125, 0.375],
+          armrestOutside: [0.25, 0.5],
+          armrestInside: [0.375, 0.625],
+          legsOutside: [0.5, 0.75],
+          legsInside: [0.625, 0.875],
+          seat: [0, 1],
         } as const;
         const motionFor = (name: string, center: any) => {
           let group: keyof typeof timing = "seat";
