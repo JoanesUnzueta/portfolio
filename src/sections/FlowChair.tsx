@@ -2,7 +2,8 @@ import { asset } from "../asset";
 import { EdgeLabel } from "../components/EdgeLabel";
 import { FlowViewer } from "../components/FlowViewer";
 import { Photo } from "../components/Photo";
-import { flowChairName, projectContext } from "../projects";
+import { SpecLine } from "../components/SpecLine";
+import { flowChairName, projectSpecs } from "../projects";
 
 export function FlowChair() {
   return (
@@ -25,8 +26,8 @@ export function FlowChair() {
             </h2>
             <div className="bleed-body">
               <p className="aka">{flowChairName}</p>
-              <p className="project-meta">{projectContext.flowChair}</p>
               <p className="subtitle">Breaking the rules of CNC</p>
+              <SpecLine items={projectSpecs.flowChair} />
               <p>
                 An exploration of seamless, flowing edges designed for CNC manufacturing. By pushing
                 against the usual rules of flat planes and sharp junctions, I aimed to create a
@@ -94,6 +95,7 @@ export function FlowChair() {
             width={570}
             height={430}
           />
+          <p className="caption">Dimensions and two-sheet nesting</p>
         </div>
         <EdgeLabel>{`${flowChairName} | 08`}</EdgeLabel>
       </section>

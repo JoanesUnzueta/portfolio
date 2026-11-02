@@ -1,6 +1,7 @@
 import { EdgeLabel } from "../components/EdgeLabel";
 import { Photo } from "../components/Photo";
-import { projectContext } from "../projects";
+import { SpecLine } from "../components/SpecLine";
+import { projectSpecs } from "../projects";
 
 export function Adjust() {
   return (
@@ -20,7 +21,7 @@ export function Adjust() {
             <h2>(AD)JUST</h2>
             <div className="bleed-body">
               <p className="subtitle">Tablet Holder Link</p>
-              <p className="project-meta">{projectContext.adjust}</p>
+              <SpecLine items={projectSpecs.adjust} />
               <p>
                 A wheelchair link for tablet holders: a tool-free clamp that helps people with
                 special needs keep their communication devices within reach.

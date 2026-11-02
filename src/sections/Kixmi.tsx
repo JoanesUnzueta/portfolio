@@ -1,7 +1,8 @@
 import { asset } from "../asset";
 import { EdgeLabel } from "../components/EdgeLabel";
 import { Photo } from "../components/Photo";
-import { projectContext } from "../projects";
+import { projectSpecs } from "../projects";
+import { SpecLine } from "../components/SpecLine";
 
 type KixmiRender = {
   /** File stem in public/images/kixmi/. Drop or replace an entry to swap a render. */
@@ -11,6 +12,7 @@ type KixmiRender = {
   height: number;
   role: "lead" | "wide" | "tall";
   widths: readonly number[];
+  caption: string;
 };
 
 /**
@@ -21,6 +23,7 @@ const kixmiRenders: readonly KixmiRender[] = [
   {
     name: "kixmi-gen-hero-ice",
     role: "lead",
+    caption: "Visualisation · on ice",
     alt: "Product visualisation of the Kixmi bottle on ice in red light, with condensation and the lips label.",
     width: 1152,
     height: 864,
@@ -29,6 +32,7 @@ const kixmiRenders: readonly KixmiRender[] = [
   {
     name: "kixmi-gen-trio-grey",
     role: "wide",
+    caption: "Visualisation · three bottles",
     alt: "Product visualisation of three Kixmi bottles in a row on a grey studio background.",
     width: 1280,
     height: 720,
@@ -37,6 +41,7 @@ const kixmiRenders: readonly KixmiRender[] = [
   {
     name: "kixmi-gen-lifestyle",
     role: "tall",
+    caption: "Visualisation · in hand",
     alt: "Product visualisation of a hand holding a Kixmi bottle at night, with lights behind it.",
     width: 864,
     height: 1152,
@@ -58,20 +63,23 @@ function KixmiRenderShot({ shot }: { shot: KixmiRender }) {
   const fallback = asset(`images/kixmi/${shot.name}-${shot.widths[shot.widths.length - 1]}.webp`);
 
   return (
-    <picture className={shot.role}>
-      <source type="image/avif" srcSet={renderSrcSet(shot.name, shot.widths, "avif")} sizes={sizes} />
-      <source type="image/webp" srcSet={renderSrcSet(shot.name, shot.widths, "webp")} sizes={sizes} />
-      <img
-        src={fallback}
-        srcSet={renderSrcSet(shot.name, shot.widths, "webp")}
-        sizes={sizes}
-        alt={shot.alt}
-        width={shot.width}
-        height={shot.height}
-        loading="lazy"
-        decoding="async"
-      />
-    </picture>
+    <figure className={shot.role}>
+      <picture>
+        <source type="image/avif" srcSet={renderSrcSet(shot.name, shot.widths, "avif")} sizes={sizes} />
+        <source type="image/webp" srcSet={renderSrcSet(shot.name, shot.widths, "webp")} sizes={sizes} />
+        <img
+          src={fallback}
+          srcSet={renderSrcSet(shot.name, shot.widths, "webp")}
+          sizes={sizes}
+          alt={shot.alt}
+          width={shot.width}
+          height={shot.height}
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+      <figcaption className="caption">{shot.caption}</figcaption>
+    </figure>
   );
 }
 
@@ -93,7 +101,7 @@ export function Kixmi() {
             <h2>Kixmi</h2>
             <div className="bleed-body">
               <p className="subtitle">Berotu Morruak</p>
-              <p className="project-meta">{projectContext.kixmi}</p>
+              <SpecLine items={projectSpecs.kixmi} />
               <p>
                 An award-winning glass packaging concept developed for a sustainability-focused
                 competition, proposing a low-impact production and recycling process through an

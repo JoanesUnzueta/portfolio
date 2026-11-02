@@ -350,6 +350,40 @@ p.project-meta {
   letter-spacing: 0.04em;
 }
 
+.spec-line {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 38rem;
+  margin: 0.15rem 0 0.95rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.spec-line span:not(:last-child)::after {
+  content: "·";
+  margin: 0 0.5rem;
+  font-weight: 400;
+  opacity: 0.55;
+}
+
+.hero-bleed .spec-line {
+  color: rgb(255 255 255 / 82%);
+}
+
+.hero-bleed.light .spec-line {
+  color: #3a3a3a;
+}
+
+.caption {
+  margin: 0.45rem 0 0;
+  color: #6a6a6a;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .hero.dark p.project-meta {
   color: #c8c8c8;
 }
@@ -526,7 +560,7 @@ p.project-meta {
 .split {
   display: grid;
   grid-template-columns: minmax(260px, 0.85fr) 1.25fr;
-  gap: 2.5rem;
+  gap: 3.25rem;
   align-items: center;
 }
 
@@ -546,6 +580,7 @@ p.project-meta {
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.05;
+  text-wrap: balance;
 }
 
 .copy h3 {
@@ -690,6 +725,10 @@ blockquote footer {
   gap: 0.85rem;
   margin-top: 1.4rem;
   align-items: start;
+}
+
+.render-gallery figure {
+  margin: 0;
 }
 
 .render-gallery picture {

@@ -213,6 +213,7 @@ export function FlowViewer() {
           />
         </label>
       </div>
+      <p className="caption">Exploded view · plywood parts</p>
     </div>
   );
 }
