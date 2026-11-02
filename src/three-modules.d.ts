@@ -18,3 +18,8 @@ declare module "three/addons/loaders/GLTFLoader.js" {
 declare module "three/addons/controls/OrbitControls.js" {
   export const OrbitControls: any;
 }
+
+declare module "three/addons/libs/fflate.module.js" {
+  export const unzipSync: (data: Uint8Array) => Record<string, Uint8Array>;
+}
+
