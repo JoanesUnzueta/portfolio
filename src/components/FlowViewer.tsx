@@ -3,7 +3,7 @@ import { asset } from "../asset";
 import { flowChairName } from "../projects";
 
 const posterPath = "images/web/flow-render-transparent-1.webp";
-const modelPath = "models/flow-chair-parts.glb";
+const modelPath = "models/flow-chair-bodies.zip.b64";
 const alt = `Interactive 3D model of the ${flowChairName}. Drag to orbit, scroll to zoom, or explode the plywood pieces.`;
 
 export function FlowViewer() {
@@ -24,6 +24,7 @@ export function FlowViewer() {
         const THREE = await import("three");
         const { GLTFLoader } = await import("three/addons/loaders/GLTFLoader.js");
         const { OrbitControls } = await import("three/addons/controls/OrbitControls.js");
+        const { unzipSync } = await import("three/addons/libs/fflate.module.js");
         if (stopped) return;
 
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -93,9 +94,42 @@ export function FlowViewer() {
 
         api.current = { setExplode, animateTo };
 
-        const gltf = await new GLTFLoader().loadAsync(asset(modelPath));
+        const archive = await fetch(asset(modelPath));
+        if (!archive.ok) throw new Error(`Could not load chair parts (${archive.status})`);
+        const encodedArchive = (await archive.text()).trim();
+        const binaryArchive = atob(encodedArchive);
+        const archiveBytes = Uint8Array.from(binaryArchive, (character) => character.charCodeAt(0));
+        const files = unzipSync(archiveBytes);
+        const bodyFiles = Object.entries(files).filter(([name]) => name.toLowerCase().endsWith(".glb"));
+        if (bodyFiles.length !== 39) {
+          throw new Error(`Expected 39 chair bodies, found ${bodyFiles.length}`);
+        }
+
+        const loader = new GLTFLoader();
+        const bodies = await Promise.all(
+          bodyFiles.map(async ([fileName, bytes]) => {
+            const bodyName = fileName.slice(fileName.lastIndexOf(" - ") + 3).replace(/\.glb$/i, "");
+            const buffer = bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
+            const gltf = await loader.parseAsync(buffer, "");
+            const body = new THREE.Group();
+            body.name = bodyName;
+            body.add(gltf.scene);
+            body.traverse((child: any) => {
+              if (!(child instanceof THREE.Mesh)) return;
+              const materials = Array.isArray(child.material) ? child.material : [child.material];
+              for (const material of materials) {
+                material.color?.set(0xc9ad86);
+                if ("roughness" in material) material.roughness = 0.92;
+                if ("metalness" in material) material.metalness = 0;
+              }
+            });
+            return body;
+          }),
+        );
         if (stopped) return;
-        const root = gltf.scene;
+        const root = new THREE.Group();
+        root.name = "Flow Chair · 39 bodies";
+        for (const body of bodies) root.add(body);
         const box = new THREE.Box3().setFromObject(root);
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
@@ -103,38 +137,21 @@ export function FlowViewer() {
         scene.add(root);
 
         root.updateMatrixWorld(true);
-        const centeredAxes = [0, 0, 0];
-        root.traverse((child: any) => {
-          if (!(child instanceof THREE.Mesh)) return;
+        root.children.forEach((child: any, index: number) => {
           const pieceBox = new THREE.Box3().setFromObject(child);
           const pieceCenter = pieceBox.getCenter(new THREE.Vector3());
           const pieceSize = pieceBox.getSize(new THREE.Vector3());
-          // Separate each board along its thinnest axis so the exploded view
-          // stays organized around the assembled chair instead of scattering radially.
-          const thicknessAxis =
-            pieceSize.x < pieceSize.y && pieceSize.x < pieceSize.z
-              ? 0
-              : pieceSize.y < pieceSize.z
-                ? 1
-                : 2;
-          let sign = Math.sign(pieceCenter.getComponent(thicknessAxis));
-          if (Math.abs(pieceCenter.getComponent(thicknessAxis)) < 0.035) {
-            sign = centeredAxes[thicknessAxis]++ % 2 === 0 ? 1 : -1;
-          }
-          const direction = new THREE.Vector3();
-          direction.setComponent(thicknessAxis, sign || 1);
-          direction.y += thicknessAxis === 1 ? 0 : 0.12;
+          // Each top-level node is one imported Onshape body. Move the whole body
+          // from its source position so seams and split faces stay together.
+          const direction = pieceCenter.clone();
+          const phase = index * 2.399963229728653;
+          direction.add(
+            new THREE.Vector3(Math.cos(phase), Math.sin(phase * 0.73), Math.sin(phase)).multiplyScalar(0.22),
+          );
+          if (direction.lengthSq() < 0.0001) direction.set(0, 1, 0);
           direction.normalize();
-          const travel = Math.min(0.3, Math.max(0.12, pieceSize.length() * 0.3));
-          const worldOffset = direction.multiplyScalar(travel);
-          const exploded = child.position.clone();
-          if (child.parent) {
-            const target = child.getWorldPosition(new THREE.Vector3()).add(worldOffset);
-            child.parent.worldToLocal(target);
-            exploded.copy(target);
-          } else {
-            exploded.add(worldOffset);
-          }
+          const travel = Math.min(0.36, Math.max(0.1, pieceSize.length() * 0.55));
+          const exploded = child.position.clone().addScaledVector(direction, travel);
           pieces.push({
             object: child,
             origin: child.position.clone(),
@@ -143,7 +160,7 @@ export function FlowViewer() {
         });
 
         const fit = Math.max(size.x, size.y, size.z);
-        camera.position.set(fit * 2.4, fit * 1.15, fit * 2.6);
+        camera.position.set(fit * 1.3, fit * 0.75, fit * 1.45);
         controls.target.set(0, 0, 0);
         controls.update();
         frameModel = () => {
@@ -155,7 +172,7 @@ export function FlowViewer() {
           const verticalFov = (camera.fov * Math.PI) / 180;
           const horizontalFov = 2 * Math.atan(Math.tan(verticalFov * 0.5) * camera.aspect);
           const requiredDistance =
-            (radius / Math.sin(Math.min(verticalFov, horizontalFov) * 0.5)) * 1.2;
+            (radius / Math.sin(Math.min(verticalFov, horizontalFov) * 0.5)) * 1.05;
           const viewDirection = camera.position.clone().sub(controls.target).normalize();
           const distance = Math.max(camera.position.distanceTo(controls.target), requiredDistance);
           controls.target.copy(center);
@@ -241,7 +258,7 @@ export function FlowViewer() {
           />
         </label>
       </div>
-      <p className="caption">Exploded view · plywood parts</p>
+      <p className="caption">Exploded view · 39 plywood bodies</p>
     </div>
   );
 }
