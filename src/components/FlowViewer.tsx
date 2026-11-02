@@ -185,23 +185,15 @@ export function FlowViewer() {
             travel = 0.18;
           } else if (name.startsWith("Part ")) {
             const pegNumber = Number(name.slice(5));
-            if ([1, 2, 15, 16].includes(pegNumber)) {
-              group = "seat";
+            if ((pegNumber >= 11 && pegNumber <= 14) || (pegNumber >= 17 && pegNumber <= 20)) {
+              group = "backrestTop";
               direction.set(0, 1, 0);
-              travel = 0.006;
-            } else if ([11, 12, 17, 20].includes(pegNumber)) {
-              group = "armrestOutside";
-              direction.set(Math.sign(center.x) || 1, 0, 0);
-              travel = 0.19;
-            } else if ([13, 14, 18, 19].includes(pegNumber)) {
-              group = "armrestInside";
-              direction.set(Math.sign(center.x) || 1, 0, 0);
-              travel = 0.17;
+              travel = 0.22;
             } else {
-              const outsidePeg = [3, 4, 8, 9, 21, 22, 25, 26].includes(pegNumber);
-              group = outsidePeg ? "legsOutside" : "legsInside";
-              direction.set(0, 0, center.z > 0.15 ? 1 : -1);
-              travel = outsidePeg ? 0.2 : 0.18;
+              const insidePeg = [1, 2, 15, 16].includes(pegNumber);
+              group = insidePeg ? "armrestInside" : "armrestOutside";
+              direction.set(Math.sign(center.x) || 1, 0, 0);
+              travel = insidePeg ? 0.17 : 0.19;
             }
           }
 
