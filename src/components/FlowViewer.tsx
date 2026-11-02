@@ -54,7 +54,13 @@ export function FlowViewer() {
         scene.add(fill);
 
         const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        const pieces: { object: any; origin: any; offset: any }[] = [];
+        const pieces: {
+          object: any;
+          origin: any;
+          offset: any;
+          start: number;
+          end: number;
+        }[] = [];
         let explode = 0;
         let frame = 0;
         let anim = 0;
@@ -64,7 +70,9 @@ export function FlowViewer() {
           explode = value;
           if (range.current) range.current.value = String(value);
           for (const piece of pieces) {
-            piece.object.position.copy(piece.origin).addScaledVector(piece.offset, value);
+            const progress = Math.max(0, Math.min(1, (value - piece.start) / (piece.end - piece.start)));
+            const eased = progress * progress * (3 - 2 * progress);
+            piece.object.position.copy(piece.origin).addScaledVector(piece.offset, eased);
           }
           frameModel?.();
         };
@@ -82,7 +90,7 @@ export function FlowViewer() {
           }
           const from = explode;
           const startTime = performance.now();
-          const duration = 900;
+          const duration = 2200;
           const tick = (now: number) => {
             const t = Math.min(1, (now - startTime) / duration);
             const eased = t < 0.5 ? 2 * t * t : 1 - ((-2 * t + 2) ** 2) / 2;
@@ -137,25 +145,82 @@ export function FlowViewer() {
         scene.add(root);
 
         root.updateMatrixWorld(true);
-        root.children.forEach((child: any, index: number) => {
+        const timing = {
+          backrestTop: [0, 0.12],
+          backrestBottom: [0.12, 0.24],
+          armrestOutside: [0.24, 0.38],
+          armrestInside: [0.38, 0.52],
+          legsOutside: [0.52, 0.67],
+          legsInside: [0.67, 0.82],
+          seat: [0.82, 1],
+        } as const;
+        const motionFor = (name: string, center: any) => {
+          let group: keyof typeof timing = "seat";
+          let direction = new THREE.Vector3(0, 0, 0);
+          let travel = 0.006;
+
+          if (name === "Backrest_Top") {
+            group = "backrestTop";
+            direction.set(0, 1, 0);
+            travel = 0.22;
+          } else if (name === "Backrest_Bottom") {
+            group = "backrestBottom";
+            direction.set(0, 1, 0);
+            travel = 0.18;
+          } else if (name.startsWith("Armrest_") && name.endsWith("_Outside")) {
+            group = "armrestOutside";
+            direction.set(Math.sign(center.x) || 1, 0, 0);
+            travel = 0.19;
+          } else if (name.startsWith("Armrest_") && name.endsWith("_Inside")) {
+            group = "armrestInside";
+            direction.set(Math.sign(center.x) || 1, 0, 0);
+            travel = 0.17;
+          } else if (name.startsWith("Legs_") && name.endsWith("_Outside")) {
+            group = "legsOutside";
+            direction.set(0, 0, name.includes("Front") ? 1 : -1);
+            travel = 0.2;
+          } else if (name.startsWith("Legs_") && name.endsWith("_Inside")) {
+            group = "legsInside";
+            direction.set(0, 0, name.includes("Front") ? 1 : -1);
+            travel = 0.18;
+          } else if (name.startsWith("Part ")) {
+            const pegNumber = Number(name.slice(5));
+            if ([1, 2, 15, 16].includes(pegNumber)) {
+              group = "seat";
+              direction.set(0, 1, 0);
+              travel = 0.006;
+            } else if ([11, 12, 17, 20].includes(pegNumber)) {
+              group = "armrestOutside";
+              direction.set(Math.sign(center.x) || 1, 0, 0);
+              travel = 0.19;
+            } else if ([13, 14, 18, 19].includes(pegNumber)) {
+              group = "armrestInside";
+              direction.set(Math.sign(center.x) || 1, 0, 0);
+              travel = 0.17;
+            } else {
+              const outsidePeg = [3, 4, 8, 9, 21, 22, 25, 26].includes(pegNumber);
+              group = outsidePeg ? "legsOutside" : "legsInside";
+              direction.set(0, 0, center.z > 0.15 ? 1 : -1);
+              travel = outsidePeg ? 0.2 : 0.18;
+            }
+          }
+
+          const [start, end] = timing[group];
+          return { start, end, offset: direction.multiplyScalar(travel) };
+        };
+
+        root.children.forEach((child: any) => {
           const pieceBox = new THREE.Box3().setFromObject(child);
           const pieceCenter = pieceBox.getCenter(new THREE.Vector3());
-          const pieceSize = pieceBox.getSize(new THREE.Vector3());
-          // Each top-level node is one imported Onshape body. Move the whole body
-          // from its source position so seams and split faces stay together.
-          const direction = pieceCenter.clone();
-          const phase = index * 2.399963229728653;
-          direction.add(
-            new THREE.Vector3(Math.cos(phase), Math.sin(phase * 0.73), Math.sin(phase)).multiplyScalar(0.22),
-          );
-          if (direction.lengthSq() < 0.0001) direction.set(0, 1, 0);
-          direction.normalize();
-          const travel = Math.min(0.36, Math.max(0.1, pieceSize.length() * 0.55));
-          const exploded = child.position.clone().addScaledVector(direction, travel);
+          // Each top-level node is one imported Onshape body. Keep the CAD
+          // sequence and move each peg with the body it joins.
+          const motion = motionFor(child.name, pieceCenter);
           pieces.push({
             object: child,
             origin: child.position.clone(),
-            offset: exploded.sub(child.position),
+            offset: motion.offset,
+            start: motion.start,
+            end: motion.end,
           });
         });
 
