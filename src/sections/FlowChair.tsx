@@ -39,7 +39,6 @@ export function FlowChair() {
       </section>
 
       <section className="construct" id="flow-construction">
-        <div className="swoosh" aria-hidden="true" />
         <div className="copy">
           <h2>Invisible Strength</h2>
           <p className="subtitle">Chair construction</p>
@@ -99,14 +98,6 @@ export function FlowChair() {
       </section>
 
       <section className="final" id="flow-final">
-        <Photo
-          className="final-bg"
-          src="images/web/chair-photo.webp"
-          alt=""
-          width={768}
-          height={974}
-        />
-        <div className="final-scrim" aria-hidden="true" />
         <div className="copy">
           <h2>Final product</h2>
           <p className="subtitle">CNC without borders</p>
@@ -116,10 +107,6 @@ export function FlowChair() {
           </p>
         </div>
         <FlowViewer />
-        <p className="sr-only">
-          Photograph of the finished {flowChairName}, a light plywood armchair, sits behind this
-          section.
-        </p>
         <EdgeLabel>{`${flowChairName} | 09`}</EdgeLabel>
       </section>
 
