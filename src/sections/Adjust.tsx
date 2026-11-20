@@ -24,8 +24,7 @@ export function Adjust() {
               <p className="subtitle">Tablet Holder Link</p>
               <SpecLine items={projectSpecs.adjust} />
               <p className="lede">
-                A tool-free clamp for a wheelchair tablet holder. It keeps a communication device
-                within reach.
+                A tool-free clamp for a wheelchair tablet holder. The device stays within reach.
               </p>
             </div>
           </div>
@@ -35,13 +34,11 @@ export function Adjust() {
 
       <section className="split" id="adjust-problem">
         <div className="copy">
-          <h2>From a need, an answer</h2>
-          <p className="subtitle">The problem</p>
+          <h2>Within reach</h2>
+          <p className="subtitle">Problem</p>
           <p>
-            From first-hand experience, it's easy to see that some people with special needs require
-            external tools to communicate properly. Technology has been a clear answer, with tools
-            for tablets and phones that make self-expression easier — and with them a new need has
-            arisen: tablet holders.
+            From first-hand experience: some people with special needs use tablets and phones to
+            communicate. Those devices need a holder.
           </p>
         </div>
         <Photo
@@ -55,12 +52,11 @@ export function Adjust() {
 
       <section className="split" id="adjust-solution">
         <div className="copy">
-          <h2>Ideation and sketches</h2>
-          <p className="subtitle">The solution</p>
+          <h2>One link</h2>
+          <p className="subtitle">Solution</p>
           <p>
-            Due to the part-quantity constraint of the project, only the wheelchair link was
-            selected. An ideation phase followed, with moodboards and several sketches, then a 3D
-            modelling process that led to the final product.
+            The brief limited the number of parts, so I designed the wheelchair link only.
+            Moodboards, sketches, then 3D models led to the clamp.
           </p>
           <Photo
             src="images/web/adjust-logo.webp"
@@ -81,12 +77,11 @@ export function Adjust() {
 
       <section className="split mechanism" id="adjust-mechanism">
         <div className="copy">
-          <h2>Grip mechanism</h2>
-          <p className="subtitle">Final design</p>
+          <h2>Grip</h2>
+          <p className="subtitle">Result</p>
           <p>
-            This easy-to-use, easy-to-understand system provides a firm grip on the wheelchair's
-            components. Its “one size fits all” design is made to fit most wheelchairs, and it
-            attaches without any external tools.
+            A firm, one-size-fits-all grip. Made to fit most wheelchairs, and attached with no
+            external tools.
           </p>
         </div>
         <div className="pair">
@@ -109,9 +104,11 @@ export function Adjust() {
       <section className="results" id="adjust-renders">
         <div className="copy">
           <h2>Final renders</h2>
-          <p className="subtitle">The result</p>
-          <p>Silicone grip pads on an aluminium frame.</p>
-          <p>The final link mounted on a wheelchair frame, ready to carry a tablet holder.</p>
+          <p className="subtitle">Result</p>
+          <p>
+            Silicone grip pads on an aluminium frame. Mounted on a wheelchair, ready for a tablet
+            holder.
+          </p>
         </div>
         <div className="result-grid">
           <Photo

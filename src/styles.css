@@ -229,16 +229,17 @@ section {
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgb(0 0 0 / 62%) 0%,
-    rgb(0 0 0 / 28%) 46%,
-    rgb(0 0 0 / 8%) 100%
+    rgb(0 0 0 / 74%) 0%,
+    rgb(0 0 0 / 48%) 34%,
+    rgb(0 0 0 / 8%) 58%,
+    rgb(0 0 0 / 0%) 100%
   );
 }
 
 .about-copy {
   position: relative;
   z-index: 1;
-  max-width: 40rem;
+  max-width: 62ch;
   padding: calc(var(--nav) + 2rem) 4.5rem 3.5rem 3.2rem;
 }
 
@@ -353,8 +354,9 @@ section {
 .renders p,
 .results p,
 .gallery p,
-.compare-head p {
-  max-width: 42ch;
+.compare-head p,
+.method-head p {
+  max-width: 66ch;
   font-size: 0.95rem;
 }
 
@@ -563,7 +565,7 @@ p.project-meta {
 }
 
 .hero-bleed .lede {
-  max-width: 28ch;
+  max-width: 36ch;
   margin: 0;
   color: rgb(255 255 255 / 68%);
   font-size: 0.84rem;
@@ -703,8 +705,17 @@ blockquote footer {
 }
 
 .compare-head {
+  max-width: 66ch;
   margin-bottom: 1.5rem;
-  padding-left: 1rem;
+}
+
+.renders .copy,
+.gallery .copy,
+.results .copy,
+.split .copy,
+.construct .copy,
+.final .copy {
+  max-width: 66ch;
 }
 
 .trio {
@@ -1010,7 +1021,7 @@ blockquote footer {
 }
 
 .results .copy {
-  max-width: 40rem;
+  max-width: 66ch;
 }
 
 .method {
@@ -1025,7 +1036,7 @@ blockquote footer {
 
 .method-head {
   display: grid;
-  grid-template-columns: auto minmax(0, 42rem);
+  grid-template-columns: auto minmax(0, 66ch);
   gap: 1.6rem 2rem;
   align-items: center;
 }
@@ -1044,11 +1055,14 @@ blockquote footer {
 }
 
 .method-head p {
-  margin: 0;
-  max-width: 68ch;
+  margin: 0.4rem 0 0;
   color: #3a3a3a;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   line-height: 1.55;
+}
+
+.method-head .subtitle {
+  margin-top: 0;
 }
 
 .method-wave {

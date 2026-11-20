@@ -24,7 +24,7 @@ const kixmiRenders: readonly KixmiRender[] = [
   {
     name: "kixmi-gen-hero-ice",
     role: "lead",
-    caption: "Visualisation · on ice",
+    caption: "On ice",
     alt: "Product visualisation of the Kixmi bottle on ice in red light, with condensation and the lips label.",
     width: 1152,
     height: 864,
@@ -33,7 +33,7 @@ const kixmiRenders: readonly KixmiRender[] = [
   {
     name: "kixmi-gen-trio-grey",
     role: "wide",
-    caption: "Visualisation · three bottles",
+    caption: "Three bottles",
     alt: "Product visualisation of three Kixmi bottles in a row on a grey studio background.",
     width: 1280,
     height: 720,
@@ -42,7 +42,7 @@ const kixmiRenders: readonly KixmiRender[] = [
   {
     name: "kixmi-gen-lifestyle",
     role: "tall",
-    caption: "Visualisation · in hand",
+    caption: "In hand",
     alt: "Product visualisation of a hand holding a Kixmi bottle at night, with lights behind it.",
     width: 864,
     height: 1152,
@@ -104,8 +104,8 @@ export function Kixmi() {
               <p className="subtitle">Berotu Morruak</p>
               <SpecLine items={projectSpecs.kixmi} />
               <p className="lede">
-                An award-winning glass bottle for a sustainability competition. Low-impact, practical,
-                and ready to manufacture.
+                A glass bottle for a sustainability contest. Low impact, practical, and ready to
+                make.
               </p>
             </div>
           </div>
@@ -116,25 +116,22 @@ export function Kixmi() {
       <section className="split tall" id="kixmi-contest">
         <div className="copy">
           <h2>Vidrala Master Glass Design Contest</h2>
-          <p className="subtitle">Glass Bottle Project</p>
+          <p className="subtitle">Problem</p>
           <p>
-            An innovative glass container designed for low environmental impact, combining
-            sustainable production and recycling with everyday usability. Its original yet feasible
-            design reimagines old traditions — and was selected as the winning entry (1st prize) of
-            the 4th edition of the Vidrala Master Glass Design Contest.
+            Kalimotxo — wine and cola — is not seen as premium. I wanted a bottle with a low
+            environmental impact, including production and recycling, that is still practical to use
+            every day.
           </p>
-          <h3>Concept</h3>
+          <h3>Solution</h3>
           <p>
-            Kalimotxo — wine and cola — has a reputation for being anything but premium. Kixmi set
-            out to change that with a bottle designed to convey its quality by itself: the union of
-            two icons, the Burgundy-style wine bottle and the characteristic bottom of a soda
-            bottle. Made with the year's wine from nearby wineries, it supports local businesses and
-            brings a premium perspective to a drink made by young people, for young people.
+            I joined two icons: a Burgundy neck and the base of a soda bottle. It uses the year's
+            wine from nearby wineries. A drink made by young people, for young people, and it
+            supports those businesses.
           </p>
-          <h3>A brand with a punch</h3>
+          <h3>Result</h3>
           <p>
-            The brand image is a pair of lips — you drink straight from the bottle. KIXMI:{" "}
-            <em>Kiss Me</em>.
+            1st prize, 4th edition of the Vidrala Master Glass Design Contest. The mark is a pair of
+            lips — you drink straight from the bottle. KIXMI: <em>Kiss Me</em>.
           </p>
           <blockquote>
             <p>
@@ -167,8 +164,9 @@ export function Kixmi() {
 
       <section className="compare" id="kixmi-bottles">
         <div className="compare-head">
-          <h2>The union of two concepts</h2>
-          <p>The Burgundy-style wine bottle and the characteristic bottom of a soda.</p>
+          <h2>Two bottles, one</h2>
+          <p className="subtitle">Solution</p>
+          <p>A Burgundy neck on the base of a soda bottle.</p>
         </div>
         <div className="trio">
           <figure>
@@ -214,6 +212,8 @@ export function Kixmi() {
       <section className="renders" id="kixmi-renders">
         <div className="copy">
           <h2>Final renders</h2>
+          <p className="subtitle">Result</p>
+          <p>The bottle on ice, as a set of three, and in the hand.</p>
           <blockquote>
             <p>
               “The project presents a comprehensive development process that begins with the study

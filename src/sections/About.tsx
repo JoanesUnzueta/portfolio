@@ -13,28 +13,22 @@ export function About() {
       />
       <div className="about-scrim" aria-hidden="true" />
       <div className="about-copy">
-        <h2>Hi! I'm Joanes Unzueta.</h2>
+        <h2>Hi, I'm Joanes Unzueta.</h2>
         <p>
-          I'm a product designer based in Stockholm, Sweden, with a background in Industrial Design
-          and Product Development from Mondragon Unibertsitatea. I grew up in Hernani, a small town
-          in the Basque Country, where I developed both a technical mindset and a curiosity for
-          creativity — a blend that led me naturally to industrial design, where engineering
-          precision meets human-centred creativity.
+          I'm a product designer in Stockholm. I studied Industrial Design and Product Development
+          at Mondragon Unibertsitatea.
         </p>
         <p>
-          Most recently I've been working as an Industrial Designer at <strong>Arfve</strong>, in
-          consumer electronics.
+          I grew up in Hernani, in the Basque Country. A technical mindset and a wish to make things
+          led me to industrial design.
         </p>
         <p>
-          At Mondragon, collaboration was at the core of every project: working in multidisciplinary
-          teams taught me to approach challenges from different perspectives, always keeping the
-          user at the centre. My design philosophy is about balancing aesthetics and functionality
-          to create meaningful solutions.
+          Most recently I've been an Industrial Designer at <strong>Arfve</strong>, in consumer
+          electronics.
         </p>
         <p>
-          I've studied and worked across several countries — from Poland to Japan — thanks to
-          scholarships such as Erasmus+ and MEXT. These experiences shaped my ability to adapt,
-          communicate and design with a truly global perspective.
+          At Mondragon I worked in multidisciplinary teams and kept the user at the centre. Erasmus+
+          and MEXT took me from Poland to Japan.
         </p>
         <p className="actions">
           <a className="btn" href="#contact">

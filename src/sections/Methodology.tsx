@@ -38,13 +38,18 @@ export function Methodology() {
         />
         <div>
           <h2>DBZ Methodology</h2>
+          <p className="subtitle">How I work</p>
           <p>
-            The DBZ Methodology, developed at Mondragon, is my main approach to design. Based on
-            the well-known concept of Design Thinking, it's a user-centred process that values
-            people's input and integrates their knowledge throughout its six steps. The goal is to
-            identify and bring to life new products and services with real added value. Its four
-            pillars are: user input, considering the entire consumer experience, balancing
-            analytical and creative thinking, and turning opportunities into tangible solutions.
+            Developed at Mondragon, DBZ is my main approach. It is Design Thinking, centred on the
+            user.
+          </p>
+          <p>
+            Six steps carry people's knowledge through the work. The aim is products and services
+            with real added value.
+          </p>
+          <p>
+            Four pillars: user input, the whole consumer experience, analytical and creative
+            thinking together, and opportunities turned into tangible solutions.
           </p>
         </div>
       </div>

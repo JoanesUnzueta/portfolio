@@ -12,7 +12,7 @@ export function Contact() {
     <section className="contact" id="contact">
       <p className="eyebrow">Contact</p>
       <h2>Let's talk</h2>
-      <p className="where">Based in Stockholm, Sweden.</p>
+      <p className="where">Industrial designer in Stockholm, Sweden.</p>
       <a className="mail" href="mailto:joanes.unzueta@gmail.com">
         joanes.unzueta@gmail.com
       </a>

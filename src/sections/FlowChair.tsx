@@ -30,8 +30,8 @@ export function FlowChair() {
               <p className="subtitle">Breaking the rules of CNC</p>
               <SpecLine items={projectSpecs.flowChair} />
               <p className="lede">
-                Flowing edges, cut on CNC from flat plywood. Continuous and sculptural, and still
-                practical to make.
+                Flowing edges, cut on CNC from flat plywood. Sculptural, and still practical to
+                make.
               </p>
             </div>
           </div>
@@ -41,14 +41,11 @@ export function FlowChair() {
 
       <section className="construct" id="flow-construction">
         <div className="copy">
-          <h2>Invisible Strength</h2>
-          <p className="subtitle">Chair construction</p>
+          <h2>Invisible strength</h2>
+          <p className="subtitle">Solution</p>
           <p>
-            In the construction phase, I focused on precision and clean assembly. Each plywood panel
-            was adjusted down to the millimetre, ensuring efficient CNC cutting and minimal waste —
-            all parts are nested on two sheets. The parts are held together with internal pegs,
-            creating strong, invisible junctions that preserve the seamless look of the design while
-            keeping the structure robust.
+            I adjusted each panel to the millimetre and nested every part on two sheets. Internal
+            pegs hold the chair. No fasteners show.
           </p>
           <dl className="specs">
             <div>
@@ -101,10 +98,10 @@ export function FlowChair() {
       <section className="final" id="flow-final">
         <div className="copy">
           <h2>Final product</h2>
-          <p className="subtitle">CNC without borders</p>
+          <p className="subtitle">Result</p>
           <p>
-            The finished chair: continuous, sculptural lines cut entirely on CNC from flat plywood
-            sheets. Drag to orbit, scroll to zoom, or pull the pieces apart.
+            Continuous lines, cut on CNC from flat plywood. Drag to orbit, scroll to zoom, or pull
+            the pieces apart.
           </p>
         </div>
         <FlowViewer />
@@ -114,7 +111,8 @@ export function FlowChair() {
       <section className="gallery" id="flow-in-use">
         <div className="copy">
           <h2>In use</h2>
-          <p className="subtitle">{flowChairName} — final product</p>
+          <p className="subtitle">Result</p>
+          <p>The chair, sat in and in the studio.</p>
         </div>
         <div className="shots">
           <Photo
