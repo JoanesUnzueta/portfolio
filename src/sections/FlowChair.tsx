@@ -2,6 +2,7 @@ import { asset } from "../asset";
 import { EdgeLabel } from "../components/EdgeLabel";
 import { FlowViewer } from "../components/FlowViewer";
 import { Photo } from "../components/Photo";
+import { ProjectNav } from "../components/ProjectNav";
 import { SpecLine } from "../components/SpecLine";
 import { flowChairName, projectSpecs } from "../projects";
 
@@ -167,6 +168,7 @@ export function FlowChair() {
         </div>
         <EdgeLabel>{`${flowChairName} | 10`}</EdgeLabel>
       </section>
+      <ProjectNav project="flow" />
     </>
   );
 }

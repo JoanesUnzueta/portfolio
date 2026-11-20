@@ -1,8 +1,30 @@
 import { useEffect, useState } from "react";
 
+const links = [
+  { href: "#work", id: "work", label: "Work" },
+  { href: "#about", id: "about", label: "About" },
+  { href: "#contact", id: "contact", label: "Contact" },
+] as const;
+
+function navTarget(sectionId: string) {
+  if (sectionId === "about" || sectionId === "method") return "about";
+  if (sectionId === "contact") return "contact";
+  if (
+    sectionId === "work" ||
+    sectionId === "wave" ||
+    sectionId.startsWith("kixmi") ||
+    sectionId.startsWith("flow") ||
+    sectionId.startsWith("adjust")
+  ) {
+    return "work";
+  }
+  return "";
+}
+
 export function Nav() {
   const [solid, setSolid] = useState(false);
   const [dark, setDark] = useState(false);
+  const [active, setActive] = useState("");
 
   useEffect(() => {
     const probe = () => {
@@ -16,6 +38,7 @@ export function Nav() {
         }
       }
       setDark(Boolean(current?.classList.contains("tone-dark")));
+      setActive(navTarget(current?.id ?? ""));
     };
     probe();
     window.addEventListener("scroll", probe, { passive: true });
@@ -33,9 +56,11 @@ export function Nav() {
         <span>Joanes Unzueta</span>
       </a>
       <nav aria-label="Site">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        {links.map((link) => (
+          <a key={link.id} href={link.href} aria-current={active === link.id ? "true" : undefined}>
+            {link.label}
+          </a>
+        ))}
       </nav>
     </header>
   );

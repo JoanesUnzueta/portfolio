@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type KeyboardEvent } from "react";
 import { asset } from "../asset";
 import { flowChairName } from "../projects";
 
@@ -9,9 +9,11 @@ const alt = `Interactive 3D model of the ${flowChairName}. Drag to orbit, scroll
 export function FlowViewer() {
   const host = useRef<HTMLDivElement>(null);
   const range = useRef<HTMLInputElement>(null);
-  const api = useRef<{ setExplode: (value: number) => void; animateTo: (value: number) => void } | null>(
-    null,
-  );
+  const api = useRef<{
+    setExplode: (value: number) => void;
+    animateTo: (value: number) => void;
+    nudge: (theta: number, phi: number, dolly: number) => void;
+  } | null>(null);
 
   useEffect(() => {
     const node = host.current;
@@ -100,7 +102,19 @@ export function FlowViewer() {
           anim = requestAnimationFrame(tick);
         };
 
-        api.current = { setExplode, animateTo };
+        const nudge = (theta: number, phi: number, dolly: number) => {
+          const offset = camera.position.clone().sub(controls.target);
+          const spherical = new THREE.Spherical().setFromVector3(offset);
+          spherical.theta += theta;
+          spherical.phi = Math.max(0.25, Math.min(Math.PI - 0.25, spherical.phi + phi));
+          spherical.radius = Math.max(0.55, Math.min(4.4, spherical.radius * dolly));
+          offset.setFromSpherical(spherical);
+          camera.position.copy(controls.target).add(offset);
+          controls.autoRotate = false;
+          controls.update();
+        };
+
+        api.current = { setExplode, animateTo, nudge };
 
         const archive = await fetch(asset(modelPath));
         if (!archive.ok) throw new Error(`Could not load chair parts (${archive.status})`);
@@ -290,10 +304,35 @@ export function FlowViewer() {
     };
   }, []);
 
+  const onViewerKey = (event: KeyboardEvent<HTMLDivElement>) => {
+    const nudge = api.current?.nudge;
+    if (!nudge) return;
+    const move: Record<string, [number, number, number]> = {
+      ArrowLeft: [0.14, 0, 1],
+      ArrowRight: [-0.14, 0, 1],
+      ArrowUp: [0, -0.08, 1],
+      ArrowDown: [0, 0.08, 1],
+      "+": [0, 0, 0.9],
+      "=": [0, 0, 0.9],
+      "-": [0, 0, 1.12],
+    };
+    const delta = move[event.key];
+    if (!delta) return;
+    event.preventDefault();
+    nudge(...delta);
+  };
+
   return (
     <div className="viewer-wrap">
-      <div className="viewer" ref={host} role="img" aria-label={alt}>
-        <img src={asset(posterPath)} alt="" width={1264} height={1152} />
+      <div
+        className="viewer"
+        ref={host}
+        tabIndex={0}
+        role="application"
+        aria-label={`${alt} Arrow keys orbit. Plus and minus zoom.`}
+        onKeyDown={onViewerKey}
+      >
+        <img src={asset(posterPath)} alt="" width={1264} height={1152} loading="lazy" decoding="async" />
       </div>
       <div className="explode">
         <button type="button" onClick={() => api.current?.animateTo(1)}>

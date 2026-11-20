@@ -1,4 +1,5 @@
 import { EdgeLabel } from "../components/EdgeLabel";
+import { ProjectNav } from "../components/ProjectNav";
 import { Photo } from "../components/Photo";
 import { SpecLine } from "../components/SpecLine";
 import { projectSpecs } from "../projects";
@@ -135,6 +136,7 @@ export function Adjust() {
         </div>
         <EdgeLabel>(AD)JUST | 15</EdgeLabel>
       </section>
+      <ProjectNav project="adjust" />
     </>
   );
 }

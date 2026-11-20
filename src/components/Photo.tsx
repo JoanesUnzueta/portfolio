@@ -19,7 +19,7 @@ export function Photo({ src, alt, width, height, className, priority = false }: 
       className={className}
       loading={priority ? "eager" : "lazy"}
       decoding="async"
-      fetchPriority={priority ? "high" : "low"}
+      {...(priority ? { fetchPriority: "high" as const } : {})}
     />
   );
 }

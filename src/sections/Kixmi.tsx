@@ -2,6 +2,7 @@ import { asset } from "../asset";
 import { EdgeLabel } from "../components/EdgeLabel";
 import { Photo } from "../components/Photo";
 import { projectSpecs } from "../projects";
+import { ProjectNav } from "../components/ProjectNav";
 import { SpecLine } from "../components/SpecLine";
 
 type KixmiRender = {
@@ -234,6 +235,7 @@ export function Kixmi() {
       <section className="wave" id="wave" aria-label="Section divider">
         <img src={asset("images/wave.svg")} alt="" width={1664} height={449} />
       </section>
+      <ProjectNav project="kixmi" />
     </>
   );
 }

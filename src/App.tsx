@@ -10,8 +10,11 @@ import { Kixmi } from "./sections/Kixmi";
 export default function App() {
   return (
     <>
+      <a className="skip" href="#content">
+        Skip to content
+      </a>
       <Nav />
-      <main>
+      <main id="content">
         <Cover />
         <About />
         <Methodology />
