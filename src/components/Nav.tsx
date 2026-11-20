@@ -7,11 +7,10 @@ const links = [
 ] as const;
 
 function navTarget(sectionId: string) {
-  if (sectionId === "about" || sectionId === "method") return "about";
+  if (sectionId === "about" || sectionId.startsWith("about") || sectionId === "method") return "about";
   if (sectionId === "contact") return "contact";
   if (
     sectionId === "work" ||
-    sectionId === "wave" ||
     sectionId.startsWith("kixmi") ||
     sectionId.startsWith("flow") ||
     sectionId.startsWith("adjust")

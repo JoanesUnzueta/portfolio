@@ -32,7 +32,7 @@ export function Contact() {
       <a className="to-top" href="#top">
         Back to top
       </a>
-      <EdgeLabel>Contact | 16</EdgeLabel>
+      <EdgeLabel>Contact | 17</EdgeLabel>
     </section>
   );
 }

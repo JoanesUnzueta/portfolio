@@ -115,40 +115,12 @@ export function Kixmi() {
 
       <section className="split tall" id="kixmi-contest">
         <div className="copy">
-          <h2>Vidrala Master Glass Design Contest</h2>
+          <h2>Not seen as premium</h2>
           <p className="subtitle">Problem</p>
           <p>
             Kalimotxo — wine and cola — is not seen as premium. I wanted a bottle with a low
             environmental impact, including production and recycling, that is still practical to use
             every day.
-          </p>
-          <h3>Solution</h3>
-          <p>
-            I joined two icons: a Burgundy neck and the base of a soda bottle. It uses the year's
-            wine from nearby wineries. A drink made by young people, for young people, and it
-            supports those businesses.
-          </p>
-          <h3>Result</h3>
-          <p>
-            1st prize, 4th edition of the Vidrala Master Glass Design Contest. The mark is a pair of
-            lips — you drink straight from the bottle. KIXMI: <em>Kiss Me</em>.
-          </p>
-          <blockquote>
-            <p>
-              “Remarkable exercise in imagination based on combining two existing realities. It
-              reinvents and elevates the consumption of the product in a different way within a
-              sector where it tends to become commoditized, connecting with the target audience it
-              is aimed at.”
-            </p>
-            <footer>— Vidrala jury</footer>
-          </blockquote>
-          <p className="wordmark">
-            <img
-              src={asset("images/web/vidrala-contest-wordmark-white.webp")}
-              alt="Vidrala Master Glass Design Contest wordmark."
-              width={1490}
-              height={251}
-            />
           </p>
         </div>
         <div className="circle-frame">
@@ -166,7 +138,11 @@ export function Kixmi() {
         <div className="compare-head">
           <h2>Two bottles, one</h2>
           <p className="subtitle">Solution</p>
-          <p>A Burgundy neck on the base of a soda bottle.</p>
+          <p>
+            I joined two icons: a Burgundy neck and the base of a soda bottle. It uses the year's
+            wine from nearby wineries. A drink made by young people, for young people, and it
+            supports those businesses.
+          </p>
         </div>
         <div className="trio">
           <figure>
@@ -209,31 +185,59 @@ export function Kixmi() {
         <EdgeLabel>Kixmi | 05</EdgeLabel>
       </section>
 
-      <section className="renders" id="kixmi-renders">
+      <section className="split" id="kixmi-result">
         <div className="copy">
-          <h2>Final renders</h2>
+          <h2>1st prize</h2>
           <p className="subtitle">Result</p>
-          <p>The bottle on ice, as a set of three, and in the hand.</p>
+          <p>
+            4th edition of the Vidrala Master Glass Design Contest. The mark is a pair of lips — you
+            drink straight from the bottle. KIXMI: <em>Kiss Me</em>.
+          </p>
           <blockquote>
             <p>
-              “The project presents a comprehensive development process that begins with the study
-              of the market, consumers, and trends, and concludes by proposing a holistic solution.
-              Particularly noteworthy is the object's design language in bringing together a cola
-              soft drink and a wine through the concept of Burgundy.”
+              “Remarkable exercise in imagination based on combining two existing realities. It
+              reinvents and elevates the consumption of the product in a different way within a
+              sector where it tends to become commoditized, connecting with the target audience it
+              is aimed at.”
             </p>
             <footer>— Vidrala jury</footer>
           </blockquote>
+        </div>
+        <p className="wordmark">
+          <img
+            src={asset("images/web/vidrala-contest-wordmark-white.webp")}
+            alt="Vidrala Master Glass Design Contest wordmark."
+            width={1490}
+            height={251}
+          />
+        </p>
+        <EdgeLabel>Kixmi | 06</EdgeLabel>
+      </section>
+
+      <section className="slide-text" id="kixmi-jury">
+        <blockquote>
+          <p>
+            “The project presents a comprehensive development process that begins with the study of
+            the market, consumers, and trends, and concludes by proposing a holistic solution.
+            Particularly noteworthy is the object's design language in bringing together a cola soft
+            drink and a wine through the concept of Burgundy.”
+          </p>
+          <footer>— Vidrala jury</footer>
+        </blockquote>
+        <EdgeLabel>Kixmi | 07</EdgeLabel>
+      </section>
+
+      <section className="renders" id="kixmi-renders">
+        <div className="copy">
+          <h2>Final renders</h2>
+          <p>The bottle on ice, as a set of three, and in the hand.</p>
         </div>
         <div className="render-gallery">
           {kixmiRenders.map((render) => (
             <KixmiRenderShot key={render.name} shot={render} />
           ))}
         </div>
-        <EdgeLabel>Kixmi | 06</EdgeLabel>
-      </section>
-
-      <section className="wave" id="wave" aria-label="Section divider">
-        <img src={asset("images/wave.svg")} alt="" width={1664} height={449} />
+        <EdgeLabel>Kixmi | 08</EdgeLabel>
       </section>
       <ProjectNav project="kixmi" />
     </>

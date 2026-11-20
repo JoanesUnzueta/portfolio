@@ -58,13 +58,6 @@ export function Adjust() {
             The brief limited the number of parts, so I designed the wheelchair link only.
             Moodboards, sketches, then 3D models led to the clamp.
           </p>
-          <Photo
-            src="images/web/adjust-logo.webp"
-            alt="(AD)JUST circular mark."
-            width={525}
-            height={638}
-            className="mini-logo"
-          />
         </div>
         <Photo
           src="images/web/adjust-ideation-sketches.webp"
@@ -73,6 +66,16 @@ export function Adjust() {
           height={960}
         />
         <EdgeLabel>(AD)JUST | 13</EdgeLabel>
+      </section>
+
+      <section className="slide-text mark-slide" id="adjust-mark">
+        <Photo
+          src="images/web/adjust-logo.webp"
+          alt="(AD)JUST circular mark."
+          width={525}
+          height={638}
+        />
+        <EdgeLabel>(AD)JUST | 14</EdgeLabel>
       </section>
 
       <section className="split mechanism" id="adjust-mechanism">
@@ -98,7 +101,7 @@ export function Adjust() {
             height={1031}
           />
         </div>
-        <EdgeLabel>(AD)JUST | 14</EdgeLabel>
+        <EdgeLabel>(AD)JUST | 15</EdgeLabel>
       </section>
 
       <section className="results" id="adjust-renders">
@@ -131,7 +134,7 @@ export function Adjust() {
             height={1612}
           />
         </div>
-        <EdgeLabel>(AD)JUST | 15</EdgeLabel>
+        <EdgeLabel>(AD)JUST | 16</EdgeLabel>
       </section>
       <ProjectNav project="adjust" />
     </>

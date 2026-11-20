@@ -47,6 +47,21 @@ export function FlowChair() {
             I adjusted each panel to the millimetre and nested every part on two sheets. Internal
             pegs hold the chair. No fasteners show.
           </p>
+        </div>
+        <Photo
+          src="images/web/chair-technical.webp"
+          alt={`CAD line render of the ${flowChairName}, shown in three-quarter view.`}
+          width={1366}
+          height={1624}
+          className="cad"
+        />
+        <EdgeLabel>{`${flowChairName} | 08`}</EdgeLabel>
+      </section>
+
+      <section className="split" id="flow-drawings">
+        <div className="copy">
+          <h2>Two sheets</h2>
+          <p className="subtitle">Result</p>
           <dl className="specs">
             <div>
               <dt>Overall size</dt>
@@ -69,14 +84,8 @@ export function FlowChair() {
               <dd>2 sheets</dd>
             </div>
           </dl>
+          <p className="caption">Dimensions and two-sheet nesting</p>
         </div>
-        <Photo
-          src="images/web/chair-technical.webp"
-          alt={`CAD line render of the ${flowChairName}, shown in three-quarter view.`}
-          width={1366}
-          height={1624}
-          className="cad"
-        />
         <div className="drawings">
           <img
             src={asset("images/flow-dimensions.svg")}
@@ -90,9 +99,8 @@ export function FlowChair() {
             width={570}
             height={430}
           />
-          <p className="caption">Dimensions and two-sheet nesting</p>
         </div>
-        <EdgeLabel>{`${flowChairName} | 08`}</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 09`}</EdgeLabel>
       </section>
 
       <section className="final" id="flow-final">
@@ -105,7 +113,7 @@ export function FlowChair() {
           </p>
         </div>
         <FlowViewer />
-        <EdgeLabel>{`${flowChairName} | 09`}</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 10`}</EdgeLabel>
       </section>
 
       <section className="gallery" id="flow-in-use">
@@ -164,7 +172,7 @@ export function FlowChair() {
             height={738}
           />
         </div>
-        <EdgeLabel>{`${flowChairName} | 10`}</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 11`}</EdgeLabel>
       </section>
       <ProjectNav project="flow" />
     </>
