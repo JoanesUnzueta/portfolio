@@ -78,7 +78,7 @@ export function Adjust() {
         <div className="bleed-scrim" aria-hidden="true" />
         <div className="hero-copy">
           <div className="bleed-title">
-            <p className="num">/03</p>
+            <p className="num">/02</p>
             <h2>(AD)JUST</h2>
             <div className="bleed-body">
               <p className="subtitle">Tablet Holder Link</p>
@@ -89,7 +89,7 @@ export function Adjust() {
             </div>
           </div>
         </div>
-        <EdgeLabel>(AD)JUST | 13</EdgeLabel>
+        <EdgeLabel>(AD)JUST | 09</EdgeLabel>
       </section>
 
       <section className="split accent-adjust" id="adjust-problem">
@@ -107,7 +107,7 @@ export function Adjust() {
           width={1920}
           height={960}
         />
-        <EdgeLabel>(AD)JUST | 14</EdgeLabel>
+        <EdgeLabel>(AD)JUST | 10</EdgeLabel>
       </section>
 
       <section className="split accent-adjust" id="adjust-solution">
@@ -128,7 +128,7 @@ export function Adjust() {
           />
           <figcaption className="caption">The link at the base of the tablet arm</figcaption>
         </figure>
-        <EdgeLabel>(AD)JUST | 15</EdgeLabel>
+        <EdgeLabel>(AD)JUST | 11</EdgeLabel>
       </section>
 
       <section className="process accent-adjust" id="adjust-process">
@@ -167,7 +167,7 @@ export function Adjust() {
             <figcaption className="caption">Modelled in Siemens NX</figcaption>
           </figure>
         </div>
-        <EdgeLabel>(AD)JUST | 16</EdgeLabel>
+        <EdgeLabel>(AD)JUST | 12</EdgeLabel>
       </section>
 
       <section className="slide-text mark-slide tone-dark accent-adjust" id="adjust-mark">
@@ -182,13 +182,13 @@ export function Adjust() {
           <strong>(AD)JUST</strong>
           <span>Tablet Holder Link</span>
         </p>
-        <EdgeLabel>(AD)JUST | 17</EdgeLabel>
+        <EdgeLabel>(AD)JUST | 13</EdgeLabel>
       </section>
 
       <section className="split mechanism accent-adjust" id="adjust-mechanism">
         <div className="copy">
           <h2>Grip</h2>
-          <p className="subtitle">Result</p>
+          <p className="subtitle">Mechanism</p>
           <p>
             A firm, one-size-fits-all grip. Made to fit most wheelchairs, and attached with no
             external tools.
@@ -223,7 +223,7 @@ export function Adjust() {
             <figcaption className="caption">Rotating mount</figcaption>
           </figure>
         </div>
-        <EdgeLabel>(AD)JUST | 18</EdgeLabel>
+        <EdgeLabel>(AD)JUST | 14</EdgeLabel>
       </section>
 
       <section className="split adjust-mounted accent-adjust" id="adjust-renders">
@@ -236,7 +236,7 @@ export function Adjust() {
           </p>
         </div>
         <MountedDetail />
-        <EdgeLabel>(AD)JUST | 19</EdgeLabel>
+        <EdgeLabel>(AD)JUST | 15</EdgeLabel>
       </section>
       <ProjectNav project="adjust" />
     </>

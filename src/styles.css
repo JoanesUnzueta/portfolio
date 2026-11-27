@@ -775,8 +775,8 @@ blockquote footer {
 
 /* The text column sets the height; the line-up shrinks to fit between wordmark and caption. */
 .split.prize .lineup-wrap {
-  height: 0;
-  min-height: 100%;
+  align-self: center;
+  justify-content: center;
 }
 
 .split.prize .contest-mark {
@@ -784,11 +784,10 @@ blockquote footer {
 }
 
 .split.prize .lineup {
-  flex: 1 1 0;
-  width: 100%;
-  min-height: 0;
+  width: min(100%, 680px);
+  height: auto;
+  max-height: 58vh;
   object-fit: contain;
-  object-position: center bottom;
 }
 
 .lineup-wrap figcaption {
@@ -853,6 +852,21 @@ blockquote footer {
   margin: 0;
 }
 
+/* Title and text sit centred over the middle bottle, the merge of the two outer ones. */
+.compare-head.centre {
+  max-width: 54ch;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+.compare-head.centre .kixmi-title {
+  align-items: center;
+}
+
+.compare-head.centre p {
+  margin: 0.9rem auto 0;
+}
+
 .renders .copy,
 .gallery .copy,
 .results .copy,
@@ -869,11 +883,9 @@ blockquote footer {
   align-items: end;
 }
 
-/* White cards, as on the Illustrator board. */
 .trio figure {
   margin: 0;
   padding: 2.4rem 1rem 1.1rem;
-  background: #f7f7f7;
 }
 
 .trio figure,
@@ -1344,17 +1356,62 @@ blockquote footer {
   background: transparent;
 }
 
+/* Render and built chair at the same height, on one baseline, each captioned underneath. */
+.pair-built {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: end;
+}
+
+.pair-built figure {
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pair-built img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: min(58vh, 560px);
+  object-fit: contain;
+}
+
+.pair-built figcaption {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* Three renders in a staggered triangle, as sketched: two up top, one dropped between them. */
 .clamp-trio {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.7rem;
-  align-items: end;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-areas:
+    "a a c c"
+    ". b b .";
+  gap: 0.5rem 1.5rem;
+  align-items: center;
+}
+
+.clamp-trio figure:nth-child(1) {
+  grid-area: a;
+}
+
+.clamp-trio figure:nth-child(2) {
+  grid-area: b;
+  margin-top: -2%;
+}
+
+.clamp-trio figure:nth-child(3) {
+  grid-area: c;
 }
 
 .clamp-trio img {
   width: 100%;
   height: auto;
-  max-height: 62vh;
+  max-height: 40vh;
   object-fit: contain;
   background: transparent;
   mix-blend-mode: multiply;
@@ -2008,12 +2065,22 @@ blockquote footer {
   }
 
   .split.prize .lineup {
-    flex: none;
-    height: auto;
+    max-height: none;
   }
 
   .compare-head.side {
     grid-template-columns: 1fr;
+  }
+
+  .clamp-trio {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "a c"
+      "b b";
+  }
+
+  .clamp-trio figure:nth-child(2) {
+    margin-top: 0;
   }
 
   .process {

@@ -2,16 +2,16 @@ import { EdgeLabel } from "../components/EdgeLabel";
 import { flowChairName } from "../projects";
 
 const projects = [
-  { href: "#kixmi", num: "01", label: "Kixmi" },
-  { href: "#flow", num: "02", label: flowChairName },
-  { href: "#adjust", num: "03", label: "(AD)JUST" },
+  { href: "#flow", num: "01", label: flowChairName },
+  { href: "#adjust", num: "02", label: "(AD)JUST" },
+  { href: "#kixmi", num: "03", label: "Kixmi" },
 ];
 
 export function Contact() {
   return (
     <section className="contact" id="contact">
       <h2>Let's talk</h2>
-      <p className="where">Industrial designer in Stockholm, Sweden.</p>
+      <p className="where">Industrial design engineer in Stockholm, Sweden.</p>
       <a className="mail" href="mailto:joanes.unzueta@gmail.com">
         joanes.unzueta@gmail.com
       </a>
@@ -31,7 +31,7 @@ export function Contact() {
       <a className="to-top" href="#top">
         Back to top
       </a>
-      <EdgeLabel>Contact | 20</EdgeLabel>
+      <EdgeLabel>Contact | 21</EdgeLabel>
     </section>
   );
 }

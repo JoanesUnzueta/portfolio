@@ -21,7 +21,7 @@ export function FlowChair() {
         <div className="bleed-scrim" aria-hidden="true" />
         <div className="hero-copy">
           <div className="bleed-title">
-            <p className="num">/02</p>
+            <p className="num">/01</p>
             <h2>
               <span lang="ja">フロー</span>
               <span className="sr-only"> {flowChairName}</span>
@@ -37,7 +37,7 @@ export function FlowChair() {
             </div>
           </div>
         </div>
-        <EdgeLabel>{`${flowChairName} | 09`}</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 04`}</EdgeLabel>
       </section>
 
       <section className="construct sheet accent-flow" id="flow-construction">
@@ -74,8 +74,41 @@ export function FlowChair() {
             height={860}
           />
         </div>
-        <EdgeLabel>{`${flowChairName} | 10`}</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 05`}</EdgeLabel>
       </section>
+      <section className="split render-built accent-flow" id="flow-edges">
+        <div className="copy">
+          <h2>Seamless edges</h2>
+          <p className="subtitle">Design for CNC</p>
+          <p>
+            I explored seamless, flowing edges designed for CNC manufacturing. Pushing against the
+            usual flat planes and sharp junctions, the chair feels continuous and sculptural, while
+            still being practical to produce.
+          </p>
+        </div>
+        <div className="pair-built">
+          <figure>
+            <Photo
+              src="images/web/flow-edges-render.webp"
+              alt={`Render of the ${flowChairName} in three-quarter view.`}
+              width={509}
+              height={648}
+            />
+            <figcaption className="caption">Render</figcaption>
+          </figure>
+          <figure>
+            <Photo
+              src="images/web/flow-edges-built.webp"
+              alt={`The built ${flowChairName} in plywood, photographed in the studio.`}
+              width={677}
+              height={770}
+            />
+            <figcaption className="caption">Built</figcaption>
+          </figure>
+        </div>
+        <EdgeLabel>{`${flowChairName} | 06`}</EdgeLabel>
+      </section>
+
       <section className="final accent-flow" id="flow-final">
         <div className="copy">
           <h2>Final product</h2>
@@ -86,7 +119,7 @@ export function FlowChair() {
           </p>
         </div>
         <FlowViewer />
-        <EdgeLabel>{`${flowChairName} | 11`}</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 07`}</EdgeLabel>
       </section>
 
       <InUse />
@@ -97,9 +130,9 @@ export function FlowChair() {
 
 /** Each empty photo is aligned to its seated photo, so the chair stays put when the person fades in. */
 const sitViews = [
-  { id: "front", label: "front three-quarter", focus: "50% 60%" },
+  { id: "front", label: "front three-quarter", focus: "47% 60%" },
   { id: "side", label: "side", focus: "52% 60%" },
-  { id: "rear", label: "rear three-quarter", focus: "56% 60%" },
+  { id: "rear", label: "rear three-quarter", focus: "77% 60%" },
 ] as const;
 
 function InUse() {
@@ -148,7 +181,7 @@ function InUse() {
         <span className="hint-hover">Hover to sit</span>
         <span className="hint-touch">Tap to sit</span>
       </p>
-      <EdgeLabel>{`${flowChairName} | 12`}</EdgeLabel>
+      <EdgeLabel>{`${flowChairName} | 08`}</EdgeLabel>
     </section>
   );
 }

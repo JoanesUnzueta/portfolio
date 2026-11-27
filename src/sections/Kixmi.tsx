@@ -36,7 +36,7 @@ export function Kixmi() {
         <div className="bleed-scrim" aria-hidden="true" />
         <div className="hero-copy">
           <div className="bleed-title">
-            <p className="num">/01</p>
+            <p className="num">/03</p>
             <h2>Kixmi</h2>
             <div className="bleed-body">
               <p className="subtitle">“Berotu Morruak”</p>
@@ -49,10 +49,10 @@ export function Kixmi() {
             </div>
           </div>
         </div>
-        <EdgeLabel>Kixmi | 04</EdgeLabel>
+        <EdgeLabel>Kixmi | 16</EdgeLabel>
       </section>
 
-      <section className="split tall accent-kixmi" id="kixmi-contest">
+      <section className="split accent-kixmi" id="kixmi-contest">
         <div className="copy">
           <KixmiTitle hit="Bases" rest="of Kixmi" kicker="Trends" />
           <p>
@@ -60,15 +60,6 @@ export function Kixmi() {
             for the urban nomad, with a low environmental impact, including production and
             recycling, that is still practical to use every day.
           </p>
-          <img
-            className="trends"
-            src={asset("images/web/kixmi-trends.webp")}
-            alt="Trend board: Super sense, Ecological awareness, Premium, Here & now, Less wine."
-            width={1400}
-            height={698}
-            loading="lazy"
-            decoding="async"
-          />
         </div>
         <div className="circle-frame">
           <Photo
@@ -78,11 +69,11 @@ export function Kixmi() {
             height={1327}
           />
         </div>
-        <EdgeLabel>Kixmi | 05</EdgeLabel>
+        <EdgeLabel>Kixmi | 17</EdgeLabel>
       </section>
 
       <section className="compare accent-kixmi" id="kixmi-bottles">
-        <div className="compare-head side">
+        <div className="compare-head centre">
           <KixmiTitle hit="Merging" rest="of forms" kicker="Concept Development" />
           <p>
             The union of a burgundy wine bottle and a soda bottom: borgoña with the base of a soda
@@ -128,7 +119,7 @@ export function Kixmi() {
             <figcaption>Burgundy wine bottle</figcaption>
           </figure>
         </div>
-        <EdgeLabel>Kixmi | 06</EdgeLabel>
+        <EdgeLabel>Kixmi | 18</EdgeLabel>
       </section>
 
       <section className="split prize accent-kixmi" id="kixmi-result">
@@ -171,17 +162,17 @@ export function Kixmi() {
             className="lineup"
             src={asset("images/web/kixmi-render-group-vidrala.webp")}
             alt="Product visualisation of the Kixmi bottle in front of other bottles from the contest, including a faded Vidrala bottle."
-            width={521}
-            height={449}
+            width={525}
+            height={519}
           />
           <figcaption className="caption">Kixmi in the contest line-up</figcaption>
         </figure>
-        <EdgeLabel>Kixmi | 07</EdgeLabel>
+        <EdgeLabel>Kixmi | 19</EdgeLabel>
       </section>
 
       <section className="kixmi-life accent-kixmi" id="kixmi-renders">
         <div className="copy">
-          <KixmiTitle hit="Final" rest="renders" kicker="Result" />
+          <KixmiTitle hit="Final" rest="renders" kicker="In context" />
           <p>At sunset, and at the bar next to its six-pack carrier.</p>
         </div>
         <div className="life-pair">
@@ -226,7 +217,7 @@ export function Kixmi() {
             <figcaption className="caption">Six-pack carrier</figcaption>
           </figure>
         </div>
-        <EdgeLabel>Kixmi | 08</EdgeLabel>
+        <EdgeLabel>Kixmi | 20</EdgeLabel>
       </section>
       <ProjectNav project="kixmi" />
     </>

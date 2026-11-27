@@ -18,9 +18,9 @@ export default function App() {
         <Cover />
         <About />
         <Methodology />
-        <Kixmi />
         <FlowChair />
         <Adjust />
+        <Kixmi />
         <Contact />
       </main>
     </>

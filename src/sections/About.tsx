@@ -40,6 +40,10 @@ export function About() {
           Most recently I've been an Industrial Designer at <strong>Arfve</strong>, in consumer
           electronics.
         </p>
+        <p>
+          The part I enjoy most is the step from screen to workshop: sketching, modelling in CAD,
+          then cutting, assembling and adjusting until it fits and works the way it should.
+        </p>
         <p className="actions">
           <a className="btn" href="#contact">
             Get in touch

@@ -1,9 +1,9 @@
 import { flowChairName } from "../projects";
 
 const projects = [
-  { id: "kixmi", href: "#kixmi", num: "01", label: "Kixmi" },
-  { id: "flow", href: "#flow", num: "02", label: flowChairName },
-  { id: "adjust", href: "#adjust", num: "03", label: "(AD)JUST" },
+  { id: "flow", href: "#flow", num: "01", label: flowChairName },
+  { id: "adjust", href: "#adjust", num: "02", label: "(AD)JUST" },
+  { id: "kixmi", href: "#kixmi", num: "03", label: "Kixmi" },
 ] as const;
 
 type ProjectId = (typeof projects)[number]["id"];

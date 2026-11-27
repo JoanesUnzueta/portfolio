@@ -10,6 +10,6 @@ export const projectContext = {
 /** Short facts already stated in the copy, shown as one spec line on each cover. */
 export const projectSpecs = {
   kixmi: [projectContext.kixmi, "1st prize, Vidrala", "Glass packaging"],
-  flowChair: [projectContext.flowChair, "18 mm CNC plywood", "480 × 480 × 658 mm"],
-  adjust: [projectContext.adjust, "Anodised aluminium, silicone", "Wheelchair accessory"],
+  flowChair: [projectContext.flowChair, "Onshape CAD, CNC-cut 18 mm plywood", "480 × 480 × 658 mm"],
+  adjust: [projectContext.adjust, "Siemens NX", "Anodised aluminium, silicone"],
 } as const;
