@@ -5,51 +5,6 @@ import { projectSpecs } from "../projects";
 import { ProjectNav } from "../components/ProjectNav";
 import { SpecLine } from "../components/SpecLine";
 
-type KixmiRender = {
-  /** File stem in public/images/kixmi/. Drop or replace an entry to swap a render. */
-  name: string;
-  alt: string;
-  width: number;
-  height: number;
-  role: "lead" | "wide" | "tall";
-  widths: readonly number[];
-  caption: string;
-};
-
-/**
- * Final-render gallery. Each name maps to AVIF and WebP files at the listed widths:
- * public/images/kixmi/<name>-<width>.avif and .webp. Remove a row if a render is vetoed.
- */
-const kixmiRenders: readonly KixmiRender[] = [
-  {
-    name: "kixmi-studio-wet",
-    role: "lead",
-    caption: "On ice",
-    alt: "Product visualisation of the Kixmi bottle on ice, wet with condensation, in red light.",
-    width: 1152,
-    height: 888,
-    widths: [480, 768, 1152],
-  },
-  {
-    name: "kixmi-studio-clean",
-    role: "wide",
-    caption: "Studio",
-    alt: "Product visualisation of three Kixmi bottles, cut out from the studio background, with a faint reflection.",
-    width: 1280,
-    height: 1397,
-    widths: [640, 960, 1280],
-  },
-  {
-    name: "kixmi-lifestyle-hand",
-    role: "tall",
-    caption: "In hand",
-    alt: "Product visualisation of a hand holding a Kixmi bottle, with warm lights behind it.",
-    width: 864,
-    height: 1145,
-    widths: [432, 648, 864],
-  },
-];
-
 function renderSrcSet(name: string, widths: readonly number[], ext: "avif" | "webp") {
   return widths
     .map((width) => `${asset(`images/kixmi/${name}-${width}.${ext}`)} ${width}w`)
@@ -64,46 +19,6 @@ function KixmiTitle({ hit, rest, kicker }: { hit: string; rest: string; kicker: 
       </h2>
       <p className="subtitle">{kicker}</p>
     </div>
-  );
-}
-
-function KixmiRenderShot({ shot }: { shot: KixmiRender }) {
-  const sizes =
-    shot.role === "lead"
-      ? "(min-width: 981px) min(1200px, 88vw), 100vw"
-      : shot.role === "wide"
-        ? "(min-width: 981px) 58vw, 100vw"
-        : "(min-width: 981px) 30vw, 100vw";
-  const fallback = asset(`images/kixmi/${shot.name}-${shot.widths[shot.widths.length - 1]}.webp`);
-
-  return (
-    <figure className={`${shot.role}${shot.name.includes("clean") ? " cutout" : ""}`}>
-      <picture>
-        {shot.name.includes("clean") ? null : (
-          <source
-            type="image/avif"
-            srcSet={renderSrcSet(shot.name, shot.widths, "avif")}
-            sizes={sizes}
-          />
-        )}
-        <source
-          type="image/webp"
-          srcSet={renderSrcSet(shot.name, shot.widths, "webp")}
-          sizes={sizes}
-        />
-        <img
-          src={fallback}
-          srcSet={renderSrcSet(shot.name, shot.widths, "webp")}
-          sizes={sizes}
-          alt={shot.alt}
-          width={shot.width}
-          height={shot.height}
-          loading="lazy"
-          decoding="async"
-        />
-      </picture>
-      <figcaption className="caption">{shot.caption}</figcaption>
-    </figure>
   );
 }
 
@@ -145,6 +60,15 @@ export function Kixmi() {
             for the urban nomad, with a low environmental impact, including production and
             recycling, that is still practical to use every day.
           </p>
+          <img
+            className="trends"
+            src={asset("images/web/kixmi-trends.webp")}
+            alt="Trend board: Super sense, Ecological awareness, Premium, Here & now, Less wine."
+            width={1400}
+            height={698}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
         <div className="circle-frame">
           <Photo
@@ -158,7 +82,7 @@ export function Kixmi() {
       </section>
 
       <section className="compare accent-kixmi" id="kixmi-bottles">
-        <div className="compare-head">
+        <div className="compare-head side">
           <KixmiTitle hit="Merging" rest="of forms" kicker="Concept Development" />
           <p>
             The union of a burgundy wine bottle and a soda bottom: borgoña with the base of a soda
@@ -207,7 +131,7 @@ export function Kixmi() {
         <EdgeLabel>Kixmi | 06</EdgeLabel>
       </section>
 
-      <section className="split accent-kixmi" id="kixmi-result">
+      <section className="split prize accent-kixmi" id="kixmi-result">
         <div className="copy">
           <KixmiTitle hit="1st" rest="prize" kicker="Result" />
           <p>
@@ -247,17 +171,17 @@ export function Kixmi() {
             className="lineup"
             src={asset("images/web/kixmi-render-group-vidrala.webp")}
             alt="Product visualisation of the Kixmi bottle in front of other bottles from the contest, including a faded Vidrala bottle."
-            width={670}
-            height={550}
+            width={521}
+            height={449}
           />
           <figcaption className="caption">Kixmi in the contest line-up</figcaption>
         </figure>
         <EdgeLabel>Kixmi | 07</EdgeLabel>
       </section>
 
-      <section className="kixmi-life accent-kixmi" id="kixmi-life">
+      <section className="kixmi-life accent-kixmi" id="kixmi-renders">
         <div className="copy">
-          <KixmiTitle hit="In" rest="context" kicker="Lifestyle" />
+          <KixmiTitle hit="Final" rest="renders" kicker="Result" />
           <p>At sunset, and at the bar next to its six-pack carrier.</p>
         </div>
         <div className="life-pair">
@@ -303,18 +227,6 @@ export function Kixmi() {
           </figure>
         </div>
         <EdgeLabel>Kixmi | 08</EdgeLabel>
-      </section>
-      <section className="renders accent-kixmi" id="kixmi-renders">
-        <div className="copy">
-          <KixmiTitle hit="Final" rest="renders" kicker="Result" />
-          <p>In the hand, on ice, and as a studio set.</p>
-        </div>
-        <div className="render-gallery">
-          {kixmiRenders.map((render) => (
-            <KixmiRenderShot key={render.name} shot={render} />
-          ))}
-        </div>
-        <EdgeLabel>Kixmi | 09</EdgeLabel>
       </section>
       <ProjectNav project="kixmi" />
     </>

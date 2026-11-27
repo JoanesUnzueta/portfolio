@@ -37,7 +37,7 @@ export function FlowChair() {
             </div>
           </div>
         </div>
-        <EdgeLabel>{`${flowChairName} | 10`}</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 09`}</EdgeLabel>
       </section>
 
       <section className="construct sheet accent-flow" id="flow-construction">
@@ -74,7 +74,7 @@ export function FlowChair() {
             height={860}
           />
         </div>
-        <EdgeLabel>{`${flowChairName} | 11`}</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 10`}</EdgeLabel>
       </section>
       <section className="final accent-flow" id="flow-final">
         <div className="copy">
@@ -86,7 +86,7 @@ export function FlowChair() {
           </p>
         </div>
         <FlowViewer />
-        <EdgeLabel>{`${flowChairName} | 12`}</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 11`}</EdgeLabel>
       </section>
 
       <InUse />
@@ -95,11 +95,8 @@ export function FlowChair() {
   );
 }
 
-const sitViews = [
-  { id: "front", label: "front three-quarter", focus: "47% 60%" },
-  { id: "side", label: "side", focus: "50% 60%" },
-  { id: "rear", label: "rear three-quarter", focus: "54% 60%" },
-] as const;
+/** Only the side pair was shot from the same spot, so only it is used for the hover. */
+const sitViews = [{ id: "side", label: "side", focus: "50% 60%" }] as const;
 
 function InUse() {
   const [seated, setSeated] = useState<string | null>(null);
@@ -147,7 +144,7 @@ function InUse() {
         <span className="hint-hover">Hover to sit</span>
         <span className="hint-touch">Tap to sit</span>
       </p>
-      <EdgeLabel>{`${flowChairName} | 13`}</EdgeLabel>
+      <EdgeLabel>{`${flowChairName} | 12`}</EdgeLabel>
     </section>
   );
 }
