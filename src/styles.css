@@ -72,7 +72,9 @@ a {
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  transition: background 180ms ease, color 180ms ease;
+  transition:
+    background 180ms ease,
+    color 180ms ease;
 }
 
 .nav.solid {
@@ -716,60 +718,32 @@ p.project-meta {
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.12em;
+  gap: 0.1em;
   margin: 0;
-  padding: 0.28rem 0.55rem 0.38rem;
-  background: #141414;
-  color: #fff;
+  color: #111;
   font-size: clamp(1.7rem, 3vw, 2.5rem);
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   line-height: 0.95;
   text-transform: uppercase;
   text-wrap: balance;
 }
 
+/* The first word keeps the red label from the original Kixmi boards; the rest is plain type. */
 .kixmi-hit {
   display: inline-block;
+  margin-left: -0.16em;
+  padding: 0.04em 0.16em 0.06em;
   background: var(--accent, #b3121b);
   color: #fff;
-  padding: 0.02em 0.16em 0.06em;
 }
 
 .kixmi-rest {
   display: block;
-  color: #fff;
 }
 
 .kixmi-title .subtitle {
   margin-top: 0.7rem;
-}
-
-.kixmi-pair {
-  display: grid;
-  grid-template-columns: minmax(16rem, 28rem) 11rem minmax(16rem, 28rem);
-  justify-content: center;
-  gap: 1.4rem 1.4rem;
-  align-items: start;
-  min-height: 100svh;
-  padding: calc(var(--nav) + 3.2rem) 4vw 2.8rem 4.2rem;
-}
-
-.kixmi-pair .copy p {
-  max-width: 42ch;
-}
-
-.kixmi-lips {
-  width: min(100%, 220px);
-  height: auto;
-  margin: 0.8rem 0 0.4rem;
-}
-
-.kixmi-splash {
-  width: min(100%, 150px);
-  height: auto;
-  margin-top: 5.2rem;
-  justify-self: center;
 }
 
 .copy h3 {
@@ -808,7 +782,7 @@ blockquote footer {
 }
 
 .lineup {
-  width: min(100%, 520px);
+  width: min(100%, 720px);
   height: auto;
   justify-self: center;
   object-fit: contain;
@@ -869,7 +843,7 @@ blockquote footer {
 .bottle-stack > img:first-child {
   width: auto;
   max-width: 100%;
-  max-height: min(62vh, 640px);
+  max-height: min(52vh, 560px);
   background: transparent;
   object-fit: contain;
   object-position: center bottom;
@@ -912,7 +886,7 @@ blockquote footer {
 
 .render-gallery {
   display: grid;
-  grid-template-columns: 0.72fr 1.15fr 1.15fr;
+  grid-template-columns: 0.75fr 1.1fr 1fr;
   grid-template-areas: "tall lead wide";
   gap: 0.75rem;
   margin-top: 1.2rem;
@@ -933,16 +907,8 @@ blockquote footer {
   background: #111;
 }
 
-.render-gallery .tall picture {
-  aspect-ratio: 3 / 4;
-}
-
-.render-gallery .lead picture {
-  aspect-ratio: 4 / 3;
-}
-
-.render-gallery .wide picture {
-  aspect-ratio: 16 / 9;
+.render-gallery picture {
+  height: min(56vh, 600px);
 }
 
 .render-gallery .lead {
@@ -970,21 +936,36 @@ blockquote footer {
   background: transparent;
 }
 
-.render-gallery .cutout picture {
-  aspect-ratio: auto;
-}
-
 .render-gallery .cutout img {
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  max-height: 58vh;
-  margin-inline: auto;
   object-fit: contain;
+  object-position: center bottom;
 }
 
-.render-gallery .cutout {
-  align-items: center;
+.kixmi-life {
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.4rem;
+  padding: calc(var(--nav) + 2.2rem) 3.2rem 3rem 3.4rem;
+}
+
+.life-pair {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 0.75rem;
+  width: min(100%, calc((100svh - 19rem) * 2.5));
+}
+
+.life-pair figure {
+  margin: 0;
+}
+
+.life-pair img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #111;
 }
 
 .construct {
@@ -996,9 +977,14 @@ blockquote footer {
 }
 
 .construct.sheet {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
   min-height: 100svh;
-  padding: calc(var(--nav) + 2.2rem) 4vw 2.4rem 4.2rem;
-  background: #e5e5e5;
+  padding: 0;
+  overflow: hidden;
+  background: var(--bg);
 }
 
 .flow-wave {
@@ -1011,16 +997,39 @@ blockquote footer {
   pointer-events: none;
 }
 
-.construct.sheet .copy,
-.construct.sheet .cad,
-.construct.sheet .drawings {
+/* A 1920 × 1080 board, laid out with the coordinates of the Illustrator slide. */
+.sheet-stage {
   position: relative;
   z-index: 1;
+  width: min(100vw, calc(100svh * 16 / 9));
+  aspect-ratio: 16 / 9;
 }
 
-.construct.sheet .cad {
-  max-height: 78vh;
-  justify-self: center;
+.sheet-stage > img {
+  position: absolute;
+  height: auto;
+  max-height: none;
+  background: transparent;
+}
+
+.sheet-stage .cad {
+  top: 21.47%;
+  left: 20.92%;
+  width: 29.45%;
+}
+
+.sheet-stage .sheet-dims {
+  top: 17.59%;
+  left: 54.17%;
+  width: 35.94%;
+  mix-blend-mode: multiply;
+}
+
+.sheet-stage .sheet-nest {
+  top: 47.69%;
+  left: 57.03%;
+  width: 29.69%;
+  mix-blend-mode: multiply;
 }
 
 .slide-text {
@@ -1084,32 +1093,42 @@ blockquote footer {
 .in-use {
   display: flex;
   min-height: 100svh;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: calc(var(--nav) + 2rem) 4vw 3rem;
-  background: #f2f2f2;
+  gap: 1.1rem;
+  padding: calc(var(--nav) + 2rem) 4vw 2.4rem;
+  background: var(--bg);
+}
+
+.sit-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+  width: min(100%, calc((100svh - var(--nav) - 8rem) * 3 * 4 / 5 + 1.8rem));
 }
 
 .sit {
   position: relative;
-  width: min(1180px, 100%);
+  display: block;
+  aspect-ratio: 4 / 5;
   padding: 0;
+  overflow: hidden;
   border: 0;
-  background: transparent;
+  background: #e1e1e6;
   cursor: pointer;
 }
 
 .sit img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .sit .sat {
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  object-fit: cover;
   opacity: 0;
   transition: opacity 0.55s ease;
 }
@@ -1120,18 +1139,18 @@ blockquote footer {
   opacity: 1;
 }
 
+.sit:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .sit-hint {
-  position: absolute;
-  bottom: 1rem;
-  left: 50%;
-  padding: 0.35rem 0.65rem;
-  background: rgb(255 255 255 / 78%);
-  color: #2a2a2a;
+  margin: 0;
+  color: #5c5c5c;
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  transform: translateX(-50%);
 }
 
 .hint-touch {
@@ -1150,8 +1169,10 @@ blockquote footer {
 
 @media (prefers-reduced-motion: reduce) {
   .sit .sat,
-  .wave-base,
-  .wave-hot,
+  .m-arcs path,
+  .m-pins line,
+  .m-pins circle,
+  .m-eyes path,
   .method-steps li,
   .method-miles li {
     transition: none;
@@ -1318,11 +1339,12 @@ blockquote footer {
   background: transparent;
 }
 
-.results.adjust-mounted .hero-shot {
+.adjust-mounted .hero-shot {
   display: block;
-  width: min(100%, 860px);
-  max-height: 68vh;
-  margin: 0.4rem auto 0;
+  width: min(100%, 760px);
+  height: auto;
+  max-height: 80vh;
+  margin: 0 auto;
   object-fit: contain;
   background: transparent;
 }
@@ -1402,47 +1424,86 @@ blockquote footer {
 }
 
 .method-wave {
-  margin-top: 2.4rem;
+  margin-top: 2rem;
 }
 
 .method-diagram {
-  width: 100%;
+  width: min(100%, calc((100svh - 28rem) * 1664 / 476));
+  min-width: min(100%, 52rem);
+  margin: 0 auto;
 }
 
 .method-board {
   position: relative;
 }
 
-.method-board img {
+.method-svg {
   display: block;
   width: 100%;
   height: auto;
+  overflow: visible;
 }
 
-.wave-base,
-.wave-hot,
-.method-steps li,
-.method-miles li {
-  transition: opacity 200ms ease, clip-path 200ms ease;
+.m-arcs path,
+.m-pins line,
+.m-pins circle,
+.m-eyes path {
+  transition:
+    opacity 220ms ease,
+    stroke 220ms ease,
+    fill 220ms ease,
+    stroke-width 220ms ease;
 }
 
-.wave-base {
-  opacity: 0.2;
+.m-arcs path {
+  fill: #c4c4c4;
+  stroke: none;
 }
 
-.method-board img.wave-hot {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  opacity: 0;
-  pointer-events: none;
+.m-pins line {
+  stroke: #9a9a9a;
+  stroke-width: 1.5;
 }
 
-.method-wave.is-hot .wave-hot {
+.m-pins circle {
+  fill: var(--bg);
+  stroke: #6f6f6f;
+  stroke-width: 1.5;
+}
+
+.m-eyes path {
+  fill: none;
+  stroke: #6675b8;
+  stroke-width: 19;
+  stroke-linejoin: round;
+  opacity: var(--tint);
+  mix-blend-mode: multiply;
+}
+
+/* Hover: the loop and every arc that leaves from its joints, drawn in full. */
+.method-wave.is-hot .m-arcs path,
+.method-wave.is-hot .m-pins g,
+.method-wave.is-hot .m-eyes path {
+  opacity: 0.22;
+}
+
+.method-wave.is-hot .m-arcs path.on {
   opacity: 1;
+  fill: #6675b8;
+}
+
+.method-wave.is-hot .m-pins g.on {
+  opacity: 1;
+}
+
+.method-wave.is-hot .m-pins g.on circle {
+  fill: #6675b8;
+  stroke: #6675b8;
+}
+
+.method-wave.is-hot .m-eyes path.on {
+  opacity: 1;
+  stroke: #4c5aa0;
 }
 
 .method-steps,
@@ -1454,22 +1515,54 @@ blockquote footer {
 
 .method-steps li,
 .method-miles li {
-  color: #1c1c1c;
   font-weight: 700;
   line-height: 1.15;
   text-align: center;
   text-wrap: balance;
+  transition:
+    opacity 220ms ease,
+    color 220ms ease;
+}
+
+.method-steps li {
+  position: absolute;
+  opacity: 0.72;
+  /* The eye band: 100 units either side of the loop line, in a 476-unit-tall drawing. */
+  top: calc((224 - 100) / 476 * 100%);
+  width: 15%;
+  height: calc(200 / 476 * 100%);
+  transform: translateX(-50%);
+  color: #1c1c1c;
+  font-size: clamp(0.72rem, 1.05vw, 0.95rem);
+  letter-spacing: -0.01em;
+}
+
+.method-miles {
+  position: relative;
+  height: 2.6rem;
+  margin-top: 0.55rem;
+}
+
+.method-miles li {
+  position: absolute;
+  top: 0;
+  width: 13%;
+  transform: translateX(-50%);
+  color: #3f3f3f;
+  font-size: clamp(0.64rem, 0.85vw, 0.78rem);
+  letter-spacing: 0.02em;
   opacity: 0.72;
 }
 
 .method-wave.is-hot .method-steps li,
 .method-wave.is-hot .method-miles li {
-  opacity: 0.32;
+  opacity: 0.35;
 }
 
-.method-steps li:has(.on),
-.method-miles li:has(.on) {
+.method-wave.is-hot .method-steps li.on,
+.method-wave.is-hot .method-miles li.on {
   opacity: 1;
+  color: #111;
 }
 
 .method-steps button,
@@ -1487,7 +1580,9 @@ blockquote footer {
   font: inherit;
   font-weight: 700;
   line-height: 1.15;
+  letter-spacing: inherit;
   text-align: center;
+  text-transform: inherit;
   text-wrap: balance;
   cursor: pointer;
 }
@@ -1498,39 +1593,13 @@ blockquote footer {
   outline-offset: 3px;
 }
 
-.method-steps li {
-  position: absolute;
-  top: 8%;
-  width: 16%;
-  height: 84%;
-  transform: translateX(-50%);
-  font-size: clamp(0.72rem, 1.05vw, 0.95rem);
-  letter-spacing: -0.01em;
-}
-
-.method-miles {
-  position: relative;
-  height: 2.6rem;
-  margin-top: 0.7rem;
-}
-
-.method-miles li {
-  position: absolute;
-  top: 0;
-  width: 15%;
-  transform: translateX(-50%);
-  color: #3f3f3f;
-  font-size: clamp(0.64rem, 0.85vw, 0.78rem);
-  letter-spacing: 0.02em;
-}
-
 .method-miles li.edge.start {
-  transform: none;
+  transform: translateX(-0.6rem);
   text-align: left;
 }
 
 .method-miles li.edge.end {
-  transform: translateX(-100%);
+  transform: translateX(calc(-100% + 0.6rem));
   text-align: right;
 }
 
@@ -1722,7 +1791,6 @@ blockquote footer {
   .hero,
   .split,
   .construct,
-  .kixmi-pair,
   .final,
   .shots,
   .pair,
@@ -1747,7 +1815,6 @@ blockquote footer {
   .hero,
   .split,
   .construct,
-  .kixmi-pair,
   .final,
   .compare,
   .renders,
@@ -1841,10 +1908,8 @@ blockquote footer {
       "tall";
   }
 
-  .render-gallery .lead picture,
-  .render-gallery .wide picture,
-  .render-gallery .tall picture {
-    aspect-ratio: auto;
+  .render-gallery picture {
+    height: auto;
   }
 
   .render-gallery img {
@@ -1984,6 +2049,30 @@ blockquote footer {
     height: 62vh;
   }
 
+  .in-use {
+    min-height: auto;
+    padding: calc(var(--nav) + 1.4rem) 1.15rem 1.6rem;
+  }
+
+  .sit-row {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .sit {
+    aspect-ratio: 4 / 3;
+  }
+
+  .kixmi-life {
+    min-height: auto;
+    padding: calc(var(--nav) + 1.4rem) 1.15rem 1.6rem;
+  }
+
+  .life-pair {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
   .result-grid .hero-shot {
     grid-row: auto;
   }
@@ -1991,6 +2080,32 @@ blockquote footer {
   .specs div {
     grid-template-columns: 1fr;
     gap: 0;
+  }
+
+  .construct.sheet {
+    padding: calc(var(--nav) + 1rem) 1.15rem 1.6rem;
+  }
+
+  .sheet-stage {
+    display: flex;
+    width: 100%;
+    aspect-ratio: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .sheet-stage > img {
+    position: static;
+  }
+
+  .sheet-stage .cad {
+    width: min(78%, 420px);
+  }
+
+  .sheet-stage .sheet-dims,
+  .sheet-stage .sheet-nest {
+    width: 100%;
   }
 }
 

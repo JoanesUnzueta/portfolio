@@ -51,7 +51,9 @@ const kixmiRenders: readonly KixmiRender[] = [
 ];
 
 function renderSrcSet(name: string, widths: readonly number[], ext: "avif" | "webp") {
-  return widths.map((width) => `${asset(`images/kixmi/${name}-${width}.${ext}`)} ${width}w`).join(", ");
+  return widths
+    .map((width) => `${asset(`images/kixmi/${name}-${width}.${ext}`)} ${width}w`)
+    .join(", ");
 }
 
 function KixmiTitle({ hit, rest, kicker }: { hit: string; rest: string; kicker: string }) {
@@ -79,9 +81,17 @@ function KixmiRenderShot({ shot }: { shot: KixmiRender }) {
     <figure className={`${shot.role}${shot.name.includes("clean") ? " cutout" : ""}`}>
       <picture>
         {shot.name.includes("clean") ? null : (
-          <source type="image/avif" srcSet={renderSrcSet(shot.name, shot.widths, "avif")} sizes={sizes} />
+          <source
+            type="image/avif"
+            srcSet={renderSrcSet(shot.name, shot.widths, "avif")}
+            sizes={sizes}
+          />
         )}
-        <source type="image/webp" srcSet={renderSrcSet(shot.name, shot.widths, "webp")} sizes={sizes} />
+        <source
+          type="image/webp"
+          srcSet={renderSrcSet(shot.name, shot.widths, "webp")}
+          sizes={sizes}
+        />
         <img
           src={fallback}
           srcSet={renderSrcSet(shot.name, shot.widths, "webp")}
@@ -125,7 +135,7 @@ export function Kixmi() {
             </div>
           </div>
         </div>
-        <EdgeLabel>Kixmi | 03</EdgeLabel>
+        <EdgeLabel>Kixmi | 04</EdgeLabel>
       </section>
 
       <section className="split tall accent-kixmi" id="kixmi-contest">
@@ -149,7 +159,7 @@ export function Kixmi() {
             height={1327}
           />
         </div>
-        <EdgeLabel>Kixmi | 04</EdgeLabel>
+        <EdgeLabel>Kixmi | 05</EdgeLabel>
       </section>
 
       <section className="compare accent-kixmi" id="kixmi-bottles">
@@ -199,39 +209,6 @@ export function Kixmi() {
             <figcaption>Burgundy wine bottle</figcaption>
           </figure>
         </div>
-        <EdgeLabel>Kixmi | 05</EdgeLabel>
-      </section>
-
-      <section className="kixmi-pair accent-kixmi" id="kixmi-brand">
-        <div className="copy">
-          <KixmiTitle hit="Kiss" rest="the bottle" kicker="Brand with a punch" />
-          <img
-            className="kixmi-lips"
-            src={asset("images/web/kixmi-lips.webp")}
-            alt="The Kixmi lips mark, in a red paint splash."
-            width={398}
-            height={219}
-          />
-          <p>
-            The mark is a pair of lips. You drink straight from the bottle: a daring bite that
-            invites the user to party and be free. Kiss Me — the kiss revolution.
-          </p>
-        </div>
-        <img
-          className="kixmi-splash"
-          src={asset("images/web/kixmi-splash-white.webp")}
-          alt=""
-          width={247}
-          height={112}
-        />
-        <div className="copy">
-          <KixmiTitle hit="“Viva" rest="la vida”" kicker="A free consumer" />
-          <p>
-            Wine consumers are ageing, and young people are not getting into the product. We are
-            evading cultural extinction with an expressive design, without forgoing usability. For
-            young students and partygoers. By young people, for young people.
-          </p>
-        </div>
         <EdgeLabel>Kixmi | 06</EdgeLabel>
       </section>
 
@@ -255,10 +232,10 @@ export function Kixmi() {
           </blockquote>
           <blockquote>
             <p>
-              “The project presents a comprehensive development process that begins with the study of
-              the market, consumers, and trends, and concludes by proposing a holistic solution.
-              Particularly noteworthy is the object's design language in bringing together a cola soft
-              drink and a wine through the concept of Burgundy.”
+              “The project presents a comprehensive development process that begins with the study
+              of the market, consumers, and trends, and concludes by proposing a holistic solution.
+              Particularly noteworthy is the object's design language in bringing together a cola
+              soft drink and a wine through the concept of Burgundy.”
             </p>
             <footer>— Vidrala jury</footer>
           </blockquote>
@@ -273,17 +250,66 @@ export function Kixmi() {
         <EdgeLabel>Kixmi | 07</EdgeLabel>
       </section>
 
+      <section className="kixmi-life accent-kixmi" id="kixmi-life">
+        <div className="copy">
+          <KixmiTitle hit="In" rest="context" kicker="Lifestyle" />
+          <p>At sunset, and at the bar next to its six-pack carrier.</p>
+        </div>
+        <div className="life-pair">
+          <figure>
+            <picture>
+              <source
+                type="image/avif"
+                srcSet={renderSrcSet("kixmi-sunset", [640, 960, 1440], "avif")}
+                sizes="(min-width: 981px) 36vw, 100vw"
+              />
+              <img
+                src={asset("images/kixmi/kixmi-sunset-1440.webp")}
+                srcSet={renderSrcSet("kixmi-sunset", [640, 960, 1440], "webp")}
+                sizes="(min-width: 981px) 36vw, 100vw"
+                alt="Product visualisation of a hand holding a Kixmi bottle against a sunset over a city."
+                width={1440}
+                height={1440}
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+            <figcaption className="caption">At sunset</figcaption>
+          </figure>
+          <figure>
+            <picture>
+              <source
+                type="image/avif"
+                srcSet={renderSrcSet("kixmi-sixpack", [640, 1024, 1536], "avif")}
+                sizes="(min-width: 981px) 54vw, 100vw"
+              />
+              <img
+                src={asset("images/kixmi/kixmi-sixpack-1536.webp")}
+                srcSet={renderSrcSet("kixmi-sixpack", [640, 1024, 1536], "webp")}
+                sizes="(min-width: 981px) 54vw, 100vw"
+                alt="Product visualisation of a Kixmi bottle on a wet bar counter beside the black and red six-pack carrier with the lips mark."
+                width={1536}
+                height={1024}
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+            <figcaption className="caption">Six-pack carrier</figcaption>
+          </figure>
+        </div>
+        <EdgeLabel>Kixmi | 08</EdgeLabel>
+      </section>
       <section className="renders accent-kixmi" id="kixmi-renders">
         <div className="copy">
-          <h2>Final renders</h2>
-          <p>On ice, as a studio set, and in the hand.</p>
+          <KixmiTitle hit="Final" rest="renders" kicker="Result" />
+          <p>In the hand, on ice, and as a studio set.</p>
         </div>
         <div className="render-gallery">
           {kixmiRenders.map((render) => (
             <KixmiRenderShot key={render.name} shot={render} />
           ))}
         </div>
-        <EdgeLabel>Kixmi | 08</EdgeLabel>
+        <EdgeLabel>Kixmi | 09</EdgeLabel>
       </section>
       <ProjectNav project="kixmi" />
     </>

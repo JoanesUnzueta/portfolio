@@ -29,7 +29,7 @@ export function Adjust() {
             </div>
           </div>
         </div>
-        <EdgeLabel>(AD)JUST | 11</EdgeLabel>
+        <EdgeLabel>(AD)JUST | 14</EdgeLabel>
       </section>
 
       <section className="split accent-adjust" id="adjust-problem">
@@ -47,7 +47,7 @@ export function Adjust() {
           width={1920}
           height={960}
         />
-        <EdgeLabel>(AD)JUST | 12</EdgeLabel>
+        <EdgeLabel>(AD)JUST | 15</EdgeLabel>
       </section>
 
       <section className="split accent-adjust" id="adjust-solution">
@@ -65,7 +65,7 @@ export function Adjust() {
           width={1920}
           height={960}
         />
-        <EdgeLabel>(AD)JUST | 13</EdgeLabel>
+        <EdgeLabel>(AD)JUST | 16</EdgeLabel>
       </section>
 
       <section className="slide-text mark-slide tone-dark accent-adjust" id="adjust-mark">
@@ -76,7 +76,7 @@ export function Adjust() {
           width={778}
           height={702}
         />
-        <EdgeLabel>(AD)JUST | 14</EdgeLabel>
+        <EdgeLabel>(AD)JUST | 17</EdgeLabel>
       </section>
 
       <section className="split mechanism accent-adjust" id="adjust-mechanism">
@@ -108,10 +108,10 @@ export function Adjust() {
             height={802}
           />
         </div>
-        <EdgeLabel>(AD)JUST | 15</EdgeLabel>
+        <EdgeLabel>(AD)JUST | 18</EdgeLabel>
       </section>
 
-      <section className="results adjust-mounted accent-adjust" id="adjust-renders">
+      <section className="split adjust-mounted accent-adjust" id="adjust-renders">
         <div className="copy">
           <h2>Final renders</h2>
           <p className="subtitle">Result</p>
@@ -127,7 +127,7 @@ export function Adjust() {
           height={1521}
           className="hero-shot"
         />
-        <EdgeLabel>(AD)JUST | 16</EdgeLabel>
+        <EdgeLabel>(AD)JUST | 19</EdgeLabel>
       </section>
       <ProjectNav project="adjust" />
     </>

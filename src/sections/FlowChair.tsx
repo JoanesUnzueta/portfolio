@@ -37,44 +37,44 @@ export function FlowChair() {
             </div>
           </div>
         </div>
-        <EdgeLabel>{`${flowChairName} | 07`}</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 10`}</EdgeLabel>
       </section>
 
       <section className="construct sheet accent-flow" id="flow-construction">
         <img className="flow-wave" src={asset("images/flow-wave.svg")} alt="" />
-        <div className="copy">
-          <h2>Invisible strength</h2>
-          <p className="subtitle">Construction</p>
-          <p>
-            I adjusted each panel to the millimetre and nested every part on two sheets. Internal
-            pegs hold the chair. No fasteners show.
-          </p>
-          <p className="caption">480 × 480 × 658 mm · 18 mm plywood · two sheets</p>
-        </div>
-        <Photo
-          src="images/web/chair-technical.webp"
-          alt={`CAD line render of the ${flowChairName}, shown in three-quarter view.`}
-          width={1366}
-          height={1624}
-          className="cad"
-        />
-        <div className="drawings">
+        <div className="sheet-stage">
+          <div className="copy sr-only">
+            <h2>Invisible strength</h2>
+            <p>
+              Construction. I adjusted each panel to the millimetre and nested every part on two
+              sheets. Internal pegs hold the chair. No fasteners show. 480 × 480 × 658 mm, 18 mm
+              plywood, two sheets.
+            </p>
+          </div>
+          <Photo
+            src="images/web/chair-technical.webp"
+            alt={`CAD render of the ${flowChairName} in three-quarter view, plywood frame with a white seat.`}
+            width={1366}
+            height={1624}
+            className="cad"
+          />
           <img
+            className="sheet-dims"
             src={asset("images/flow-dimensions.svg")}
-            alt={`Dimensioned drawings of the ${flowChairName}. The CAD overall size is about 480 × 480 × 658 mm.`}
+            alt={`Front, side and top drawings of the ${flowChairName}: 480 wide, 658 tall, 408 seat height, 391 deep.`}
             width={690}
             height={260}
           />
           <img
+            className="sheet-nest"
             src={asset("images/flow-nesting.svg")}
-            alt={`CNC nesting drawing showing the ${flowChairName} parts laid out on two sheets.`}
+            alt={`CNC nesting drawing showing the ${flowChairName} parts laid out on two plywood sheets.`}
             width={570}
             height={430}
           />
         </div>
-        <EdgeLabel>{`${flowChairName} | 08`}</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 11`}</EdgeLabel>
       </section>
-
       <section className="final accent-flow" id="flow-final">
         <div className="copy">
           <h2>Final product</h2>
@@ -85,7 +85,7 @@ export function FlowChair() {
           </p>
         </div>
         <FlowViewer />
-        <EdgeLabel>{`${flowChairName} | 09`}</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 12`}</EdgeLabel>
       </section>
 
       <InUse />
@@ -94,39 +94,58 @@ export function FlowChair() {
   );
 }
 
+const sitViews = [
+  { id: "front", label: "front three-quarter", focus: "47% 60%" },
+  { id: "side", label: "side", focus: "50% 60%" },
+  { id: "rear", label: "rear three-quarter", focus: "54% 60%" },
+] as const;
+
 function InUse() {
-  const [seated, setSeated] = useState(false);
+  const [seated, setSeated] = useState<string | null>(null);
 
   return (
     <section className="in-use accent-flow" id="flow-in-use">
-      <button
-        type="button"
-        className="sit"
-        aria-pressed={seated}
-        aria-label={`The ${flowChairName}, empty, in side view. Hover, focus, or tap to see Joanes sitting in it.`}
-        onPointerUp={(event) => {
-          if (event.pointerType === "touch") setSeated((value) => !value);
-        }}
-      >
-        <img
-          src={asset("images/web/flow-sit-empty.webp")}
-          alt=""
-          width={2560}
-          height={1440}
-        />
-        <img
-          className="sat"
-          src={asset("images/web/flow-sit-person.webp")}
-          alt=""
-          width={2560}
-          height={1440}
-        />
-        <span className="sit-hint">
-          <span className="hint-hover">Hover to sit</span>
-          <span className="hint-touch">Tap</span>
-        </span>
-      </button>
-      <EdgeLabel>{`${flowChairName} | 10`}</EdgeLabel>
+      <div className="sit-row">
+        {sitViews.map((view) => (
+          <button
+            key={view.id}
+            type="button"
+            className="sit"
+            aria-pressed={seated === view.id}
+            aria-label={`The ${flowChairName}, empty, ${view.label} view. Hover, focus, or tap to see Joanes sitting in it.`}
+            onPointerUp={(event) => {
+              if (event.pointerType === "touch") {
+                setSeated((current) => (current === view.id ? null : view.id));
+              }
+            }}
+          >
+            <img
+              src={asset(`images/web/flow-sit-${view.id}-empty.webp`)}
+              alt=""
+              width={1600}
+              height={900}
+              loading="lazy"
+              decoding="async"
+              style={{ objectPosition: view.focus }}
+            />
+            <img
+              className="sat"
+              src={asset(`images/web/flow-sit-${view.id}-person.webp`)}
+              alt=""
+              width={1600}
+              height={900}
+              loading="lazy"
+              decoding="async"
+              style={{ objectPosition: view.focus }}
+            />
+          </button>
+        ))}
+      </div>
+      <p className="sit-hint">
+        <span className="hint-hover">Hover to sit</span>
+        <span className="hint-touch">Tap to sit</span>
+      </p>
+      <EdgeLabel>{`${flowChairName} | 13`}</EdgeLabel>
     </section>
   );
 }
