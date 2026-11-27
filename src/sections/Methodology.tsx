@@ -1,7 +1,7 @@
 import { useState, type CSSProperties, type PointerEvent } from "react";
 import { EdgeLabel } from "../components/EdgeLabel";
 import { asset } from "../asset";
-import { waveArcs, waveEyes } from "../dbzWave";
+import { waveEyes } from "../dbzWave";
 
 const steps = [
   "Strategic Research",
@@ -34,7 +34,7 @@ const joint = [127, 415.2, 685.7, 955.2, 1224.7, 1495.2, 1783.4];
 const eyeCentre = waveEyes.map((eye) => eye.x + 153.7);
 const pct = (x: number) => `${(((x - X0) / W) * 100).toFixed(3)}%`;
 
-/** Half-ellipses fitted over the original arcs, so each one can light up on its own. */
+/** The grey arcs: half-ellipses fitted to the original chart, so each one can light up on its own. */
 const arcs = [
   { from: 0, to: 2, up: true, r: 218 },
   { from: 1, to: 3, up: true, r: 218 },
@@ -62,7 +62,7 @@ function arcPath(arc: (typeof arcs)[number]) {
   for (let i = 0; i <= steps; i += 1) {
     const t = i / steps;
     const angle = start + t * (Math.PI - 2 * start);
-    const half = 3 * Math.sin(t * Math.PI) ** 0.35;
+    const half = 2.8 * Math.sin(t * Math.PI) ** 0.35;
     const x = cx - rx * Math.cos(angle);
     const y = CY + dir * arc.r * Math.sin(angle);
     const nx = -Math.cos(angle) / rx;
@@ -141,11 +141,6 @@ export function Methodology() {
         <div className="method-diagram">
           <div className="method-board">
             <svg className="method-svg" viewBox={`${X0} ${Y0} ${W} ${H}`} aria-hidden="true">
-              <g className="m-base">
-                {waveArcs.map((d, index) => (
-                  <path key={index} d={d} />
-                ))}
-              </g>
               <g className="m-arcs">
                 {arcs.map((arc, index) => (
                   <path

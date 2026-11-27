@@ -114,10 +114,10 @@ export function Kixmi() {
       <section className="hero-bleed tone-dark accent-kixmi kixmi" id="kixmi">
         <Photo
           className="bleed bottle"
-          src="images/web/kixmi-cover-neck.webp"
-          alt="Product visualisation of the Kixmi bottle, cropped so the neck and vertical KIXMI logo meet the top edge."
-          width={1005}
-          height={1203}
+          src="images/web/kixmi-hero-neck.webp"
+          alt="Product visualisation of the Kixmi bottle: the wet neck with the vertical KIXMI logo, filling the right of the frame."
+          width={2540}
+          height={2160}
         />
         <div className="bleed-scrim" aria-hidden="true" />
         <div className="hero-copy">
@@ -125,7 +125,7 @@ export function Kixmi() {
             <p className="num">/01</p>
             <h2>Kixmi</h2>
             <div className="bleed-body">
-              <p className="subtitle">Berotu Morruak</p>
+              <p className="subtitle">“Berotu Morruak”</p>
               <SpecLine items={projectSpecs.kixmi} />
               <p className="lede">
                 An award-winning glass packaging concept developed for a sustainability-focused
@@ -240,13 +240,22 @@ export function Kixmi() {
             <footer>— Vidrala jury</footer>
           </blockquote>
         </div>
-        <img
-          className="lineup"
-          src={asset("images/web/kixmi-render-group-vidrala.webp")}
-          alt="Product visualisation of the Kixmi bottle in front of other contest bottles, including a faded Vidrala bottle."
-          width={670}
-          height={550}
-        />
+        <figure className="lineup-wrap">
+          <img
+            className="contest-mark"
+            src={asset("images/web/vidrala-contest-wordmark.webp")}
+            alt="Vidrala Master Glass Design Contest"
+            width={1490}
+            height={251}
+          />
+          <img
+            className="lineup"
+            src={asset("images/web/kixmi-render-group-vidrala.webp")}
+            alt="Product visualisation of the Kixmi bottle in front of other contest bottles, including a faded Vidrala bottle."
+            width={670}
+            height={550}
+          />
+        </figure>
         <EdgeLabel>Kixmi | 07</EdgeLabel>
       </section>
 

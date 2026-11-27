@@ -123,11 +123,11 @@ a {
 }
 
 .nav.accent-adjust nav a[aria-current="true"] {
-  box-shadow: inset 0 -2px 0 #1f6a62;
+  box-shadow: inset 0 -2px 0 #c4621a;
 }
 
 .nav.dark.accent-adjust nav a[aria-current="true"] {
-  box-shadow: inset 0 -2px 0 #7dccc2;
+  box-shadow: inset 0 -2px 0 #f0a060;
 }
 
 .accent-kixmi {
@@ -143,11 +143,11 @@ a {
 }
 
 .accent-adjust {
-  --accent: #1f6a62;
+  --accent: #c4621a;
 }
 
 .accent-adjust.hero-bleed {
-  --accent: #7dccc2;
+  --accent: #f0a060;
 }
 
 .accent-kixmi .caption,
@@ -260,7 +260,7 @@ section {
 .about {
   display: grid;
   min-height: 100svh;
-  align-items: end;
+  align-items: center;
   color: #fff;
   overflow: hidden;
 }
@@ -276,38 +276,42 @@ section {
 }
 
 .about-scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgb(0 0 0 / 74%) 0%,
-    rgb(0 0 0 / 48%) 34%,
-    rgb(0 0 0 / 8%) 58%,
-    rgb(0 0 0 / 0%) 100%
-  );
+  display: none;
 }
 
+/* A frosted panel over the sky, as on the original intro board. */
 .about-copy {
   position: relative;
   z-index: 1;
-  max-width: 62ch;
-  padding: calc(var(--nav) + 2rem) 4.5rem 3.5rem 3.2rem;
+  width: min(36rem, calc(100% - 4rem));
+  margin: calc(var(--nav) + 1.5rem) 0 2rem clamp(2rem, 8vw, 9rem);
+  padding: 2.2rem 2.5rem 2rem;
+  background: rgb(236 232 228 / 58%);
+  color: #161616;
+  -webkit-backdrop-filter: blur(18px) saturate(1.05);
+  backdrop-filter: blur(18px) saturate(1.05);
 }
 
 .about-copy h2 {
-  margin: 0 0 0.8rem;
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  margin: 0 0 1.4rem;
+  font-size: clamp(1.6rem, 2.3vw, 2.1rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
   line-height: 1.1;
 }
 
 .about-copy p {
-  margin: 0 0 0.85rem;
+  margin: 0 0 1rem;
   font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: justify;
 }
 
-.about .edge-label,
+.about-copy .btn:hover {
+  background: #161616;
+  color: #fff;
+}
+
 .tone-dark .edge-label,
 .hero-bleed:not(.light) .edge-label {
   color: rgb(255 255 255 / 82%);
@@ -485,8 +489,7 @@ p.project-meta {
 
 .hero-bleed.kixmi {
   background:
-    radial-gradient(ellipse 48% 72% at 78% 58%, rgb(92 18 24 / 85%) 0%, rgb(12 12 12 / 0%) 70%),
-    #0c0c0c;
+    radial-gradient(ellipse 34% 46% at 56% 100%, rgb(44 15 15) 0%, rgb(20 20 20 / 0%) 100%), #141414;
 }
 
 .hero-bleed.adjust {
@@ -516,16 +519,19 @@ p.project-meta {
   object-position: right 62%;
 }
 
+/* Right two thirds of the Illustrator board; its left edge fades into the same background. */
 .hero-bleed img.bleed.bottle {
-  top: 0;
-  right: -4%;
-  bottom: auto;
-  left: auto;
-  width: 44%;
-  height: 128%;
-  max-width: none;
-  object-fit: cover;
-  object-position: center top;
+  inset: 0 0 0 auto;
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  object-position: right center;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 22%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 22%);
+}
+
+.hero-bleed.kixmi .bleed-scrim {
+  background: none;
 }
 
 .bleed-scrim {
@@ -781,6 +787,22 @@ blockquote footer {
 .dark blockquote,
 .hero.dark blockquote {
   color: #eee;
+}
+
+.lineup-wrap {
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* The contest's own wordmark, printed white; shown in ink on the light slide. */
+.contest-mark {
+  width: min(78%, 460px);
+  height: auto;
+  filter: brightness(0);
+  opacity: 0.85;
 }
 
 .lineup {
@@ -1101,7 +1123,7 @@ blockquote footer {
 }
 
 .mark-slide.tone-dark.accent-adjust {
-  --accent: #7dccc2;
+  --accent: #f0a060;
   background: #1a1a1a;
   color: #fff;
 }
@@ -1149,15 +1171,34 @@ blockquote footer {
   object-fit: cover;
 }
 
+/*
+ * The two photos were taken from slightly different spots, so they never show at once:
+ * one fades out to the backdrop, then the other fades in.
+ */
+.sit img {
+  transition: opacity 0.22s ease;
+}
+
 .sit .sat {
   opacity: 0;
-  transition: opacity 0.55s ease;
+}
+
+.sit .empty {
+  transition-delay: 0.22s;
+}
+
+.sit:hover .empty,
+.sit:focus-visible .empty,
+.sit[aria-pressed="true"] .empty {
+  opacity: 0;
+  transition-delay: 0s;
 }
 
 .sit:hover .sat,
 .sit:focus-visible .sat,
 .sit[aria-pressed="true"] .sat {
   opacity: 1;
+  transition-delay: 0.22s;
 }
 
 .sit:focus-visible {
@@ -1190,7 +1231,6 @@ blockquote footer {
 
 @media (prefers-reduced-motion: reduce) {
   .sit .sat,
-  .m-base path,
   .m-arcs path,
   .m-pins line,
   .m-pins circle,
@@ -1477,15 +1517,8 @@ blockquote footer {
     stroke-width 220ms ease;
 }
 
-.m-base path {
-  fill: #c4c4c4;
-  transition: opacity 220ms ease;
-}
-
-/* The fitted arcs only show when something is hovered. */
 .m-arcs path {
-  fill: #6675b8;
-  opacity: 0;
+  fill: #c4c4c4;
 }
 
 .m-pins line {
@@ -1505,7 +1538,7 @@ blockquote footer {
 }
 
 /* Hover: the loop and every arc that leaves from its joints, drawn in full. */
-.method-wave.is-hot .m-base path,
+.method-wave.is-hot .m-arcs path,
 .method-wave.is-hot .m-pins g,
 .method-wave.is-hot .m-eyes path {
   opacity: 0.25;
@@ -1513,6 +1546,7 @@ blockquote footer {
 
 .method-wave.is-hot .m-arcs path.on {
   opacity: 1;
+  fill: #6675b8;
 }
 
 .method-wave.is-hot .m-pins g.on {
@@ -1888,11 +1922,13 @@ blockquote footer {
   }
 
   .about-copy {
-    padding: calc(var(--nav) + 1.5rem) 1.15rem 2.4rem;
+    width: auto;
+    margin: calc(var(--nav) + 0.8rem) 0.8rem 1.2rem;
+    padding: 1.5rem 1.25rem 1.2rem;
   }
 
-  .about-scrim {
-    background: linear-gradient(180deg, rgb(0 0 0 / 25%) 0%, rgb(0 0 0 / 72%) 70%);
+  .about-copy p {
+    text-align: left;
   }
 
   .edge-label {
@@ -1978,13 +2014,8 @@ blockquote footer {
   }
 
   .hero-bleed img.bleed.bottle {
-    width: 72%;
-    height: 86%;
-    max-width: none;
-    top: 0;
-    right: -8%;
-    object-fit: cover;
-    object-position: center top;
+    inset: 0 -20% auto auto;
+    height: 70%;
   }
 
   .method {

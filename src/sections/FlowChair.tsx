@@ -121,6 +121,7 @@ function InUse() {
             }}
           >
             <img
+              className="empty"
               src={asset(`images/web/flow-sit-${view.id}-empty.webp`)}
               alt=""
               width={1600}
