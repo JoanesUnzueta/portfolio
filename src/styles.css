@@ -490,18 +490,16 @@ p.project-meta {
 }
 
 .hero-bleed.adjust {
-  background: #555555;
+  background: #474747;
 }
 
+/* Right half of the Illustrator board, on the same flat grey, so its edge disappears. */
 .hero-bleed.adjust img.bleed.crop {
-  top: -14%;
-  right: -10%;
-  bottom: auto;
-  left: auto;
-  width: 62%;
-  height: 132%;
-  object-fit: cover;
-  object-position: 64% 46%;
+  inset: 0 0 0 auto;
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  object-position: right center;
 }
 
 .hero-bleed img.bleed {
@@ -539,6 +537,10 @@ p.project-meta {
     rgb(8 8 8 / 18%) 26%,
     rgb(8 8 8 / 0%) 48%
   );
+}
+
+.hero-bleed.adjust .bleed-scrim {
+  background: none;
 }
 
 .hero-bleed.light .bleed-scrim {
@@ -1012,10 +1014,30 @@ blockquote footer {
   background: transparent;
 }
 
+/* Chair: placed at (403.8, 240.9) on the board, scaled 0.407. */
 .sheet-stage .cad {
-  top: 21.47%;
-  left: 20.92%;
-  width: 29.45%;
+  top: 22.3%;
+  left: 21.03%;
+  width: 28.97%;
+}
+
+/* The board leaves the left column empty; the copy sits there, quietly. */
+.sheet-copy {
+  position: absolute;
+  top: 50%;
+  left: 4.2%;
+  width: 15.5%;
+  min-width: 13rem;
+  transform: translateY(-50%);
+}
+
+.sheet-copy h2 {
+  font-size: clamp(1.2rem, 1.6vw, 1.6rem);
+}
+
+.sheet-copy p {
+  font-size: clamp(0.74rem, 0.8vw, 0.86rem);
+  line-height: 1.55;
 }
 
 .sheet-stage .sheet-dims {
@@ -1029,7 +1051,6 @@ blockquote footer {
   top: 47.69%;
   left: 57.03%;
   width: 29.69%;
-  mix-blend-mode: multiply;
 }
 
 .slide-text {
@@ -1169,6 +1190,7 @@ blockquote footer {
 
 @media (prefers-reduced-motion: reduce) {
   .sit .sat,
+  .m-base path,
   .m-arcs path,
   .m-pins line,
   .m-pins circle,
@@ -1428,7 +1450,7 @@ blockquote footer {
 }
 
 .method-diagram {
-  width: min(100%, calc((100svh - 28rem) * 1664 / 476));
+  width: min(100%, calc((100svh - 30rem) * 1690 / 492));
   min-width: min(100%, 52rem);
   margin: 0 auto;
 }
@@ -1455,9 +1477,15 @@ blockquote footer {
     stroke-width 220ms ease;
 }
 
-.m-arcs path {
+.m-base path {
   fill: #c4c4c4;
-  stroke: none;
+  transition: opacity 220ms ease;
+}
+
+/* The fitted arcs only show when something is hovered. */
+.m-arcs path {
+  fill: #6675b8;
+  opacity: 0;
 }
 
 .m-pins line {
@@ -1472,24 +1500,19 @@ blockquote footer {
 }
 
 .m-eyes path {
-  fill: none;
-  stroke: #6675b8;
-  stroke-width: 19;
-  stroke-linejoin: round;
-  opacity: var(--tint);
-  mix-blend-mode: multiply;
+  fill: #6675b8;
+  fill-opacity: var(--tint);
 }
 
 /* Hover: the loop and every arc that leaves from its joints, drawn in full. */
-.method-wave.is-hot .m-arcs path,
+.method-wave.is-hot .m-base path,
 .method-wave.is-hot .m-pins g,
 .method-wave.is-hot .m-eyes path {
-  opacity: 0.22;
+  opacity: 0.25;
 }
 
 .method-wave.is-hot .m-arcs path.on {
   opacity: 1;
-  fill: #6675b8;
 }
 
 .method-wave.is-hot .m-pins g.on {
@@ -1503,7 +1526,8 @@ blockquote footer {
 
 .method-wave.is-hot .m-eyes path.on {
   opacity: 1;
-  stroke: #4c5aa0;
+  fill: #4c5aa0;
+  fill-opacity: 1;
 }
 
 .method-steps,
@@ -1527,10 +1551,10 @@ blockquote footer {
 .method-steps li {
   position: absolute;
   opacity: 0.72;
-  /* The eye band: 100 units either side of the loop line, in a 476-unit-tall drawing. */
-  top: calc((224 - 100) / 476 * 100%);
-  width: 15%;
-  height: calc(200 / 476 * 100%);
+  /* The loop band, 444–638 on the board, inside the 310–802 drawing. */
+  top: calc((444 - 310) / 492 * 100%);
+  width: 14%;
+  height: calc(194 / 492 * 100%);
   transform: translateX(-50%);
   color: #1c1c1c;
   font-size: clamp(0.72rem, 1.05vw, 0.95rem);
@@ -2017,14 +2041,9 @@ blockquote footer {
   }
 
   .hero-bleed.adjust img.bleed.crop {
-    top: 0;
-    right: -12%;
-    bottom: auto;
-    left: auto;
-    width: 92%;
-    height: 58%;
-    object-fit: cover;
-    object-position: 70% center;
+    inset: 0 0 auto auto;
+    width: auto;
+    height: 62%;
   }
 
   .hero-bleed.light .bleed-scrim {
@@ -2095,8 +2114,14 @@ blockquote footer {
     gap: 1.2rem;
   }
 
-  .sheet-stage > img {
+  .sheet-stage > img,
+  .sheet-copy {
     position: static;
+    transform: none;
+  }
+
+  .sheet-copy {
+    width: 100%;
   }
 
   .sheet-stage .cad {

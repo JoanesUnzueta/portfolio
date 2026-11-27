@@ -43,13 +43,14 @@ export function FlowChair() {
       <section className="construct sheet accent-flow" id="flow-construction">
         <img className="flow-wave" src={asset("images/flow-wave.svg")} alt="" />
         <div className="sheet-stage">
-          <div className="copy sr-only">
+          <div className="copy sheet-copy">
             <h2>Invisible strength</h2>
+            <p className="subtitle">Construction</p>
             <p>
-              Construction. I adjusted each panel to the millimetre and nested every part on two
-              sheets. Internal pegs hold the chair. No fasteners show. 480 × 480 × 658 mm, 18 mm
-              plywood, two sheets.
+              I adjusted each panel to the millimetre and nested every part on two sheets. Internal
+              pegs hold the chair. No fasteners show.
             </p>
+            <p className="caption">480 × 480 × 658 mm · 18 mm plywood · two sheets</p>
           </div>
           <Photo
             src="images/web/chair-technical.webp"
@@ -67,10 +68,10 @@ export function FlowChair() {
           />
           <img
             className="sheet-nest"
-            src={asset("images/flow-nesting.svg")}
+            src={asset("images/flow-nesting.webp")}
             alt={`CNC nesting drawing showing the ${flowChairName} parts laid out on two plywood sheets.`}
-            width={570}
-            height={430}
+            width={1140}
+            height={860}
           />
         </div>
         <EdgeLabel>{`${flowChairName} | 11`}</EdgeLabel>

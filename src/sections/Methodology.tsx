@@ -1,6 +1,7 @@
 import { useState, type CSSProperties, type PointerEvent } from "react";
 import { EdgeLabel } from "../components/EdgeLabel";
 import { asset } from "../asset";
+import { waveArcs, waveEyes } from "../dbzWave";
 
 const steps = [
   "Strategic Research",
@@ -21,57 +22,47 @@ const milestones = [
   "Feedback",
 ];
 
-/** Drawing space of the diagram. The loops sit on the line y = CY. */
-const W = 1664;
-const CY = 224;
-const PIN = 252;
-const H = CY + PIN;
-const pitch = (W - 24) / steps.length;
-/** Joints between the loops; each milestone hangs from one. */
-const joint = milestones.map((_, index) => 12 + index * pitch);
-const pct = (x: number) => `${((x / W) * 100).toFixed(3)}%`;
+/** Board units from Portfolio.ai, page 8. The loops sit on the line y = CY. */
+const X0 = 110;
+const Y0 = 310;
+const W = 1690;
+const H = 492;
+const CY = 539.6;
+const PIN_END = 790;
+/** Joints where neighbouring loops overlap; each milestone hangs from one. */
+const joint = [127, 415.2, 685.7, 955.2, 1224.7, 1495.2, 1783.4];
+const eyeCentre = waveEyes.map((eye) => eye.x + 153.7);
+const pct = (x: number) => `${(((x - X0) / W) * 100).toFixed(3)}%`;
 
-/** Lens-shaped loop between two joints. */
-function eye(index: number) {
-  const x0 = joint[index];
-  const x1 = joint[index + 1];
-  const a = pitch * 0.25;
-  const b = 112;
-  return `M${x0} ${CY}C${x0 + a} ${CY - b} ${x1 - a} ${CY - b} ${x1} ${CY}C${x1 - a} ${CY + b} ${x0 + a} ${CY + b} ${x0} ${CY}Z`;
-}
-
-/** The thin arcs that tie the steps together, as in the original DBZ chart. */
+/** Half-ellipses fitted over the original arcs, so each one can light up on its own. */
 const arcs = [
-  { from: 0, to: 2, up: true, r: 212 },
-  { from: 1, to: 3, up: true, r: 212 },
-  { from: 2, to: 4, up: true, r: 212 },
-  { from: 4, to: 6, up: true, r: 212 },
-  { from: 5, to: 6, up: true, r: 142 },
-  { from: 0, to: 1, up: false, r: 141 },
-  { from: 0, to: 2, up: false, r: 214 },
-  { from: 2, to: 4, up: false, r: 214 },
-  { from: 3, to: 5, up: false, r: 214 },
-  { from: 4, to: 6, up: false, r: 214 },
+  { from: 0, to: 2, up: true, r: 218 },
+  { from: 1, to: 3, up: true, r: 218 },
+  { from: 2, to: 4, up: true, r: 218 },
+  { from: 4, to: 6, up: true, r: 218 },
+  { from: 5, to: 6, up: true, r: 140 },
+  { from: 0, to: 1, up: false, r: 140 },
+  { from: 0, to: 2, up: false, r: 215 },
+  { from: 2, to: 4, up: false, r: 215 },
+  { from: 3, to: 5, up: false, r: 215 },
+  { from: 4, to: 6, up: false, r: 215 },
 ] as const;
 
-/**
- * A thin crescent along a half-ellipse between two joints. Like the original chart, it is
- * widest at the top and tapers to nothing where it meets the loops.
- */
+/** A thin crescent along one arc: full width over most of it, tapering where it meets the loops. */
 function arcPath(arc: (typeof arcs)[number]) {
   const x0 = joint[arc.from];
   const x1 = joint[arc.to];
   const cx = (x0 + x1) / 2;
   const rx = (x1 - x0) / 2;
   const dir = arc.up ? -1 : 1;
-  const start = Math.asin(Math.min(1, 34 / arc.r));
-  const steps = 64;
+  const start = Math.asin(Math.min(1, 40 / arc.r));
+  const steps = 72;
   const outer: string[] = [];
   const inner: string[] = [];
   for (let i = 0; i <= steps; i += 1) {
     const t = i / steps;
     const angle = start + t * (Math.PI - 2 * start);
-    const half = 2.6 * Math.sin(t * Math.PI) ** 0.7;
+    const half = 3 * Math.sin(t * Math.PI) ** 0.35;
     const x = cx - rx * Math.cos(angle);
     const y = CY + dir * arc.r * Math.sin(angle);
     const nx = -Math.cos(angle) / rx;
@@ -83,8 +74,8 @@ function arcPath(arc: (typeof arcs)[number]) {
   return `M${outer.join("L")}L${inner.join("L")}Z`;
 }
 
-/** Each loop is a little deeper in colour than the one before it. */
-const eyeTint = [0.22, 0.34, 0.46, 0.58, 0.72, 0.86];
+/** The opacities of the six loops in the original chart. */
+const eyeTint = [0.15, 0.3, 0.45, 0.6, 0.75, 0.9];
 
 type Hot = { kind: "step"; index: number } | { kind: "mile"; index: number };
 
@@ -149,7 +140,12 @@ export function Methodology() {
       <div className={`method-wave${on ? " is-hot" : ""}`}>
         <div className="method-diagram">
           <div className="method-board">
-            <svg className="method-svg" viewBox={`0 0 ${W} ${H}`} aria-hidden="true">
+            <svg className="method-svg" viewBox={`${X0} ${Y0} ${W} ${H}`} aria-hidden="true">
+              <g className="m-base">
+                {waveArcs.map((d, index) => (
+                  <path key={index} d={d} />
+                ))}
+              </g>
               <g className="m-arcs">
                 {arcs.map((arc, index) => (
                   <path
@@ -162,16 +158,17 @@ export function Methodology() {
               <g className="m-pins">
                 {joint.map((x, index) => (
                   <g key={index} className={on?.joints.includes(index) ? "on" : undefined}>
-                    <line x1={x} y1={CY} x2={x} y2={H - 10} />
-                    <circle cx={x} cy={H - 10} r={6} />
+                    <line x1={x} y1={CY} x2={x} y2={PIN_END} />
+                    <circle cx={x} cy={PIN_END} r={6} />
                   </g>
                 ))}
               </g>
               <g className="m-eyes">
-                {steps.map((step, index) => (
+                {waveEyes.map((eye, index) => (
                   <path
-                    key={step}
-                    d={eye(index)}
+                    key={index}
+                    d={eye.d}
+                    transform={`translate(${eye.x} ${eye.y})`}
                     style={{ "--tint": eyeTint[index] } as CSSProperties}
                     className={on?.eyes.includes(index) ? "on" : undefined}
                   />
@@ -184,7 +181,7 @@ export function Methodology() {
                 <li
                   key={step}
                   className={on?.eyes.includes(index) ? "on" : undefined}
-                  style={{ left: pct((joint[index] + joint[index + 1]) / 2) }}
+                  style={{ left: pct(eyeCentre[index]) }}
                 >
                   <button
                     type="button"

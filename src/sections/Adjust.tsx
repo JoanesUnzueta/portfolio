@@ -10,10 +10,10 @@ export function Adjust() {
       <section className="hero-bleed tone-dark adjust accent-adjust" id="adjust">
         <Photo
           className="bleed crop"
-          src="images/web/adjust-clamp-side-knob.webp"
-          alt="(AD)JUST clamp bleeding off the right edge: a black link with a steel shaft and knurled knob."
-          width={1208}
-          height={913}
+          src="images/web/adjust-hero-rim.webp"
+          alt="Close-up of the (AD)JUST clamp: the dark grip ring and its silver pin, filling the right of the frame."
+          width={1920}
+          height={2160}
         />
         <div className="bleed-scrim" aria-hidden="true" />
         <div className="hero-copy">
