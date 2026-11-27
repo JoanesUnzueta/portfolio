@@ -77,7 +77,7 @@ function ArmWithBubble() {
  */
 const IMG_W = 1506;
 const IMG_H = 1521;
-const clamp = { x: 832, y: 1022, r: 78 };
+const clamp = { x: 844, y: 1022, r: 92 };
 const bubble = { x: 300, y: 300, r: 250 };
 
 function MountedDetail() {
@@ -252,7 +252,7 @@ export function Adjust() {
           </span>
           <figure className="cad">
             <Photo
-              src="images/web/adjust-cad-nx-cut.webp"
+              src="images/web/adjust-cad-nx-cutout.webp"
               alt="The grip ring modelled in Siemens NX."
               width={385}
               height={325}

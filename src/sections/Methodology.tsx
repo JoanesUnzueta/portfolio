@@ -1,4 +1,5 @@
 import { useState, type CSSProperties, type PointerEvent } from "react";
+import { asset } from "../asset";
 import { EdgeLabel } from "../components/EdgeLabel";
 import { waveEyes } from "../dbzWave";
 
@@ -112,6 +113,12 @@ export function Methodology() {
   return (
     <section className="method" id="method">
       <div className="method-head">
+        <img
+          src={asset("images/web/dbz-portrait.webp")}
+          alt="Portrait of Joanes Unzueta."
+          width={315}
+          height={314}
+        />
         <div>
           <h2>DBZ Methodology</h2>
           <p className="subtitle">How I work</p>

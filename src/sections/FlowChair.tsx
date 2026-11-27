@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { asset } from "../asset";
 import { EdgeLabel } from "../components/EdgeLabel";
 import { FlowViewer } from "../components/FlowViewer";
@@ -128,59 +128,117 @@ export function FlowChair() {
   );
 }
 
-/** Each empty photo is aligned to its seated photo, so the chair stays put when the person fades in. */
+/**
+ * Each empty photo is aligned to its seated photo, so the chair stays put when the person fades in.
+ * One large frame at a time; arrows (or a swipe) change the view. fx centres the chair:
+ * wide is for the 3:2 desktop frame, tall for the 4:5 phone frame.
+ */
 const sitViews = [
-  { id: "front", label: "front three-quarter", focus: "54% 50%" },
-  { id: "side", label: "side", focus: "57% 50%" },
-  { id: "rear", label: "rear three-quarter", focus: "64% 50%" },
+  { id: "front", label: "front three-quarter", wide: "63%", tall: "54%" },
+  { id: "side", label: "side", wide: "74%", tall: "57%" },
+  { id: "rear", label: "rear three-quarter", wide: "97%", tall: "64%" },
 ] as const;
 
+function Chevron({ dir }: { dir: "left" | "right" }) {
+  return (
+    <svg viewBox="0 0 24 48" aria-hidden="true">
+      <polyline points={dir === "left" ? "20,4 4,24 20,44" : "4,4 20,24 4,44"} />
+    </svg>
+  );
+}
+
 function InUse() {
-  const [seated, setSeated] = useState<string | null>(null);
+  const [index, setIndex] = useState(0);
+  const [seated, setSeated] = useState(false);
+  const [startX, setStartX] = useState<number | null>(null);
+  const count = sitViews.length;
+  const go = (step: number) => {
+    setSeated(false);
+    setIndex((current) => (current + step + count) % count);
+  };
 
   return (
     <section className="in-use accent-flow" id="flow-in-use">
-      <div className="sit-row">
-        {sitViews.map((view) => (
+      <div className="sit-carousel">
+        <button type="button" className="sit-nav" aria-label="Previous view" onClick={() => go(-1)}>
+          <Chevron dir="left" />
+        </button>
+        <div
+          className="sit-stage"
+          onPointerDown={(event) => setStartX(event.clientX)}
+          onPointerUp={(event) => {
+            const dx = startX === null ? 0 : event.clientX - startX;
+            setStartX(null);
+            if (Math.abs(dx) > 40) {
+              go(dx < 0 ? 1 : -1);
+            } else if (event.pointerType !== "mouse") {
+              setSeated((current) => !current);
+            }
+          }}
+          onKeyDown={(event) => {
+            if (event.key === "ArrowLeft") go(-1);
+            if (event.key === "ArrowRight") go(1);
+          }}
+        >
+          {sitViews.map((view, i) => {
+            const style = { "--fx-wide": view.wide, "--fx-tall": view.tall } as CSSProperties;
+            const active = i === index;
+            return (
+              <button
+                key={view.id}
+                type="button"
+                className={`sit${active ? " is-active" : ""}`}
+                style={style}
+                tabIndex={active ? 0 : -1}
+                aria-hidden={!active}
+                aria-pressed={active && seated}
+                aria-label={`The ${flowChairName}, ${view.label} view. Hover, focus, or tap to see Joanes sitting in it.`}
+              >
+                <img
+                  className="empty"
+                  src={asset(`images/web/flow-sit-v2-${view.id}-empty.webp`)}
+                  alt=""
+                  width={1600}
+                  height={900}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  className="sat"
+                  src={asset(`images/web/flow-sit-v2-${view.id}-person.webp`)}
+                  alt=""
+                  width={1600}
+                  height={900}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </button>
+            );
+          })}
+          <p className="sit-hint">
+            <span className="hint-hover">Hover to sit</span>
+            <span className="hint-touch">Tap to sit · swipe to turn</span>
+          </p>
+        </div>
+        <button type="button" className="sit-nav" aria-label="Next view" onClick={() => go(1)}>
+          <Chevron dir="right" />
+        </button>
+      </div>
+      <div className="sit-dots" role="group" aria-label="Choose a view">
+        {sitViews.map((view, i) => (
           <button
             key={view.id}
             type="button"
-            className="sit"
-            aria-pressed={seated === view.id}
-            aria-label={`The ${flowChairName}, empty, ${view.label} view. Hover, focus, or tap to see Joanes sitting in it.`}
-            onPointerUp={(event) => {
-              if (event.pointerType === "touch") {
-                setSeated((current) => (current === view.id ? null : view.id));
-              }
+            className={i === index ? "is-active" : undefined}
+            aria-label={`Show the ${view.label} view`}
+            aria-current={i === index}
+            onClick={() => {
+              setSeated(false);
+              setIndex(i);
             }}
-          >
-            <img
-              className="empty"
-              src={asset(`images/web/flow-sit-${view.id}-empty.webp`)}
-              alt=""
-              width={1600}
-              height={900}
-              loading="lazy"
-              decoding="async"
-              style={{ objectPosition: view.focus }}
-            />
-            <img
-              className="sat"
-              src={asset(`images/web/flow-sit-${view.id}-person.webp`)}
-              alt=""
-              width={1600}
-              height={900}
-              loading="lazy"
-              decoding="async"
-              style={{ objectPosition: view.focus }}
-            />
-          </button>
+          />
         ))}
       </div>
-      <p className="sit-hint">
-        <span className="hint-hover">Hover to sit</span>
-        <span className="hint-touch">Tap to sit</span>
-      </p>
       <EdgeLabel>{`${flowChairName} | 08`}</EdgeLabel>
     </section>
   );
