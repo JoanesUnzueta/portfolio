@@ -1359,61 +1359,6 @@ blockquote footer {
   mix-blend-mode: multiply;
 }
 
-.mounted {
-  position: relative;
-  width: min(100%, 760px, calc(80vh * 1506 / 1521));
-  margin: 0 auto;
-}
-
-.mounted-full {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.mounted-lead {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  pointer-events: none;
-}
-
-.mounted-lead line,
-.mounted-lead circle {
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 3;
-  vector-effect: non-scaling-stroke;
-}
-
-.mounted-lead line {
-  stroke-width: 1.5;
-}
-
-/* The blow-up: the same render, magnified about the clamp, in a round window. */
-.mounted-bubble {
-  position: absolute;
-  aspect-ratio: 1;
-  overflow: hidden;
-  border: 2px solid var(--accent);
-  border-radius: 50%;
-  background: var(--bg);
-  box-shadow: 0 10px 30px rgb(0 0 0 / 12%);
-}
-
-.mounted-bubble img {
-  position: absolute;
-  max-width: none;
-  height: auto;
-}
-
-.mounted .caption {
-  margin-top: 0.6rem;
-  text-align: center;
-}
-
 .adjust-mounted .hero-shot {
   display: block;
   width: min(100%, 760px);
