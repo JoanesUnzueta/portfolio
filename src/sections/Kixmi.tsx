@@ -208,29 +208,24 @@ export function Kixmi() {
             </p>
             <footer>— Vidrala jury</footer>
           </blockquote>
+          <blockquote>
+            <p>
+              “The project presents a comprehensive development process that begins with the study of
+              the market, consumers, and trends, and concludes by proposing a holistic solution.
+              Particularly noteworthy is the object's design language in bringing together a cola soft
+              drink and a wine through the concept of Burgundy.”
+            </p>
+            <footer>— Vidrala jury</footer>
+          </blockquote>
         </div>
-        <p className="wordmark">
-          <img
-            src={asset("images/web/vidrala-contest-wordmark-white.webp")}
-            alt="Vidrala Master Glass Design Contest wordmark."
-            width={1490}
-            height={251}
-          />
-        </p>
+        <img
+          className="lineup"
+          src={asset("images/web/kixmi-render-group-vidrala.webp")}
+          alt="Product visualisation of the Kixmi bottle in front of other contest bottles, including a faded Vidrala bottle."
+          width={670}
+          height={550}
+        />
         <EdgeLabel>Kixmi | 06</EdgeLabel>
-      </section>
-
-      <section className="slide-text accent-kixmi" id="kixmi-jury">
-        <blockquote>
-          <p>
-            “The project presents a comprehensive development process that begins with the study of
-            the market, consumers, and trends, and concludes by proposing a holistic solution.
-            Particularly noteworthy is the object's design language in bringing together a cola soft
-            drink and a wine through the concept of Burgundy.”
-          </p>
-          <footer>— Vidrala jury</footer>
-        </blockquote>
-        <EdgeLabel>Kixmi | 07</EdgeLabel>
       </section>
 
       <section className="renders accent-kixmi" id="kixmi-renders">
@@ -243,7 +238,7 @@ export function Kixmi() {
             <KixmiRenderShot key={render.name} shot={render} />
           ))}
         </div>
-        <EdgeLabel>Kixmi | 08</EdgeLabel>
+        <EdgeLabel>Kixmi | 07</EdgeLabel>
       </section>
       <ProjectNav project="kixmi" />
     </>

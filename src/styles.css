@@ -741,17 +741,12 @@ blockquote footer {
   color: #eee;
 }
 
-.wordmark {
-  display: inline-block;
-  max-width: 280px;
-  margin-top: 1.2rem;
-  padding: 0.55rem 0.7rem;
-  background: #141414;
-}
-
-.wordmark img {
-  width: 100%;
+.lineup {
+  width: min(100%, 520px);
   height: auto;
+  justify-self: center;
+  object-fit: contain;
+  background: transparent;
 }
 
 .circle-frame {
@@ -760,10 +755,10 @@ blockquote footer {
 }
 
 .circle-frame img {
-  width: min(100%, 560px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  object-fit: cover;
+  width: min(100%, 640px);
+  height: auto;
+  background: transparent;
+  object-fit: contain;
 }
 
 .compare {
@@ -1264,14 +1259,16 @@ blockquote footer {
 
 .method-head {
   display: grid;
-  grid-template-columns: auto minmax(0, 66ch);
-  gap: 1.6rem 2rem;
-  align-items: center;
+  grid-template-columns: 7.5rem minmax(0, 62ch);
+  gap: 0.35rem 1.15rem;
+  align-items: start;
+  width: fit-content;
+  max-width: 100%;
 }
 
 .method-head img {
-  width: 132px;
-  height: 132px;
+  width: 7.5rem;
+  height: 7.5rem;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -1732,7 +1729,13 @@ blockquote footer {
   }
 
   .method-head {
-    grid-template-columns: 1fr;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    width: 100%;
+  }
+
+  .method-head img {
+    width: 5.5rem;
+    height: 5.5rem;
   }
 
   .method-wave {
