@@ -6,7 +6,7 @@ import { SpecLine } from "../components/SpecLine";
 import { projectSpecs } from "../projects";
 
 /*
- * The clamp is small in the full render, so a bubble shows the clamp render up close.
+ * The clamp is small in the full render, so a bubble shows a high-resolution close-up of it in place.
  * Coordinates are pixels of adjust-wheelchair-mounted.webp (1506 × 1521).
  */
 const IMG_W = 1506;
@@ -51,10 +51,10 @@ function MountedDetail() {
         }}
       >
         <img
-          src={asset("images/web/adjust-knob-pin.webp")}
-          alt="Close-up render of the clamp: knurled knob, steel pin and mount."
-          width={1200}
-          height={703}
+          src={asset("images/web/adjust-blowup.webp")}
+          alt="Close-up of the clamp on the wheelchair frame: knob, steel pin and the round mount."
+          width={1000}
+          height={1000}
           loading="lazy"
           decoding="async"
         />
