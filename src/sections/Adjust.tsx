@@ -7,13 +7,13 @@ import { projectSpecs } from "../projects";
 export function Adjust() {
   return (
     <>
-      <section className="hero-bleed tone-dark adjust" id="adjust">
+      <section className="hero-bleed tone-dark adjust accent-adjust" id="adjust">
         <Photo
           className="bleed crop"
-          src="images/web/adjust-cover.webp"
+          src="images/web/adjust-cover-tight.webp"
           alt="(AD)JUST clamp bleeding off the right edge: a black link with a steel shaft and knurled knob."
-          width={2560}
-          height={2121}
+          width={1895}
+          height={1421}
         />
         <div className="bleed-scrim" aria-hidden="true" />
         <div className="hero-copy">
@@ -32,7 +32,7 @@ export function Adjust() {
         <EdgeLabel>(AD)JUST | 11</EdgeLabel>
       </section>
 
-      <section className="split" id="adjust-problem">
+      <section className="split accent-adjust" id="adjust-problem">
         <div className="copy">
           <h2>Within reach</h2>
           <p className="subtitle">Problem</p>
@@ -50,7 +50,7 @@ export function Adjust() {
         <EdgeLabel>(AD)JUST | 12</EdgeLabel>
       </section>
 
-      <section className="split" id="adjust-solution">
+      <section className="split accent-adjust" id="adjust-solution">
         <div className="copy">
           <h2>One link</h2>
           <p className="subtitle">Solution</p>
@@ -68,7 +68,7 @@ export function Adjust() {
         <EdgeLabel>(AD)JUST | 13</EdgeLabel>
       </section>
 
-      <section className="slide-text mark-slide" id="adjust-mark">
+      <section className="slide-text mark-slide accent-adjust" id="adjust-mark">
         <Photo
           src="images/web/adjust-logo.webp"
           alt="(AD)JUST circular mark."
@@ -78,7 +78,7 @@ export function Adjust() {
         <EdgeLabel>(AD)JUST | 14</EdgeLabel>
       </section>
 
-      <section className="split mechanism" id="adjust-mechanism">
+      <section className="split mechanism accent-adjust" id="adjust-mechanism">
         <div className="copy">
           <h2>Grip</h2>
           <p className="subtitle">Result</p>
@@ -104,7 +104,7 @@ export function Adjust() {
         <EdgeLabel>(AD)JUST | 15</EdgeLabel>
       </section>
 
-      <section className="results" id="adjust-renders">
+      <section className="results accent-adjust" id="adjust-renders">
         <div className="copy">
           <h2>Final renders</h2>
           <p className="subtitle">Result</p>

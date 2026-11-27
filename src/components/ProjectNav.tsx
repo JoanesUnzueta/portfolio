@@ -15,7 +15,7 @@ export function ProjectNav({ project }: { project: ProjectId }) {
   const next = projects[index + 1];
 
   return (
-    <nav className="project-nav" aria-label={`${current.label} project`}>
+    <nav className={`project-nav accent-${project}`} aria-label={`${current.label} project`}>
       {previous ? (
         <a href={previous.href}>
           <span>Previous</span>

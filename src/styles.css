@@ -108,6 +108,55 @@ a {
   box-shadow: inset 0 -2px 0 currentColor;
 }
 
+.nav.accent-kixmi nav a[aria-current="true"] {
+  box-shadow: inset 0 -2px 0 #b3121b;
+}
+
+.nav.dark.accent-kixmi nav a[aria-current="true"] {
+  box-shadow: inset 0 -2px 0 #e23b42;
+}
+
+.nav.accent-flow nav a[aria-current="true"] {
+  box-shadow: inset 0 -2px 0 #7a5a32;
+}
+
+.nav.accent-adjust nav a[aria-current="true"] {
+  box-shadow: inset 0 -2px 0 #1f6a62;
+}
+
+.nav.dark.accent-adjust nav a[aria-current="true"] {
+  box-shadow: inset 0 -2px 0 #7dccc2;
+}
+
+.accent-kixmi {
+  --accent: #b3121b;
+}
+
+.accent-kixmi.hero-bleed {
+  --accent: #e23b42;
+}
+
+.accent-flow {
+  --accent: #7a5a32;
+}
+
+.accent-adjust {
+  --accent: #1f6a62;
+}
+
+.accent-adjust.hero-bleed {
+  --accent: #7dccc2;
+}
+
+.accent-kixmi .caption,
+.accent-kixmi .edge-label,
+.accent-flow .caption,
+.accent-flow .edge-label,
+.accent-adjust .caption,
+.accent-adjust .edge-label {
+  color: var(--accent);
+}
+
 .brand {
   display: flex;
   align-items: center;
@@ -260,6 +309,16 @@ section {
 .tone-dark .edge-label,
 .hero-bleed:not(.light) .edge-label {
   color: rgb(255 255 255 / 82%);
+}
+
+.accent-kixmi .edge-label,
+.accent-flow .edge-label,
+.accent-adjust .edge-label,
+.accent-kixmi.tone-dark .edge-label,
+.accent-kixmi.hero-bleed .edge-label,
+.accent-adjust.tone-dark .edge-label,
+.accent-adjust.hero-bleed .edge-label {
+  color: var(--accent);
 }
 
 .actions {
@@ -422,19 +481,25 @@ p.project-meta {
   color: var(--text);
 }
 
+.hero-bleed.kixmi {
+  background:
+    radial-gradient(ellipse 48% 72% at 78% 58%, rgb(92 18 24 / 85%) 0%, rgb(12 12 12 / 0%) 70%),
+    #0c0c0c;
+}
+
 .hero-bleed.adjust {
   background: #555555;
 }
 
 .hero-bleed.adjust img.bleed.crop {
-  top: 0;
-  right: 0;
-  bottom: 0;
+  top: -14%;
+  right: -10%;
+  bottom: auto;
   left: auto;
-  width: 46%;
-  height: 100%;
+  width: 62%;
+  height: 132%;
   object-fit: cover;
-  object-position: 68% center;
+  object-position: 64% 46%;
 }
 
 .hero-bleed img.bleed {
@@ -452,15 +517,15 @@ p.project-meta {
 }
 
 .hero-bleed img.bleed.bottle {
-  top: 5%;
-  right: 5%;
+  top: 0;
+  right: -4%;
   bottom: auto;
   left: auto;
-  width: auto;
-  height: 78%;
-  max-width: 38%;
-  object-fit: contain;
-  object-position: center bottom;
+  width: 44%;
+  height: 128%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .bleed-scrim {
@@ -504,32 +569,32 @@ p.project-meta {
 .hero-bleed .num {
   position: absolute;
   z-index: 0;
-  top: -0.38em;
-  left: -0.2em;
+  top: -1.55rem;
+  left: -1.85rem;
   margin: 0;
-  color: #777777;
-  font-size: clamp(4.4rem, 7.6vw, 6.8rem);
+  color: rgb(125 125 125 / 42%);
+  font-size: clamp(6.4rem, 10.4vw, 8.8rem);
   font-weight: 700;
-  letter-spacing: -0.06em;
-  line-height: 0.8;
+  letter-spacing: -0.055em;
+  line-height: 0.72;
   pointer-events: none;
   user-select: none;
 }
 
 .hero-bleed.light .hero-copy {
-  padding-left: 8.2rem;
+  padding-left: 5.8rem;
 }
 
 .hero-bleed.light .num {
-  top: -0.46em;
-  left: -0.78em;
-  color: #777777;
+  top: -1.7rem;
+  left: -2.15rem;
+  color: rgb(70 70 70 / 34%);
 }
 
 .hero-bleed h2 {
   position: relative;
   z-index: 1;
-  margin: 0.48em 0 0;
+  margin: 1.35rem 0 0;
   font-size: clamp(3.15rem, 5.4vw, 5.15rem);
   font-weight: 700;
   letter-spacing: -0.045em;
@@ -539,6 +604,9 @@ p.project-meta {
 .hero-bleed .subtitle {
   margin-top: 1.15rem;
   margin-bottom: 0;
+  border-bottom: none;
+  background: linear-gradient(var(--accent), var(--accent)) left bottom / 2.6rem 2px no-repeat;
+  padding-bottom: 0.4rem;
 }
 
 .hero-bleed .aka {
@@ -783,11 +851,11 @@ blockquote footer {
 
 .render-gallery {
   display: grid;
-  grid-template-columns: 0.75fr 1.333fr 1.778fr;
+  grid-template-columns: 0.72fr 1.15fr 1.15fr;
   grid-template-areas: "tall lead wide";
   gap: 0.75rem;
   margin-top: 1.2rem;
-  align-items: start;
+  align-items: end;
 }
 
 .render-gallery figure {
@@ -836,12 +904,62 @@ blockquote footer {
   background: #111;
 }
 
+.render-gallery .cutout picture,
+.render-gallery .cutout img {
+  background: transparent;
+}
+
+.render-gallery .cutout picture {
+  aspect-ratio: auto;
+}
+
+.render-gallery .cutout img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 58vh;
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+.render-gallery .cutout {
+  align-items: center;
+}
+
 .construct {
   display: grid;
-  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.1fr);
-  gap: clamp(3rem, 7vw, 7rem);
+  grid-template-columns: minmax(16rem, 22rem) minmax(220px, 0.85fr) minmax(280px, 1.05fr);
+  gap: clamp(1.2rem, 2.4vw, 2.4rem);
   align-items: center;
   overflow: hidden;
+}
+
+.construct.sheet {
+  min-height: 100svh;
+  padding: calc(var(--nav) + 2.2rem) 4vw 2.4rem 4.2rem;
+  background: #e5e5e5;
+}
+
+.flow-wave {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.construct.sheet .copy,
+.construct.sheet .cad,
+.construct.sheet .drawings {
+  position: relative;
+  z-index: 1;
+}
+
+.construct.sheet .cad {
+  max-height: 78vh;
+  justify-self: center;
 }
 
 .slide-text {
@@ -978,7 +1096,8 @@ blockquote footer {
 .drawings img {
   width: 100%;
   height: auto;
-  background: rgb(255 255 255 / 55%);
+  background: transparent;
+  mix-blend-mode: multiply;
 }
 
 .specs {
@@ -1112,7 +1231,7 @@ blockquote footer {
   width: 100%;
   height: auto;
   object-fit: contain;
-  background: #fff;
+  background: transparent;
 }
 
 .result-grid img.hero-shot {
@@ -1568,9 +1687,9 @@ blockquote footer {
   }
 
   .hero-bleed .num {
-    top: -0.22em;
-    left: -0.08em;
-    font-size: clamp(3.2rem, 15vw, 4.4rem);
+    top: -0.8rem;
+    left: -0.7rem;
+    font-size: clamp(4.4rem, 22vw, 6.4rem);
   }
 
   .hero-bleed.light .hero-copy {
@@ -1578,8 +1697,8 @@ blockquote footer {
   }
 
   .hero-bleed.light .num {
-    top: -0.55em;
-    left: -0.15em;
+    top: -0.9rem;
+    left: -0.85rem;
   }
 
   .hero-bleed h2 {
@@ -1588,10 +1707,13 @@ blockquote footer {
   }
 
   .hero-bleed img.bleed.bottle {
-    height: 54%;
-    max-width: 78%;
-    top: 7%;
-    right: 8%;
+    width: 72%;
+    height: 86%;
+    max-width: none;
+    top: 0;
+    right: -8%;
+    object-fit: cover;
+    object-position: center top;
   }
 
   .method {
@@ -1643,12 +1765,13 @@ blockquote footer {
 
   .hero-bleed.adjust img.bleed.crop {
     top: 0;
+    right: -12%;
     bottom: auto;
-    left: 0;
-    width: 100%;
-    height: 56%;
-    object-fit: contain;
-    object-position: center bottom;
+    left: auto;
+    width: 92%;
+    height: 58%;
+    object-fit: cover;
+    object-position: 70% center;
   }
 
   .hero-bleed.light .bleed-scrim {

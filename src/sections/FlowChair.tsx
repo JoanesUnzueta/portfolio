@@ -10,7 +10,7 @@ import { flowChairName, projectSpecs } from "../projects";
 export function FlowChair() {
   return (
     <>
-      <section className="hero-bleed light" id="flow">
+      <section className="hero-bleed light accent-flow" id="flow">
         <Photo
           className="bleed"
           src="images/web/flow-joint-closeup.webp"
@@ -40,14 +40,16 @@ export function FlowChair() {
         <EdgeLabel>{`${flowChairName} | 07`}</EdgeLabel>
       </section>
 
-      <section className="construct" id="flow-construction">
+      <section className="construct sheet accent-flow" id="flow-construction">
+        <img className="flow-wave" src={asset("images/flow-wave.svg")} alt="" />
         <div className="copy">
           <h2>Invisible strength</h2>
-          <p className="subtitle">Solution</p>
+          <p className="subtitle">Construction</p>
           <p>
             I adjusted each panel to the millimetre and nested every part on two sheets. Internal
             pegs hold the chair. No fasteners show.
           </p>
+          <p className="caption">480 × 480 × 658 mm · 18 mm plywood · two sheets</p>
         </div>
         <Photo
           src="images/web/chair-technical.webp"
@@ -56,37 +58,6 @@ export function FlowChair() {
           height={1624}
           className="cad"
         />
-        <EdgeLabel>{`${flowChairName} | 08`}</EdgeLabel>
-      </section>
-
-      <section className="split" id="flow-drawings">
-        <div className="copy">
-          <h2>Two sheets</h2>
-          <p className="subtitle">Result</p>
-          <dl className="specs">
-            <div>
-              <dt>Overall size</dt>
-              <dd>Approx. 480 × 480 × 658 mm (W × D × H)</dd>
-            </div>
-            <div>
-              <dt>Seat height</dt>
-              <dd>408 mm</dd>
-            </div>
-            <div>
-              <dt>Material</dt>
-              <dd>18 mm CNC-cut plywood</dd>
-            </div>
-            <div>
-              <dt>Joinery</dt>
-              <dd>Internal pegs, no visible fasteners</dd>
-            </div>
-            <div>
-              <dt>Nesting</dt>
-              <dd>2 sheets</dd>
-            </div>
-          </dl>
-          <p className="caption">Dimensions and two-sheet nesting</p>
-        </div>
         <div className="drawings">
           <img
             src={asset("images/flow-dimensions.svg")}
@@ -101,10 +72,10 @@ export function FlowChair() {
             height={430}
           />
         </div>
-        <EdgeLabel>{`${flowChairName} | 09`}</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 08`}</EdgeLabel>
       </section>
 
-      <section className="final" id="flow-final">
+      <section className="final accent-flow" id="flow-final">
         <div className="copy">
           <h2>Final product</h2>
           <p className="subtitle">Result</p>
@@ -114,7 +85,7 @@ export function FlowChair() {
           </p>
         </div>
         <FlowViewer />
-        <EdgeLabel>{`${flowChairName} | 10`}</EdgeLabel>
+        <EdgeLabel>{`${flowChairName} | 09`}</EdgeLabel>
       </section>
 
       <InUse />
@@ -127,7 +98,7 @@ function InUse() {
   const [seated, setSeated] = useState(false);
 
   return (
-    <section className="in-use" id="flow-in-use">
+    <section className="in-use accent-flow" id="flow-in-use">
       <button
         type="button"
         className="sit"
@@ -155,7 +126,7 @@ function InUse() {
           <span className="hint-touch">Tap</span>
         </span>
       </button>
-      <EdgeLabel>{`${flowChairName} | 11`}</EdgeLabel>
+      <EdgeLabel>{`${flowChairName} | 10`}</EdgeLabel>
     </section>
   );
 }

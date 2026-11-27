@@ -20,10 +20,18 @@ function navTarget(sectionId: string) {
   return "";
 }
 
+function projectAccent(sectionId: string) {
+  if (sectionId.startsWith("kixmi")) return "kixmi";
+  if (sectionId.startsWith("flow")) return "flow";
+  if (sectionId.startsWith("adjust")) return "adjust";
+  return "";
+}
+
 export function Nav() {
   const [solid, setSolid] = useState(false);
   const [dark, setDark] = useState(false);
   const [active, setActive] = useState("");
+  const [accent, setAccent] = useState("");
 
   useEffect(() => {
     const probe = () => {
@@ -38,6 +46,7 @@ export function Nav() {
       }
       setDark(Boolean(current?.classList.contains("tone-dark")));
       setActive(navTarget(current?.id ?? ""));
+      setAccent(projectAccent(current?.id ?? ""));
     };
     probe();
     window.addEventListener("scroll", probe, { passive: true });
@@ -49,7 +58,7 @@ export function Nav() {
   }, []);
 
   return (
-    <header className={`nav${solid ? " solid" : ""}${dark ? " dark" : ""}`}>
+    <header className={`nav${solid ? " solid" : ""}${dark ? " dark" : ""}${accent ? ` accent-${accent}` : ""}`}>
       <a className="brand" href="#top">
         <span className="brand-mark">JU</span>
         <span>Joanes Unzueta</span>

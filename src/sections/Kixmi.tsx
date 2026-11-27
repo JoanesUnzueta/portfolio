@@ -22,30 +22,30 @@ type KixmiRender = {
  */
 const kixmiRenders: readonly KixmiRender[] = [
   {
-    name: "kixmi-gen-hero-ice",
+    name: "kixmi-studio-wet",
     role: "lead",
     caption: "On ice",
-    alt: "Product visualisation of the Kixmi bottle on ice in red light, with condensation and the lips label.",
+    alt: "Product visualisation of the Kixmi bottle on ice, wet with condensation, in red light.",
     width: 1152,
-    height: 864,
+    height: 888,
     widths: [480, 768, 1152],
   },
   {
-    name: "kixmi-gen-trio-grey",
+    name: "kixmi-studio-clean",
     role: "wide",
-    caption: "Three bottles",
-    alt: "Product visualisation of three Kixmi bottles in a row on a grey studio background.",
+    caption: "Studio",
+    alt: "Product visualisation of three Kixmi bottles, cut out from the studio background, with a faint reflection.",
     width: 1280,
-    height: 720,
+    height: 1397,
     widths: [640, 960, 1280],
   },
   {
-    name: "kixmi-gen-lifestyle",
+    name: "kixmi-lifestyle-hand",
     role: "tall",
     caption: "In hand",
-    alt: "Product visualisation of a hand holding a Kixmi bottle at night, with lights behind it.",
+    alt: "Product visualisation of a hand holding a Kixmi bottle, with warm lights behind it.",
     width: 864,
-    height: 1152,
+    height: 1145,
     widths: [432, 648, 864],
   },
 ];
@@ -64,9 +64,11 @@ function KixmiRenderShot({ shot }: { shot: KixmiRender }) {
   const fallback = asset(`images/kixmi/${shot.name}-${shot.widths[shot.widths.length - 1]}.webp`);
 
   return (
-    <figure className={shot.role}>
+    <figure className={`${shot.role}${shot.name.includes("clean") ? " cutout" : ""}`}>
       <picture>
-        <source type="image/avif" srcSet={renderSrcSet(shot.name, shot.widths, "avif")} sizes={sizes} />
+        {shot.name.includes("clean") ? null : (
+          <source type="image/avif" srcSet={renderSrcSet(shot.name, shot.widths, "avif")} sizes={sizes} />
+        )}
         <source type="image/webp" srcSet={renderSrcSet(shot.name, shot.widths, "webp")} sizes={sizes} />
         <img
           src={fallback}
@@ -87,13 +89,13 @@ function KixmiRenderShot({ shot }: { shot: KixmiRender }) {
 export function Kixmi() {
   return (
     <>
-      <section className="hero-bleed tone-dark" id="kixmi">
+      <section className="hero-bleed tone-dark accent-kixmi kixmi" id="kixmi">
         <Photo
           className="bleed bottle"
-          src="images/web/kixmi-full-bottle.webp"
-          alt="Product visualisation of the whole Kixmi bottle, with the cap and the vertical KIXMI logo on the neck."
+          src="images/web/kixmi-cover-neck.webp"
+          alt="Product visualisation of the Kixmi bottle, cropped so the neck and vertical KIXMI logo meet the top edge."
           width={1005}
-          height={1560}
+          height={1203}
         />
         <div className="bleed-scrim" aria-hidden="true" />
         <div className="hero-copy">
@@ -113,7 +115,7 @@ export function Kixmi() {
         <EdgeLabel>Kixmi | 03</EdgeLabel>
       </section>
 
-      <section className="split tall" id="kixmi-contest">
+      <section className="split tall accent-kixmi" id="kixmi-contest">
         <div className="copy">
           <h2>Not seen as premium</h2>
           <p className="subtitle">Problem</p>
@@ -121,6 +123,10 @@ export function Kixmi() {
             Kalimotxo — wine and cola — is not seen as premium. I wanted a bottle with a low
             environmental impact, including production and recycling, that is still practical to use
             every day.
+          </p>
+          <p>
+            I designed it ready to manufacture: an original, practical shape, a low-impact
+            production and recycling process, and something you can use every day.
           </p>
         </div>
         <div className="circle-frame">
@@ -134,7 +140,7 @@ export function Kixmi() {
         <EdgeLabel>Kixmi | 04</EdgeLabel>
       </section>
 
-      <section className="compare" id="kixmi-bottles">
+      <section className="compare accent-kixmi" id="kixmi-bottles">
         <div className="compare-head">
           <h2>Two bottles, one</h2>
           <p className="subtitle">Solution</p>
@@ -185,7 +191,7 @@ export function Kixmi() {
         <EdgeLabel>Kixmi | 05</EdgeLabel>
       </section>
 
-      <section className="split" id="kixmi-result">
+      <section className="split accent-kixmi" id="kixmi-result">
         <div className="copy">
           <h2>1st prize</h2>
           <p className="subtitle">Result</p>
@@ -214,7 +220,7 @@ export function Kixmi() {
         <EdgeLabel>Kixmi | 06</EdgeLabel>
       </section>
 
-      <section className="slide-text" id="kixmi-jury">
+      <section className="slide-text accent-kixmi" id="kixmi-jury">
         <blockquote>
           <p>
             “The project presents a comprehensive development process that begins with the study of
@@ -227,10 +233,10 @@ export function Kixmi() {
         <EdgeLabel>Kixmi | 07</EdgeLabel>
       </section>
 
-      <section className="renders" id="kixmi-renders">
+      <section className="renders accent-kixmi" id="kixmi-renders">
         <div className="copy">
           <h2>Final renders</h2>
-          <p>The bottle on ice, as a set of three, and in the hand.</p>
+          <p>On ice, as a studio set, and in the hand.</p>
         </div>
         <div className="render-gallery">
           {kixmiRenders.map((render) => (
