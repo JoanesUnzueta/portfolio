@@ -30,7 +30,7 @@ export function Kixmi() {
           className="bleed bottle"
           src="images/web/kixmi-hero-neck.webp"
           alt="Product visualisation of the Kixmi bottle: the wet neck with the vertical KIXMI logo, filling the right of the frame."
-          width={2540}
+          width={1733}
           height={2160}
         />
         <div className="bleed-scrim" aria-hidden="true" />

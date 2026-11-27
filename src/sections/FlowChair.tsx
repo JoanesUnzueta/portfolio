@@ -95,8 +95,12 @@ export function FlowChair() {
   );
 }
 
-/** Only the side pair was shot from the same spot, so only it is used for the hover. */
-const sitViews = [{ id: "side", label: "side", focus: "50% 60%" }] as const;
+/** Each empty photo is aligned to its seated photo, so the chair stays put when the person fades in. */
+const sitViews = [
+  { id: "front", label: "front three-quarter", focus: "50% 60%" },
+  { id: "side", label: "side", focus: "52% 60%" },
+  { id: "rear", label: "rear three-quarter", focus: "56% 60%" },
+] as const;
 
 function InUse() {
   const [seated, setSeated] = useState<string | null>(null);

@@ -512,15 +512,13 @@ p.project-meta {
   object-position: right 62%;
 }
 
-/* Right two thirds of the Illustrator board; its left edge fades into the same background. */
+/* The bottle neck, cut out, centred about 70% across as on the Illustrator board. */
 .hero-bleed img.bleed.bottle {
-  inset: 0 0 0 auto;
+  inset: 0 auto 0 70%;
   width: auto;
   height: 100%;
   object-fit: contain;
-  object-position: right center;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 22%);
-  mask-image: linear-gradient(90deg, transparent 0, #000 22%);
+  transform: translateX(-50%);
 }
 
 .hero-bleed.kixmi .bleed-scrim {
@@ -674,6 +672,7 @@ p.project-meta {
 .results,
 .gallery,
 .compare,
+.process,
 .mechanism {
   min-height: 100svh;
   padding: calc(var(--nav) + 2.2rem) 4vw 3rem var(--edge);
@@ -1123,13 +1122,15 @@ blockquote footer {
 
 .sit-row {
   display: grid;
-  width: min(100%, 1280px, calc((100svh - var(--nav) - 7rem) * 16 / 9));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+  width: min(100%, calc((100svh - var(--nav) - 8rem) * 3 * 4 / 5 + 1.8rem));
 }
 
 .sit {
   position: relative;
   display: block;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 5;
   padding: 0;
   overflow: hidden;
   border: 0;
@@ -1146,7 +1147,7 @@ blockquote footer {
   object-fit: cover;
 }
 
-/* The side pair was shot from one spot, so the seated photo simply fades in over the empty one. */
+/* The empty photos are aligned to the seated ones, so the seated photo simply fades in. */
 .sit .sat {
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -1357,6 +1358,119 @@ blockquote footer {
   object-fit: contain;
   background: transparent;
   mix-blend-mode: multiply;
+}
+
+.mounted {
+  position: relative;
+  width: min(100%, 760px, calc(80vh * 1506 / 1521));
+  margin: 0 auto;
+}
+
+.mounted-full {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.mounted-lead {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.mounted-lead line,
+.mounted-lead circle {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.mounted-lead line {
+  stroke-width: 1.5;
+}
+
+/* The blow-up: the sharp clamp render in a round window. */
+.mounted-bubble {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: #f4f4f4;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 12%);
+}
+
+.mounted-bubble img {
+  width: 86%;
+  height: auto;
+}
+
+.mounted .caption {
+  margin-top: 0.6rem;
+  text-align: center;
+}
+
+.arm {
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arm img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 72vh;
+}
+
+.process {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.6fr) minmax(0, 1.4fr);
+  gap: clamp(2.5rem, 5vw, 6rem);
+  align-items: center;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+.process-grid figure {
+  margin: 0;
+}
+
+.process-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Pencil on paper: let the page take the slide's grey. */
+.process-grid .sketch img {
+  mix-blend-mode: multiply;
+}
+
+.process-grid .sketch:not(.wide) {
+  grid-row: span 2;
+}
+
+.process-grid .cad-shot img {
+  border: 1px solid #cfcfcf;
+}
+
+.clamp-trio figure {
+  margin: 0;
+  text-align: center;
 }
 
 .adjust-mounted .hero-shot {
@@ -1901,6 +2015,22 @@ blockquote footer {
     grid-template-columns: 1fr;
   }
 
+  .process {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: auto;
+    padding: calc(var(--nav) + 1.4rem) 1.15rem 1.6rem;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-grid .sketch:not(.wide) {
+    grid-row: auto;
+  }
+
   .trio {
     align-items: stretch;
   }
@@ -1981,8 +2111,8 @@ blockquote footer {
   }
 
   .hero-bleed img.bleed.bottle {
-    inset: 0 -20% auto auto;
-    height: 70%;
+    inset: 0 auto auto 72%;
+    height: 66%;
   }
 
   .method {
