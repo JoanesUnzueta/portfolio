@@ -1070,6 +1070,17 @@ blockquote footer {
   mix-blend-mode: darken;
 }
 
+.mark-slide.tone-dark.accent-adjust {
+  --accent: #7dccc2;
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.mark-slide img.official {
+  width: min(280px, 46vw);
+  mix-blend-mode: normal;
+}
+
 .in-use {
   display: flex;
   min-height: 100svh;
@@ -1288,6 +1299,30 @@ blockquote footer {
 .pair img {
   width: 100%;
   height: auto;
+  object-fit: contain;
+  background: transparent;
+}
+
+.clamp-trio {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  align-items: end;
+}
+
+.clamp-trio img {
+  width: 100%;
+  height: auto;
+  max-height: 62vh;
+  object-fit: contain;
+  background: transparent;
+}
+
+.results.adjust-mounted .hero-shot {
+  display: block;
+  width: min(100%, 860px);
+  max-height: 68vh;
+  margin: 0.4rem auto 0;
   object-fit: contain;
   background: transparent;
 }

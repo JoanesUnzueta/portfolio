@@ -10,10 +10,10 @@ export function Adjust() {
       <section className="hero-bleed tone-dark adjust accent-adjust" id="adjust">
         <Photo
           className="bleed crop"
-          src="images/web/adjust-cover-tight.webp"
+          src="images/web/adjust-clamp-side-knob.webp"
           alt="(AD)JUST clamp bleeding off the right edge: a black link with a steel shaft and knurled knob."
-          width={1895}
-          height={1421}
+          width={1208}
+          height={913}
         />
         <div className="bleed-scrim" aria-hidden="true" />
         <div className="hero-copy">
@@ -68,12 +68,13 @@ export function Adjust() {
         <EdgeLabel>(AD)JUST | 13</EdgeLabel>
       </section>
 
-      <section className="slide-text mark-slide accent-adjust" id="adjust-mark">
+      <section className="slide-text mark-slide tone-dark accent-adjust" id="adjust-mark">
         <Photo
+          className="official"
           src="images/web/adjust-logo.webp"
-          alt="(AD)JUST circular mark."
-          width={525}
-          height={638}
+          alt="Official (AD)JUST mark: a white open ring in the shape of the clamp."
+          width={778}
+          height={702}
         />
         <EdgeLabel>(AD)JUST | 14</EdgeLabel>
       </section>
@@ -87,24 +88,30 @@ export function Adjust() {
             external tools.
           </p>
         </div>
-        <div className="pair">
+        <div className="clamp-trio">
           <Photo
-            src="images/web/adjust-final-design-assembly.webp"
-            alt="Assembly drawing of the (AD)JUST clamp mounted on a wheelchair tray arm."
-            width={1425}
-            height={1575}
+            src="images/web/adjust-clamp-side-knob.webp"
+            alt="(AD)JUST clamp from the side, with the knurled knob and steel rod."
+            width={1208}
+            height={913}
           />
           <Photo
-            src="images/web/adjust-grip-mechanism-variants.webp"
-            alt="Three views of the (AD)JUST grip: closed clamp, open clamp, and the knob from below."
-            width={1762}
-            height={1031}
+            src="images/web/adjust-clamp-front-open.webp"
+            alt="Front view of the open (AD)JUST grip, with the ring, pins, and knob."
+            width={1267}
+            height={1349}
+          />
+          <Photo
+            src="images/web/adjust-clamp-back-mount.webp"
+            alt="Back of the (AD)JUST clamp: the mounting plate with six holes around the centre."
+            width={1184}
+            height={802}
           />
         </div>
         <EdgeLabel>(AD)JUST | 15</EdgeLabel>
       </section>
 
-      <section className="results accent-adjust" id="adjust-renders">
+      <section className="results adjust-mounted accent-adjust" id="adjust-renders">
         <div className="copy">
           <h2>Final renders</h2>
           <p className="subtitle">Result</p>
@@ -113,27 +120,13 @@ export function Adjust() {
             holder.
           </p>
         </div>
-        <div className="result-grid">
-          <Photo
-            src="images/web/adjust-wheelchair-mounted.webp"
-            alt="The (AD)JUST link mounted on the frame of a wheelchair."
-            width={1912}
-            height={1875}
-            className="hero-shot"
-          />
-          <Photo
-            src="images/web/adjust-render-clamps.webp"
-            alt="Two black (AD)JUST clamps shown together, with knobs and steel shafts."
-            width={1500}
-            height={1462}
-          />
-          <Photo
-            src="images/web/adjust-hero-clamp.webp"
-            alt="Hero render of a single (AD)JUST clamp on a light background."
-            width={2175}
-            height={1612}
-          />
-        </div>
+        <Photo
+          src="images/web/adjust-wheelchair-mounted.webp"
+          alt="The black (AD)JUST clamp mounted on the frame of a faded light-blue wheelchair."
+          width={1506}
+          height={1521}
+          className="hero-shot"
+        />
         <EdgeLabel>(AD)JUST | 16</EdgeLabel>
       </section>
       <ProjectNav project="adjust" />
