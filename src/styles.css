@@ -745,6 +745,33 @@ p.project-meta {
   margin-top: 0.7rem;
 }
 
+.kixmi-pair {
+  display: grid;
+  grid-template-columns: minmax(16rem, 28rem) 11rem minmax(16rem, 28rem);
+  justify-content: center;
+  gap: 1.4rem 1.4rem;
+  align-items: start;
+  min-height: 100svh;
+  padding: calc(var(--nav) + 3.2rem) 4vw 2.8rem 4.2rem;
+}
+
+.kixmi-pair .copy p {
+  max-width: 42ch;
+}
+
+.kixmi-lips {
+  width: min(100%, 220px);
+  height: auto;
+  margin: 0.8rem 0 0.4rem;
+}
+
+.kixmi-splash {
+  width: min(100%, 150px);
+  height: auto;
+  margin-top: 5.2rem;
+  justify-self: center;
+}
+
 .copy h3 {
   margin: 1.1rem 0 0.3rem;
   font-size: 1rem;
@@ -1660,6 +1687,7 @@ blockquote footer {
   .hero,
   .split,
   .construct,
+  .kixmi-pair,
   .final,
   .shots,
   .pair,
@@ -1684,6 +1712,7 @@ blockquote footer {
   .hero,
   .split,
   .construct,
+  .kixmi-pair,
   .final,
   .compare,
   .renders,

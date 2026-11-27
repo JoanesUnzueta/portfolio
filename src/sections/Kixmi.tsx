@@ -202,6 +202,39 @@ export function Kixmi() {
         <EdgeLabel>Kixmi | 05</EdgeLabel>
       </section>
 
+      <section className="kixmi-pair accent-kixmi" id="kixmi-brand">
+        <div className="copy">
+          <KixmiTitle hit="Kiss" rest="the bottle" kicker="Brand with a punch" />
+          <img
+            className="kixmi-lips"
+            src={asset("images/web/kixmi-lips.webp")}
+            alt="The Kixmi lips mark, in a red paint splash."
+            width={398}
+            height={219}
+          />
+          <p>
+            The mark is a pair of lips. You drink straight from the bottle: a daring bite that
+            invites the user to party and be free. Kiss Me — the kiss revolution.
+          </p>
+        </div>
+        <img
+          className="kixmi-splash"
+          src={asset("images/web/kixmi-splash-white.webp")}
+          alt=""
+          width={247}
+          height={112}
+        />
+        <div className="copy">
+          <KixmiTitle hit="“Viva" rest="la vida”" kicker="A free consumer" />
+          <p>
+            Wine consumers are ageing, and young people are not getting into the product. We are
+            evading cultural extinction with an expressive design, without forgoing usability. For
+            young students and partygoers. By young people, for young people.
+          </p>
+        </div>
+        <EdgeLabel>Kixmi | 06</EdgeLabel>
+      </section>
+
       <section className="split accent-kixmi" id="kixmi-result">
         <div className="copy">
           <KixmiTitle hit="1st" rest="prize" kicker="Result" />
@@ -210,9 +243,6 @@ export function Kixmi() {
             sustainable production and recycling with everyday usability. Its original yet feasible
             design reimagines old traditions, and was selected as the winning entry of the 4th
             edition of the Vidrala Master Glass Design Contest.
-          </p>
-          <p>
-            The mark is a pair of lips — you drink straight from the bottle. KIXMI: <em>Kiss Me</em>.
           </p>
           <blockquote>
             <p>
@@ -240,7 +270,7 @@ export function Kixmi() {
           width={670}
           height={550}
         />
-        <EdgeLabel>Kixmi | 06</EdgeLabel>
+        <EdgeLabel>Kixmi | 07</EdgeLabel>
       </section>
 
       <section className="renders accent-kixmi" id="kixmi-renders">
@@ -253,7 +283,7 @@ export function Kixmi() {
             <KixmiRenderShot key={render.name} shot={render} />
           ))}
         </div>
-        <EdgeLabel>Kixmi | 07</EdgeLabel>
+        <EdgeLabel>Kixmi | 08</EdgeLabel>
       </section>
       <ProjectNav project="kixmi" />
     </>
