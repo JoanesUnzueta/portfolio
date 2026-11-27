@@ -180,14 +180,14 @@ export function Kixmi() {
             <picture>
               <source
                 type="image/avif"
-                srcSet={renderSrcSet("kixmi-sunset", [640, 960, 1440], "avif")}
+                srcSet={renderSrcSet("kixmi-sunset-b", [640, 960, 1440], "avif")}
                 sizes="(min-width: 981px) 36vw, 100vw"
               />
               <img
-                src={asset("images/kixmi/kixmi-sunset-1440.webp")}
-                srcSet={renderSrcSet("kixmi-sunset", [640, 960, 1440], "webp")}
+                src={asset("images/kixmi/kixmi-sunset-b-1440.webp")}
+                srcSet={renderSrcSet("kixmi-sunset-b", [640, 960, 1440], "webp")}
                 sizes="(min-width: 981px) 36vw, 100vw"
-                alt="Product visualisation of a hand holding a Kixmi bottle against a sunset over a city."
+                alt="A person holding a Kixmi bottle against a sunset over a city."
                 width={1440}
                 height={1440}
                 loading="lazy"
@@ -200,16 +200,16 @@ export function Kixmi() {
             <picture>
               <source
                 type="image/avif"
-                srcSet={renderSrcSet("kixmi-sixpack", [640, 1024, 1536], "avif")}
+                srcSet={renderSrcSet("kixmi-sixpack-b", [640, 1024, 1536], "avif")}
                 sizes="(min-width: 981px) 54vw, 100vw"
               />
               <img
-                src={asset("images/kixmi/kixmi-sixpack-1536.webp")}
-                srcSet={renderSrcSet("kixmi-sixpack", [640, 1024, 1536], "webp")}
+                src={asset("images/kixmi/kixmi-sixpack-b-1536.webp")}
+                srcSet={renderSrcSet("kixmi-sixpack-b", [640, 1024, 1536], "webp")}
                 sizes="(min-width: 981px) 54vw, 100vw"
-                alt="Product visualisation of a Kixmi bottle on a wet bar counter beside the black and red six-pack carrier with the lips mark."
+                alt="A Kixmi bottle on a bar counter beside the black and red six-pack carrier with the lips mark."
                 width={1536}
-                height={1024}
+                height={857}
                 loading="lazy"
                 decoding="async"
               />

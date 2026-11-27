@@ -218,7 +218,7 @@ export function Adjust() {
         <ArmWithBubble />
         <figure className="variants">
           <Photo
-            src="images/web/adjust-grip-mechanism-variants.webp"
+            src="images/web/adjust-grip-mechanism-variants-v2.webp"
             alt="Three renders of the grip from above: open, closed around the tube, and locked with the knob."
             width={1664}
             height={917}
@@ -316,7 +316,7 @@ export function Adjust() {
         <MountedDetail />
         <figure className="clamp-pair">
           <Photo
-            src="images/web/adjust-render-clamps.webp"
+            src="images/web/adjust-render-clamps-clean.webp"
             alt="Two renders of the (AD)JUST link: the round mount with six holes, and the grip with its knob."
             width={1345}
             height={1317}
