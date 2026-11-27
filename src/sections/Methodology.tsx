@@ -1,6 +1,5 @@
 import { useState, type CSSProperties, type PointerEvent } from "react";
 import { EdgeLabel } from "../components/EdgeLabel";
-import { asset } from "../asset";
 import { waveEyes } from "../dbzWave";
 
 const steps = [
@@ -113,26 +112,15 @@ export function Methodology() {
   return (
     <section className="method" id="method">
       <div className="method-head">
-        <img
-          src={asset("images/web/dbz-portrait.webp")}
-          alt="Portrait of Joanes Unzueta."
-          width={340}
-          height={340}
-        />
         <div>
           <h2>DBZ Methodology</h2>
           <p className="subtitle">How I work</p>
-          <p>
+          <p className="method-text">
             Developed at Mondragon, DBZ is my main approach. It is Design Thinking, centred on the
-            user.
-          </p>
-          <p>
-            Six steps carry people's knowledge through the work. The aim is products and services
-            with real added value.
-          </p>
-          <p>
-            Four pillars: user input, the whole consumer experience, analytical and creative
-            thinking together, and opportunities turned into tangible solutions.
+            user. Six steps carry people's knowledge through the work. The aim is products and
+            services with real added value. Four pillars: user input, the whole consumer experience,
+            analytical and creative thinking together, and opportunities turned into tangible
+            solutions.
           </p>
         </div>
       </div>

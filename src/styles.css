@@ -571,7 +571,7 @@ p.project-meta {
   position: absolute;
   z-index: 0;
   top: -1.55rem;
-  left: -1.85rem;
+  left: -3.6rem;
   margin: 0;
   color: rgb(125 125 125 / 42%);
   font-size: clamp(6.4rem, 10.4vw, 8.8rem);
@@ -584,7 +584,7 @@ p.project-meta {
 
 .hero-bleed.light .num {
   top: -1.7rem;
-  left: -2.15rem;
+  left: -3.9rem;
   color: rgb(70 70 70 / 34%);
 }
 
@@ -673,7 +673,8 @@ p.project-meta {
 .gallery,
 .compare,
 .process,
-.mechanism {
+.mechanism,
+.details {
   min-height: 100svh;
   padding: calc(var(--nav) + 2.2rem) 4vw 3rem var(--edge);
 }
@@ -1418,9 +1419,13 @@ blockquote footer {
 }
 
 .mounted {
-  position: relative;
-  width: min(100%, 760px, calc(80vh * 1506 / 1521));
+  width: min(100%, 680px, calc(74vh * 1506 / 1521));
   margin: 0 auto;
+}
+
+/* Image, leader and bubble share one box, so the overlay matches the picture exactly. */
+.mounted-stage {
+  position: relative;
 }
 
 .mounted-full {
@@ -1438,29 +1443,31 @@ blockquote footer {
   pointer-events: none;
 }
 
-.mounted-lead line,
-.mounted-lead circle {
+/* Bubbles as on the original boards: a thin dark ring, no glow. */
+.zoom-ring {
   fill: none;
-  stroke: var(--accent);
+  stroke: #3b3b3b;
   stroke-width: 2.5;
   vector-effect: non-scaling-stroke;
 }
 
-.mounted-lead line {
-  stroke-width: 1.5;
+line.zoom-ring {
+  stroke-width: 1.25;
 }
 
-/* The blow-up: a high-resolution close-up of the clamp in place, in a round window. */
+.zoom-fill {
+  fill: #ececec;
+}
+
 .mounted-bubble {
   position: absolute;
   display: grid;
   place-items: center;
   aspect-ratio: 1;
   overflow: hidden;
-  border: 2px solid var(--accent);
+  border: 2.5px solid #3b3b3b;
   border-radius: 50%;
-  background: #f4f4f4;
-  box-shadow: 0 10px 30px rgb(0 0 0 / 12%);
+  background: #f1f1f1;
 }
 
 .mounted-bubble img {
@@ -1486,6 +1493,193 @@ blockquote footer {
   max-width: 100%;
   height: auto;
   max-height: 72vh;
+}
+
+.zoom-svg {
+  display: block;
+  width: min(100%, calc(70vh * 1100 / 1367));
+  height: auto;
+}
+
+/* Copy, then two figures side by side, as on the original "Final design" board. */
+.split.split3 {
+  grid-template-columns: minmax(15rem, 0.62fr) minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: clamp(1.5rem, 3.2vw, 3.6rem);
+}
+
+.split3 figure {
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  align-items: center;
+}
+
+.split3 .variants img,
+.split3 .clamp-pair img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 62vh;
+  object-fit: contain;
+}
+
+.split3 .clamp-pair img {
+  width: auto;
+  max-width: 100%;
+  max-height: 54vh;
+}
+
+.split3 .caption {
+  margin-top: 0.8rem;
+  text-align: center;
+}
+
+/* Within reach: the person first, then what the tablet is for. */
+.reach-board {
+  display: grid;
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
+  grid-template-areas:
+    "photo app"
+    "photo uses";
+  gap: 1.4rem 1.8rem;
+  align-items: start;
+}
+
+.reach-board figure {
+  margin: 0;
+}
+
+.reach-photo {
+  grid-area: photo;
+}
+
+.reach-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 72vh;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.reach-app {
+  grid-area: app;
+}
+
+.tablet-frame {
+  padding: 14px;
+  border-radius: 22px;
+  background: #232323;
+  box-shadow: 0 14px 34px rgb(0 0 0 / 14%);
+}
+
+.tablet-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.reach-app .caption {
+  margin-top: 0.8rem;
+}
+
+.reach-uses {
+  display: grid;
+  grid-area: uses;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reach-uses li {
+  padding-top: 0.7rem;
+  border-top: 2px solid var(--accent);
+}
+
+.reach-uses strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.reach-uses span {
+  display: block;
+  margin-top: 0.2rem;
+  color: #555;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/* Sketch, arrow, CAD: one line from paper to model. */
+.sketch-cad {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) auto minmax(0, 1fr);
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+  align-items: center;
+}
+
+.sketch-cad figure {
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sketch-cad img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 62vh;
+  object-fit: contain;
+}
+
+.sketch-cad .sketch img {
+  mix-blend-mode: multiply;
+}
+
+.sketch-cad .caption {
+  margin-top: 0.8rem;
+}
+
+.sketch-arrow {
+  color: var(--accent);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.4rem;
+}
+
+.details-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 3rem);
+  align-items: end;
+}
+
+.details-row figure {
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  align-items: center;
+}
+
+.details-row img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 52vh;
+  object-fit: contain;
+}
+
+.details-row .caption {
+  margin-top: 0.8rem;
 }
 
 .process {
@@ -1579,10 +1773,9 @@ blockquote footer {
 .method-head {
   display: flex;
   align-items: flex-start;
-  align-self: flex-start;
+  align-self: stretch;
   gap: 0.85rem;
-  width: max-content;
-  max-width: 100%;
+  width: 100%;
 }
 
 .method-head img {
@@ -1595,7 +1788,13 @@ blockquote footer {
 }
 
 .method-head > div {
-  max-width: 58ch;
+  flex: 1;
+  max-width: none;
+}
+
+.method-head p.method-text {
+  max-width: none;
+  text-align: justify;
 }
 
 .method-head h2 {
@@ -2007,6 +2206,7 @@ blockquote footer {
   .renders,
   .gallery,
   .results,
+  .details,
   .about {
     min-height: auto;
     padding: calc(var(--nav) + 1.4rem) 1.15rem 1.6rem;
@@ -2070,6 +2270,29 @@ blockquote footer {
 
   .compare-head.side {
     grid-template-columns: 1fr;
+  }
+
+  .split.split3,
+  .reach-board,
+  .sketch-cad,
+  .details-row {
+    grid-template-columns: 1fr;
+  }
+
+  .reach-board {
+    grid-template-areas:
+      "photo"
+      "app"
+      "uses";
+  }
+
+  .reach-photo img {
+    max-height: 60vh;
+  }
+
+  .sketch-arrow {
+    justify-self: center;
+    transform: rotate(90deg);
   }
 
   .clamp-trio {
@@ -2160,7 +2383,7 @@ blockquote footer {
 
   .hero-bleed .num {
     top: -0.8rem;
-    left: -0.7rem;
+    left: -1.1rem;
     font-size: clamp(4.4rem, 22vw, 6.4rem);
   }
 
@@ -2185,6 +2408,10 @@ blockquote footer {
 
   .method {
     padding: calc(var(--nav) + 1.4rem) 1.15rem 1.8rem;
+  }
+
+  .method-head p.method-text {
+    text-align: left;
   }
 
   .project-nav {

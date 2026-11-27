@@ -6,60 +6,119 @@ import { SpecLine } from "../components/SpecLine";
 import { projectSpecs } from "../projects";
 
 /*
- * The clamp is small in the full render, so a bubble shows a high-resolution close-up of it in place.
+ * Bubbles in the style of the original boards: a thin dark ring around a magnified view,
+ * a small ring on the part itself and a leader line between them.
+ * All coordinates are pixels of the image they sit on.
+ */
+const bubbleCls = "zoom-ring";
+
+function leader(
+  from: { x: number; y: number; r: number },
+  to: { x: number; y: number; r: number },
+) {
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  const len = Math.hypot(dx, dy);
+  const ux = dx / len;
+  const uy = dy / len;
+  return {
+    x1: from.x + ux * from.r,
+    y1: from.y + uy * from.r,
+    x2: to.x - ux * to.r,
+    y2: to.y - uy * to.r,
+  };
+}
+
+/* The arm drawing with its base magnified in place: the same image, scaled inside a circle. */
+const ARM_W = 1100;
+const ARM_H = 1367;
+const armSpot = { x: 828, y: 1200, r: 160 };
+const armBubble = { x: 318, y: 850, r: 290 };
+
+function ArmWithBubble() {
+  const k = armBubble.r / armSpot.r;
+  const href = asset("images/web/adjust-arm-schematic.webp");
+  const line = leader(armBubble, armSpot);
+  return (
+    <figure className="arm">
+      <svg
+        className="zoom-svg"
+        viewBox={`0 0 ${ARM_W} ${ARM_H}`}
+        role="img"
+        aria-label="Drawing of an articulated tablet arm with the black (AD)JUST link at its base, magnified in a circle."
+      >
+        <defs>
+          <clipPath id="arm-bubble-clip">
+            <circle cx={armBubble.x} cy={armBubble.y} r={armBubble.r} />
+          </clipPath>
+        </defs>
+        <image href={href} width={ARM_W} height={ARM_H} />
+        <line className={bubbleCls} {...line} />
+        <circle className={bubbleCls} cx={armSpot.x} cy={armSpot.y} r={armSpot.r} />
+        <circle className="zoom-fill" cx={armBubble.x} cy={armBubble.y} r={armBubble.r} />
+        <g clipPath="url(#arm-bubble-clip)">
+          <image
+            href={href}
+            width={ARM_W}
+            height={ARM_H}
+            transform={`translate(${armBubble.x - armSpot.x * k} ${armBubble.y - armSpot.y * k}) scale(${k})`}
+          />
+        </g>
+        <circle className={bubbleCls} cx={armBubble.x} cy={armBubble.y} r={armBubble.r} />
+      </svg>
+      <figcaption className="caption">The link at the base of the tablet arm</figcaption>
+    </figure>
+  );
+}
+
+/*
+ * The clamp is small in the full render, so a bubble shows a high-resolution close-up of it.
  * Coordinates are pixels of adjust-wheelchair-mounted.webp (1506 × 1521).
  */
 const IMG_W = 1506;
 const IMG_H = 1521;
-const clamp = { x: 837, y: 1025, r: 74 };
-const bubble = { x: 300, y: 280, r: 235 };
+const clamp = { x: 832, y: 1022, r: 78 };
+const bubble = { x: 300, y: 300, r: 250 };
 
 function MountedDetail() {
-  const dx = clamp.x - bubble.x;
-  const dy = clamp.y - bubble.y;
-  const len = Math.hypot(dx, dy);
-  const ux = dx / len;
-  const uy = dy / len;
   const pct = (value: number, of: number) => `${((value / of) * 100).toFixed(3)}%`;
+  const line = leader(bubble, clamp);
 
   return (
     <figure className="mounted">
-      <img
-        className="mounted-full"
-        src={asset("images/web/adjust-wheelchair-mounted.webp")}
-        alt="The black (AD)JUST clamp mounted on the frame of a faded light-blue wheelchair."
-        width={IMG_W}
-        height={IMG_H}
-        loading="lazy"
-        decoding="async"
-      />
-      <svg className="mounted-lead" viewBox={`0 0 ${IMG_W} ${IMG_H}`} aria-hidden="true">
-        <line
-          x1={bubble.x + ux * bubble.r}
-          y1={bubble.y + uy * bubble.r}
-          x2={clamp.x - ux * clamp.r}
-          y2={clamp.y - uy * clamp.r}
-        />
-        <circle cx={clamp.x} cy={clamp.y} r={clamp.r} />
-      </svg>
-      <div
-        className="mounted-bubble"
-        style={{
-          left: pct(bubble.x - bubble.r, IMG_W),
-          top: pct(bubble.y - bubble.r, IMG_H),
-          width: pct(2 * bubble.r, IMG_W),
-        }}
-      >
+      <div className="mounted-stage">
         <img
-          src={asset("images/web/adjust-blowup.webp")}
-          alt="Close-up of the clamp on the wheelchair frame: knob, steel pin and the round mount."
-          width={1000}
-          height={1000}
+          className="mounted-full"
+          src={asset("images/web/adjust-wheelchair-mounted.webp")}
+          alt="The black (AD)JUST clamp mounted on the frame of a faded light-blue wheelchair."
+          width={IMG_W}
+          height={IMG_H}
           loading="lazy"
           decoding="async"
         />
+        <svg className="mounted-lead" viewBox={`0 0 ${IMG_W} ${IMG_H}`} aria-hidden="true">
+          <line className={bubbleCls} {...line} />
+          <circle className={bubbleCls} cx={clamp.x} cy={clamp.y} r={clamp.r} />
+        </svg>
+        <div
+          className="mounted-bubble"
+          style={{
+            left: pct(bubble.x - bubble.r, IMG_W),
+            top: pct(bubble.y - bubble.r, IMG_H),
+            width: pct(2 * bubble.r, IMG_W),
+          }}
+        >
+          <img
+            src={asset("images/web/adjust-blowup.webp")}
+            alt="Close-up of the clamp on the wheelchair frame: knob, steel pin and the round mount."
+            width={1000}
+            height={1000}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
       </div>
-      <figcaption className="caption">The link on the wheelchair frame</figcaption>
+      <figcaption className="caption">On the wheelchair frame</figcaption>
     </figure>
   );
 }
@@ -92,25 +151,59 @@ export function Adjust() {
         <EdgeLabel>(AD)JUST | 09</EdgeLabel>
       </section>
 
-      <section className="split accent-adjust" id="adjust-problem">
+      <section className="split reach accent-adjust" id="adjust-problem">
         <div className="copy">
           <h2>Within reach</h2>
           <p className="subtitle">Problem</p>
           <p>
-            From first-hand experience: some people with disabilities rely on tablets and phones to
-            communicate. Those devices need a holder.
+            The project started with my sister, who needed a better way to clamp her tablet to her
+            wheelchair.
+          </p>
+          <p>
+            Many people with disabilities rely on a tablet or phone every day: to speak through
+            picture symbols, to learn and to stay in touch. The device has to stay where they can
+            see and reach it.
           </p>
         </div>
-        <Photo
-          src="images/web/adjust-research-communication-app.webp"
-          alt="Two children using a tablet communication board with picture symbols for food, clothes, and words."
-          width={1920}
-          height={960}
-        />
+        <div className="reach-board">
+          <figure className="reach-photo">
+            <Photo
+              src="images/web/adjust-aac-photo.webp"
+              alt="Two young people use a communication app on a tablet together."
+              width={626}
+              height={948}
+            />
+          </figure>
+          <figure className="reach-app">
+            <div className="tablet-frame">
+              <Photo
+                src="images/web/adjust-aac-app.webp"
+                alt="A communication app on a tablet: picture symbols for food, drinks, clothes, numbers and the alphabet."
+                width={998}
+                height={950}
+              />
+            </div>
+            <figcaption className="caption">A communication app: tap a symbol to speak</figcaption>
+          </figure>
+          <ul className="reach-uses">
+            <li>
+              <strong>Speak</strong>
+              <span>Build sentences from symbols</span>
+            </li>
+            <li>
+              <strong>Everyday needs</strong>
+              <span>Food, drinks, clothes</span>
+            </li>
+            <li>
+              <strong>Learn</strong>
+              <span>Numbers, letters, colours</span>
+            </li>
+          </ul>
+        </div>
         <EdgeLabel>(AD)JUST | 10</EdgeLabel>
       </section>
 
-      <section className="split accent-adjust" id="adjust-solution">
+      <section className="split split3 accent-adjust" id="adjust-solution">
         <div className="copy">
           <h2>One link</h2>
           <p className="subtitle">Solution</p>
@@ -118,15 +211,19 @@ export function Adjust() {
             The brief limited the number of parts, so I designed the wheelchair link only: the piece
             that joins an articulated tablet arm to the wheelchair frame.
           </p>
+          <p>
+            Open the grip, close it around the tube, and turn the knob to lock it. No tools needed.
+          </p>
         </div>
-        <figure className="arm">
+        <ArmWithBubble />
+        <figure className="variants">
           <Photo
-            src="images/web/adjust-arm-schematic.webp"
-            alt="Drawing of an articulated tablet arm, with the black (AD)JUST link clamped at its base."
-            width={1100}
-            height={1367}
+            src="images/web/adjust-grip-mechanism-variants.webp"
+            alt="Three renders of the grip from above: open, closed around the tube, and locked with the knob."
+            width={1664}
+            height={917}
           />
-          <figcaption className="caption">The link at the base of the tablet arm</figcaption>
+          <figcaption className="caption">Grip mechanism: open, closed, locked</figcaption>
         </figure>
         <EdgeLabel>(AD)JUST | 11</EdgeLabel>
       </section>
@@ -136,53 +233,34 @@ export function Adjust() {
           <h2>From sketch to CAD</h2>
           <p className="subtitle">Process</p>
           <p>
-            Pencil studies of the grip ring and of how the mount meets the tube, then the part
+            Pencil studies of the grip ring and of how it closes around the tube, then the part
             modelled in Siemens NX.
           </p>
         </div>
-        <div className="process-grid">
-          <figure className="sketch wide">
-            <Photo
-              src="images/web/adjust-sketch-clamp.webp"
-              alt="Pencil sketches: the clamp with its knob on a tube, the joint to the arm, and the mount block."
-              width={1600}
-              height={960}
-            />
-          </figure>
+        <div className="sketch-cad">
           <figure className="sketch">
             <Photo
-              src="images/web/adjust-sketch-mount.webp"
-              alt="Pencil sketch of the round mount meeting the tube."
-              width={900}
-              height={1200}
+              src="images/web/adjust-sketch-link.webp"
+              alt="Pencil sketch of the clamp on a tube: the open grip ring, the threaded pin and the knob."
+              width={1400}
+              height={1258}
             />
+            <figcaption className="caption">Sketch</figcaption>
           </figure>
-          <figure className="cad-shot">
+          <span className="sketch-arrow" aria-hidden="true">
+            →
+          </span>
+          <figure className="cad">
             <Photo
-              src="images/web/adjust-cad-nx.webp"
+              src="images/web/adjust-cad-nx-cut.webp"
               alt="The grip ring modelled in Siemens NX."
-              width={700}
-              height={460}
+              width={385}
+              height={325}
             />
             <figcaption className="caption">Modelled in Siemens NX</figcaption>
           </figure>
         </div>
         <EdgeLabel>(AD)JUST | 12</EdgeLabel>
-      </section>
-
-      <section className="slide-text mark-slide tone-dark accent-adjust" id="adjust-mark">
-        <Photo
-          className="official"
-          src="images/web/adjust-logo.webp"
-          alt="Official (AD)JUST mark: a white open ring in the shape of the clamp."
-          width={778}
-          height={702}
-        />
-        <p className="mark-caption">
-          <strong>(AD)JUST</strong>
-          <span>Tablet Holder Link</span>
-        </p>
-        <EdgeLabel>(AD)JUST | 13</EdgeLabel>
       </section>
 
       <section className="split mechanism accent-adjust" id="adjust-mechanism">
@@ -223,10 +301,10 @@ export function Adjust() {
             <figcaption className="caption">Rotating mount</figcaption>
           </figure>
         </div>
-        <EdgeLabel>(AD)JUST | 14</EdgeLabel>
+        <EdgeLabel>(AD)JUST | 13</EdgeLabel>
       </section>
 
-      <section className="split adjust-mounted accent-adjust" id="adjust-renders">
+      <section className="split split3 adjust-mounted accent-adjust" id="adjust-renders">
         <div className="copy">
           <h2>Final renders</h2>
           <p className="subtitle">Result</p>
@@ -236,6 +314,52 @@ export function Adjust() {
           </p>
         </div>
         <MountedDetail />
+        <figure className="clamp-pair">
+          <Photo
+            src="images/web/adjust-render-clamps.webp"
+            alt="Two renders of the (AD)JUST link: the round mount with six holes, and the grip with its knob."
+            width={1345}
+            height={1317}
+          />
+          <figcaption className="caption">Mount and grip</figcaption>
+        </figure>
+        <EdgeLabel>(AD)JUST | 14</EdgeLabel>
+      </section>
+
+      <section className="details accent-adjust" id="adjust-details">
+        <div className="copy">
+          <h2>Details</h2>
+          <p className="subtitle">Close-ups</p>
+        </div>
+        <div className="details-row">
+          <figure>
+            <Photo
+              src="images/web/adjust-clamp-front-open.webp"
+              alt="The grip from the front: rounded jaws, silver pivot pin and the knob on top."
+              width={1236}
+              height={1317}
+            />
+            <figcaption className="caption">Grip</figcaption>
+          </figure>
+          <figure>
+            <Photo
+              src="images/web/adjust-clamp-side-knob.webp"
+              alt="The clamp from the side: the knurled knob drives a steel pin across the jaws."
+              width={1184}
+              height={889}
+            />
+            <figcaption className="caption">Knob and pin</figcaption>
+          </figure>
+          <figure>
+            <Photo
+              src="images/web/adjust-clamp-back-mount.webp"
+              alt="The round mount face with six holes, where the tablet arm attaches."
+              width={1152}
+              height={770}
+            />
+            <figcaption className="caption">Mount face</figcaption>
+          </figure>
+        </div>
         <EdgeLabel>(AD)JUST | 15</EdgeLabel>
       </section>
       <ProjectNav project="adjust" />

@@ -130,9 +130,9 @@ export function FlowChair() {
 
 /** Each empty photo is aligned to its seated photo, so the chair stays put when the person fades in. */
 const sitViews = [
-  { id: "front", label: "front three-quarter", focus: "47% 60%" },
-  { id: "side", label: "side", focus: "52% 60%" },
-  { id: "rear", label: "rear three-quarter", focus: "77% 60%" },
+  { id: "front", label: "front three-quarter", focus: "54% 50%" },
+  { id: "side", label: "side", focus: "57% 50%" },
+  { id: "rear", label: "rear three-quarter", focus: "64% 50%" },
 ] as const;
 
 function InUse() {

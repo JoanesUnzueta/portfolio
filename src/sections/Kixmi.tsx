@@ -162,8 +162,8 @@ export function Kixmi() {
             className="lineup"
             src={asset("images/web/kixmi-render-group-vidrala.webp")}
             alt="Product visualisation of the Kixmi bottle in front of other bottles from the contest, including a faded Vidrala bottle."
-            width={525}
-            height={519}
+            width={1314}
+            height={1040}
           />
           <figcaption className="caption">Kixmi in the contest line-up</figcaption>
         </figure>
