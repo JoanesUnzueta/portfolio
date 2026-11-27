@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <!-- The three bands from the Illustrator board: 150 pt brown strokes at 20 % opacity. -->
+  <g fill="none" stroke="#c69c6d" stroke-opacity="0.2" stroke-width="150" stroke-linecap="butt">
+    <path d="M-0.9 -67C184.8 -52.4 283.6 250.8 746.9 242.8C1210.3 234.7 1200.5 -73.7 1567.3 -79.1"/>
+    <path d="M1283.3 1163.6C1183.3 792.7 1325.7 641.1 1544 597.7C1762.2 554.2 1976.4 540.3 2018.8 405.7"/>
+    <path d="M1682.7 1199.6C1687.4 977.3 1701.6 838.5 2018.8 811.1"/>
+  </g>
+</svg>
