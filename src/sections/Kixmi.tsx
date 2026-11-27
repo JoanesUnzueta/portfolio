@@ -54,6 +54,18 @@ function renderSrcSet(name: string, widths: readonly number[], ext: "avif" | "we
   return widths.map((width) => `${asset(`images/kixmi/${name}-${width}.${ext}`)} ${width}w`).join(", ");
 }
 
+function KixmiTitle({ hit, rest, kicker }: { hit: string; rest: string; kicker: string }) {
+  return (
+    <div className="kixmi-title">
+      <h2>
+        <span className="kixmi-hit">{hit}</span>
+        <span className="kixmi-rest">{rest}</span>
+      </h2>
+      <p className="subtitle">{kicker}</p>
+    </div>
+  );
+}
+
 function KixmiRenderShot({ shot }: { shot: KixmiRender }) {
   const sizes =
     shot.role === "lead"
@@ -106,8 +118,9 @@ export function Kixmi() {
               <p className="subtitle">Berotu Morruak</p>
               <SpecLine items={projectSpecs.kixmi} />
               <p className="lede">
-                A glass bottle for a sustainability contest. Low impact, practical, and ready to
-                make.
+                An award-winning glass packaging concept developed for a sustainability-focused
+                competition, proposing a low-impact production and recycling process through an
+                original, practical, and manufacturable design.
               </p>
             </div>
           </div>
@@ -117,16 +130,15 @@ export function Kixmi() {
 
       <section className="split tall accent-kixmi" id="kixmi-contest">
         <div className="copy">
-          <h2>Not seen as premium</h2>
-          <p className="subtitle">Problem</p>
+          <KixmiTitle hit="Bases" rest="of Kixmi" kicker="Trends" />
           <p>
-            Kalimotxo — wine and cola — is not seen as premium. I wanted a bottle with a low
-            environmental impact, including production and recycling, that is still practical to use
-            every day.
+            Kalimotxo is not seen from a premium perspective. We wanted a bottle for the urban
+            nomad, with a low environmental impact, including production and recycling, that is
+            still practical to use every day.
           </p>
           <p>
-            I designed it ready to manufacture: an original, practical shape, a low-impact
-            production and recycling process, and something you can use every day.
+            We designed it ready to manufacture: an original, practical shape, a low-impact
+            production and recycling process, and everyday use.
           </p>
         </div>
         <div className="circle-frame">
@@ -142,12 +154,11 @@ export function Kixmi() {
 
       <section className="compare accent-kixmi" id="kixmi-bottles">
         <div className="compare-head">
-          <h2>Two bottles, one</h2>
-          <p className="subtitle">Solution</p>
+          <KixmiTitle hit="Merging" rest="of forms" kicker="Concept Development" />
           <p>
-            I joined two icons: a Burgundy neck and the base of a soda bottle. It uses the year's
-            wine from nearby wineries. A drink made by young people, for young people, and it
-            supports those businesses.
+            The union of a burgundy wine bottle and a soda bottom: borgoña with the base of a soda
+            bottle. It uses the yearly wine from close wineries, supporting local businesses. A
+            drink made by young people, for young people.
           </p>
         </div>
         <div className="trio">
@@ -193,11 +204,15 @@ export function Kixmi() {
 
       <section className="split accent-kixmi" id="kixmi-result">
         <div className="copy">
-          <h2>1st prize</h2>
-          <p className="subtitle">Result</p>
+          <KixmiTitle hit="1st" rest="prize" kicker="Result" />
           <p>
-            4th edition of the Vidrala Master Glass Design Contest. The mark is a pair of lips — you
-            drink straight from the bottle. KIXMI: <em>Kiss Me</em>.
+            An innovative glass container designed for low environmental impact, combining
+            sustainable production and recycling with everyday usability. Its original yet feasible
+            design reimagines old traditions, and was selected as the winning entry of the 4th
+            edition of the Vidrala Master Glass Design Contest.
+          </p>
+          <p>
+            The mark is a pair of lips — you drink straight from the bottle. KIXMI: <em>Kiss Me</em>.
           </p>
           <blockquote>
             <p>
