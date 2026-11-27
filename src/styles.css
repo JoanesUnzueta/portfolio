@@ -891,6 +891,79 @@ blockquote footer {
   mix-blend-mode: darken;
 }
 
+.in-use {
+  display: flex;
+  min-height: 100svh;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--nav) + 2rem) 4vw 3rem;
+  background: #f2f2f2;
+}
+
+.sit {
+  position: relative;
+  width: min(1180px, 100%);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.sit img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sit .sat {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.55s ease;
+}
+
+.sit:hover .sat,
+.sit:focus-visible .sat,
+.sit[aria-pressed="true"] .sat {
+  opacity: 1;
+}
+
+.sit-hint {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  padding: 0.35rem 0.65rem;
+  background: rgb(255 255 255 / 78%);
+  color: #2a2a2a;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+}
+
+.hint-touch {
+  display: none;
+}
+
+@media (hover: none) {
+  .hint-hover {
+    display: none;
+  }
+
+  .hint-touch {
+    display: inline;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sit .sat {
+    transition: none;
+  }
+}
+
 .cad {
   width: 100%;
   max-height: 72vh;

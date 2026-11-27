@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { asset } from "../asset";
 import { EdgeLabel } from "../components/EdgeLabel";
 import { FlowViewer } from "../components/FlowViewer";
@@ -116,65 +117,45 @@ export function FlowChair() {
         <EdgeLabel>{`${flowChairName} | 10`}</EdgeLabel>
       </section>
 
-      <section className="gallery" id="flow-in-use">
-        <div className="copy">
-          <h2>In use</h2>
-          <p className="subtitle">Result</p>
-          <p>The chair, sat in and in the studio.</p>
-        </div>
-        <div className="shots">
-          <Photo
-            src="images/web/flow-sitting-1.webp"
-            alt={`A person sitting in the ${flowChairName}, seen from the side.`}
-            width={2560}
-            height={1440}
-          />
-          <Photo
-            src="images/web/flow-sitting-2.webp"
-            alt={`A person sitting in the ${flowChairName}, seen from the front.`}
-            width={2560}
-            height={1440}
-          />
-          <Photo
-            src="images/web/flow-sitting-3.webp"
-            alt={`A person sitting in the ${flowChairName}, seen from a three-quarter angle.`}
-            width={2560}
-            height={1440}
-          />
-          <Photo
-            src="images/web/flow-sitting-4.webp"
-            alt={`A person sitting in the ${flowChairName}, another three-quarter view.`}
-            width={2560}
-            height={1440}
-          />
-          <Photo
-            src="images/web/flow-studio-1.webp"
-            alt={`Studio photograph of the empty ${flowChairName}.`}
-            width={2560}
-            height={1440}
-          />
-          <Photo
-            src="images/web/flow-studio-2.webp"
-            alt={`Studio photograph of the ${flowChairName} from the side.`}
-            width={2560}
-            height={1440}
-          />
-          <Photo
-            src="images/web/flow-studio-3.webp"
-            alt={`Studio photograph of the ${flowChairName} from behind.`}
-            width={2560}
-            height={1440}
-          />
-          <Photo
-            src="images/web/flow-render-transparent-2.webp"
-            alt={`Render of the ${flowChairName} on a transparent background, three-quarter view.`}
-            width={1008}
-            height={738}
-          />
-        </div>
-        <EdgeLabel>{`${flowChairName} | 11`}</EdgeLabel>
-      </section>
+      <InUse />
       <ProjectNav project="flow" />
     </>
+  );
+}
+
+function InUse() {
+  const [seated, setSeated] = useState(false);
+
+  return (
+    <section className="in-use" id="flow-in-use">
+      <button
+        type="button"
+        className="sit"
+        aria-pressed={seated}
+        aria-label={`The ${flowChairName}, empty, in side view. Hover, focus, or tap to see Joanes sitting in it.`}
+        onPointerUp={(event) => {
+          if (event.pointerType === "touch") setSeated((value) => !value);
+        }}
+      >
+        <img
+          src={asset("images/web/flow-sit-empty.webp")}
+          alt=""
+          width={2560}
+          height={1440}
+        />
+        <img
+          className="sat"
+          src={asset("images/web/flow-sit-person.webp")}
+          alt=""
+          width={2560}
+          height={1440}
+        />
+        <span className="sit-hint">
+          <span className="hint-hover">Hover to sit</span>
+          <span className="hint-touch">Tap</span>
+        </span>
+      </button>
+      <EdgeLabel>{`${flowChairName} | 11`}</EdgeLabel>
+    </section>
   );
 }
