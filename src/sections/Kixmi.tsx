@@ -60,8 +60,7 @@ function KixmiTitle({ hit, rest, kicker }: { hit: string; rest: string; kicker: 
   return (
     <div className="kixmi-title">
       <h2>
-        <span className="kixmi-hit">{hit}</span>
-        <span className="kixmi-rest">{rest}</span>
+        {hit} {rest}
       </h2>
       <p className="subtitle">{kicker}</p>
     </div>
@@ -142,13 +141,9 @@ export function Kixmi() {
         <div className="copy">
           <KixmiTitle hit="Bases" rest="of Kixmi" kicker="Trends" />
           <p>
-            Kalimotxo is not seen from a premium perspective. We wanted a bottle for the urban
-            nomad, with a low environmental impact, including production and recycling, that is
-            still practical to use every day.
-          </p>
-          <p>
-            We designed it ready to manufacture: an original, practical shape, a low-impact
-            production and recycling process, and everyday use.
+            Kalimotxo (red wine and cola) is not seen from a premium perspective. We wanted a bottle
+            for the urban nomad, with a low environmental impact, including production and
+            recycling, that is still practical to use every day.
           </p>
         </div>
         <div className="circle-frame">
@@ -251,10 +246,11 @@ export function Kixmi() {
           <img
             className="lineup"
             src={asset("images/web/kixmi-render-group-vidrala.webp")}
-            alt="Product visualisation of the Kixmi bottle in front of other contest bottles, including a faded Vidrala bottle."
+            alt="Product visualisation of the Kixmi bottle in front of other bottles from the contest, including a faded Vidrala bottle."
             width={670}
             height={550}
           />
+          <figcaption className="caption">Kixmi in the contest line-up</figcaption>
         </figure>
         <EdgeLabel>Kixmi | 07</EdgeLabel>
       </section>

@@ -37,7 +37,12 @@ export function FlowViewer() {
         node.appendChild(renderer.domElement);
 
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(34, node.clientWidth / node.clientHeight, 0.01, 20);
+        const camera = new THREE.PerspectiveCamera(
+          34,
+          node.clientWidth / node.clientHeight,
+          0.01,
+          20,
+        );
         camera.position.set(1.15, 0.72, 1.35);
 
         const controls = new OrbitControls(camera, renderer.domElement);
@@ -72,7 +77,10 @@ export function FlowViewer() {
           explode = value;
           if (range.current) range.current.value = String(value);
           for (const piece of pieces) {
-            const progress = Math.max(0, Math.min(1, (value - piece.start) / (piece.end - piece.start)));
+            const progress = Math.max(
+              0,
+              Math.min(1, (value - piece.start) / (piece.end - piece.start)),
+            );
             const eased = progress * progress * (3 - 2 * progress);
             piece.object.position.copy(piece.origin).addScaledVector(piece.offset, eased);
           }
@@ -95,7 +103,7 @@ export function FlowViewer() {
           const duration = 2200;
           const tick = (now: number) => {
             const t = Math.min(1, (now - startTime) / duration);
-            const eased = t < 0.5 ? 2 * t * t : 1 - ((-2 * t + 2) ** 2) / 2;
+            const eased = t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2;
             apply(from + (target - from) * eased);
             if (t < 1) anim = requestAnimationFrame(tick);
           };
@@ -122,7 +130,9 @@ export function FlowViewer() {
         const binaryArchive = atob(encodedArchive);
         const archiveBytes = Uint8Array.from(binaryArchive, (character) => character.charCodeAt(0));
         const files = unzipSync(archiveBytes);
-        const bodyFiles = Object.entries(files).filter(([name]) => name.toLowerCase().endsWith(".glb"));
+        const bodyFiles = Object.entries(files).filter(([name]) =>
+          name.toLowerCase().endsWith(".glb"),
+        );
         if (bodyFiles.length !== 39) {
           throw new Error(`Expected 39 chair bodies, found ${bodyFiles.length}`);
         }
@@ -131,7 +141,10 @@ export function FlowViewer() {
         const bodies = await Promise.all(
           bodyFiles.map(async ([fileName, bytes]) => {
             const bodyName = fileName.slice(fileName.lastIndexOf(" - ") + 3).replace(/\.glb$/i, "");
-            const buffer = bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
+            const buffer = bytes.buffer.slice(
+              bytes.byteOffset,
+              bytes.byteOffset + bytes.byteLength,
+            );
             const gltf = await loader.parseAsync(buffer, "");
             const body = new THREE.Group();
             body.name = bodyName;
@@ -332,7 +345,14 @@ export function FlowViewer() {
         aria-label={`${alt} Arrow keys orbit. Plus and minus zoom.`}
         onKeyDown={onViewerKey}
       >
-        <img src={asset(posterPath)} alt="" width={1264} height={1152} loading="lazy" decoding="async" />
+        <img
+          src={asset(posterPath)}
+          alt=""
+          width={1264}
+          height={1152}
+          loading="lazy"
+          decoding="async"
+        />
       </div>
       <div className="explode">
         <button type="button" onClick={() => api.current?.animateTo(1)}>
@@ -358,4 +378,3 @@ export function FlowViewer() {
     </div>
   );
 }
-

@@ -22,4 +22,3 @@ declare module "three/addons/controls/OrbitControls.js" {
 declare module "three/addons/libs/fflate.module.js" {
   export const unzipSync: (data: Uint8Array) => Record<string, Uint8Array>;
 }
-

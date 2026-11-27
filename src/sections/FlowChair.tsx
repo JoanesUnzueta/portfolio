@@ -81,8 +81,8 @@ export function FlowChair() {
           <h2>Final product</h2>
           <p className="subtitle">Result</p>
           <p>
-            Continuous lines, cut on CNC from flat plywood. Drag to orbit, scroll to zoom, or pull
-            the pieces apart.
+            The finished chair in 3D. Drag to orbit, scroll to zoom, or explode it to see how the
+            parts fit together.
           </p>
         </div>
         <FlowViewer />

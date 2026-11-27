@@ -10,6 +10,8 @@
   --accent: #f39200;
   --font: Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
   --nav: 4.25rem;
+  /* One text edge for every slide: about 9.4% in, as on the Illustrator boards. */
+  --edge: max(3.4rem, 9.4vw);
 }
 
 * {
@@ -562,8 +564,8 @@ p.project-meta {
 .hero-bleed .hero-copy {
   position: relative;
   z-index: 1;
-  width: min(24rem, 40%);
-  padding: calc(var(--nav) + 3rem) 1.5rem 4rem 5.6rem;
+  width: min(32rem, 42%);
+  padding: calc(var(--nav) + 3rem) 1.5rem 4rem calc(var(--edge) + 2.2vw);
 }
 
 .bleed-title {
@@ -589,10 +591,6 @@ p.project-meta {
   line-height: 0.72;
   pointer-events: none;
   user-select: none;
-}
-
-.hero-bleed.light .hero-copy {
-  padding-left: 5.8rem;
 }
 
 .hero-bleed.light .num {
@@ -687,7 +685,7 @@ p.project-meta {
 .compare,
 .mechanism {
   min-height: 100svh;
-  padding: calc(var(--nav) + 2.2rem) 3.2rem 3rem 3.4rem;
+  padding: calc(var(--nav) + 2.2rem) 4vw 3rem var(--edge);
 }
 
 .split {
@@ -723,31 +721,12 @@ p.project-meta {
 }
 
 .kixmi-title h2 {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.1em;
   margin: 0;
-  color: #111;
   font-size: clamp(1.7rem, 3vw, 2.5rem);
   font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 0.95;
-  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
   text-wrap: balance;
-}
-
-/* The first word keeps the red label from the original Kixmi boards; the rest is plain type. */
-.kixmi-hit {
-  display: inline-block;
-  margin-left: -0.16em;
-  padding: 0.04em 0.16em 0.06em;
-  background: var(--accent, #b3121b);
-  color: #fff;
-}
-
-.kixmi-rest {
-  display: block;
 }
 
 .kixmi-title .subtitle {
@@ -852,8 +831,11 @@ blockquote footer {
   align-items: end;
 }
 
+/* White cards, as on the Illustrator board. */
 .trio figure {
   margin: 0;
+  padding: 2.4rem 1rem 1.1rem;
+  background: #f7f7f7;
 }
 
 .trio figure,
@@ -867,7 +849,7 @@ blockquote footer {
 .bottle-stack > img:first-child {
   width: auto;
   max-width: 100%;
-  max-height: min(52vh, 560px);
+  max-height: min(46vh, 500px);
   background: transparent;
   object-fit: contain;
   object-position: center bottom;
@@ -890,15 +872,11 @@ blockquote footer {
 }
 
 .trio figcaption {
-  margin-top: 0.7rem;
+  margin-top: 1rem;
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-}
-
-.trio figure:nth-child(2) figcaption {
-  font-size: 0.95rem;
 }
 
 .renders {
@@ -957,7 +935,7 @@ blockquote footer {
 
 .render-gallery .cutout picture,
 .render-gallery .cutout img {
-  background: transparent;
+  background: #111;
 }
 
 .render-gallery .cutout img {
@@ -971,14 +949,14 @@ blockquote footer {
   flex-direction: column;
   justify-content: center;
   gap: 1.4rem;
-  padding: calc(var(--nav) + 2.2rem) 3.2rem 3rem 3.4rem;
+  padding: calc(var(--nav) + 2.2rem) 4vw 3.5rem var(--edge);
 }
 
 .life-pair {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   gap: 0.75rem;
-  width: min(100%, calc((100svh - 19rem) * 2.5));
+  width: min(100%, calc((100svh - 22rem) * 2.5));
 }
 
 .life-pair figure {
@@ -1126,6 +1104,23 @@ blockquote footer {
   --accent: #f0a060;
   background: #1a1a1a;
   color: #fff;
+}
+
+.mark-caption {
+  margin: 0;
+  text-align: center;
+}
+
+.mark-caption strong {
+  display: block;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+.mark-caption span {
+  color: rgb(255 255 255 / 70%);
+  font-size: 0.85rem;
+  font-style: italic;
 }
 
 .mark-slide img.official {
@@ -1399,6 +1394,7 @@ blockquote footer {
   max-height: 62vh;
   object-fit: contain;
   background: transparent;
+  mix-blend-mode: multiply;
 }
 
 .adjust-mounted .hero-shot {
@@ -1442,7 +1438,7 @@ blockquote footer {
   min-height: 100svh;
   flex-direction: column;
   justify-content: center;
-  padding: calc(var(--nav) + 2.4rem) 3.2rem 3rem 4.2rem;
+  padding: calc(var(--nav) + 2.4rem) 4vw 3rem var(--edge);
   background: var(--bg);
 }
 
@@ -1691,7 +1687,7 @@ blockquote footer {
 .contact h2 {
   margin: 0;
   font-size: clamp(2.4rem, 6vw, 4.5rem);
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: -0.04em;
 }
 

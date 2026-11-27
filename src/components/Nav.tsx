@@ -7,7 +7,8 @@ const links = [
 ] as const;
 
 function navTarget(sectionId: string) {
-  if (sectionId === "about" || sectionId.startsWith("about") || sectionId === "method") return "about";
+  if (sectionId === "about" || sectionId.startsWith("about") || sectionId === "method")
+    return "about";
   if (sectionId === "contact") return "contact";
   if (
     sectionId === "work" ||
@@ -40,7 +41,11 @@ export function Nav() {
       let current: HTMLElement | null = null;
       for (const section of document.querySelectorAll<HTMLElement>("section")) {
         const rect = section.getBoundingClientRect();
-        if (rect.top <= line && rect.bottom > line && (!current || rect.top > current.getBoundingClientRect().top)) {
+        if (
+          rect.top <= line &&
+          rect.bottom > line &&
+          (!current || rect.top > current.getBoundingClientRect().top)
+        ) {
           current = section;
         }
       }
@@ -58,7 +63,9 @@ export function Nav() {
   }, []);
 
   return (
-    <header className={`nav${solid ? " solid" : ""}${dark ? " dark" : ""}${accent ? ` accent-${accent}` : ""}`}>
+    <header
+      className={`nav${solid ? " solid" : ""}${dark ? " dark" : ""}${accent ? ` accent-${accent}` : ""}`}
+    >
       <a className="brand" href="#top">
         <span className="brand-mark">JU</span>
         <span>Joanes Unzueta</span>

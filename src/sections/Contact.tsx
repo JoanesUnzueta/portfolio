@@ -10,7 +10,6 @@ const projects = [
 export function Contact() {
   return (
     <section className="contact" id="contact">
-      <p className="eyebrow">Contact</p>
       <h2>Let's talk</h2>
       <p className="where">Industrial designer in Stockholm, Sweden.</p>
       <a className="mail" href="mailto:joanes.unzueta@gmail.com">

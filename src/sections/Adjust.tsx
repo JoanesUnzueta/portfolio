@@ -37,8 +37,8 @@ export function Adjust() {
           <h2>Within reach</h2>
           <p className="subtitle">Problem</p>
           <p>
-            From first-hand experience: some people with special needs use tablets and phones to
-            communicate. Those devices need a holder.
+            From first-hand experience: some disabled people use tablets and phones to communicate.
+            Those devices need a holder.
           </p>
         </div>
         <Photo
@@ -76,6 +76,10 @@ export function Adjust() {
           width={778}
           height={702}
         />
+        <p className="mark-caption">
+          <strong>(AD)JUST</strong>
+          <span>Tablet Holder Link</span>
+        </p>
         <EdgeLabel>(AD)JUST | 17</EdgeLabel>
       </section>
 
