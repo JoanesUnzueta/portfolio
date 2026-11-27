@@ -11,5 +11,5 @@ export const projectContext = {
 export const projectSpecs = {
   kixmi: [projectContext.kixmi, "1st prize, Vidrala", "Glass packaging"],
   flowChair: [projectContext.flowChair, "18 mm CNC plywood", "480 × 480 × 658 mm"],
-  adjust: [projectContext.adjust, "Silicone on aluminium", "Wheelchair accessory"],
+  adjust: [projectContext.adjust, "Anodised aluminium, silicone", "Wheelchair accessory"],
 } as const;

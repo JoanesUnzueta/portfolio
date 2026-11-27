@@ -1,8 +1,77 @@
+import { asset } from "../asset";
 import { EdgeLabel } from "../components/EdgeLabel";
 import { ProjectNav } from "../components/ProjectNav";
 import { Photo } from "../components/Photo";
 import { SpecLine } from "../components/SpecLine";
 import { projectSpecs } from "../projects";
+
+/*
+ * The clamp is small in the full render, so a bubble blows it up.
+ * Coordinates are pixels of adjust-wheelchair-mounted.webp (1506 × 1521).
+ */
+const IMG_W = 1506;
+const IMG_H = 1521;
+const clamp = { x: 846, y: 1024 };
+const bubble = { x: 300, y: 270, r: 230 };
+/** Half the side of the square of the render shown inside the bubble. */
+const reach = 88;
+
+function MountedDetail() {
+  const dx = clamp.x - bubble.x;
+  const dy = clamp.y - bubble.y;
+  const len = Math.hypot(dx, dy);
+  const ux = dx / len;
+  const uy = dy / len;
+  const ring = 78;
+  const scale = (2 * bubble.r) / (2 * reach);
+  const pct = (value: number, of: number) => `${((value / of) * 100).toFixed(3)}%`;
+
+  return (
+    <figure className="mounted">
+      <img
+        className="mounted-full"
+        src={asset("images/web/adjust-wheelchair-mounted.webp")}
+        alt="The black (AD)JUST clamp mounted on the frame of a faded light-blue wheelchair."
+        width={IMG_W}
+        height={IMG_H}
+        loading="lazy"
+        decoding="async"
+      />
+      <svg className="mounted-lead" viewBox={`0 0 ${IMG_W} ${IMG_H}`} aria-hidden="true">
+        <line
+          x1={bubble.x + ux * bubble.r}
+          y1={bubble.y + uy * bubble.r}
+          x2={clamp.x - ux * ring}
+          y2={clamp.y - uy * ring}
+        />
+        <circle cx={clamp.x} cy={clamp.y} r={ring} />
+      </svg>
+      <div
+        className="mounted-bubble"
+        style={{
+          left: pct(bubble.x - bubble.r, IMG_W),
+          top: pct(bubble.y - bubble.r, IMG_H),
+          width: pct(2 * bubble.r, IMG_W),
+        }}
+      >
+        <img
+          src={asset("images/web/adjust-wheelchair-mounted.webp")}
+          alt=""
+          width={IMG_W}
+          height={IMG_H}
+          loading="lazy"
+          decoding="async"
+          style={{
+            width: `${((IMG_W * scale) / (2 * bubble.r)) * 100}%`,
+            left: `${(-((clamp.x - reach) * scale) / (2 * bubble.r)) * 100}%`,
+            top: `${(-((clamp.y - reach) * scale) / (2 * bubble.r)) * 100}%`,
+          }}
+        />
+      </div>
+      <figcaption className="caption">The link on the wheelchair frame</figcaption>
+    </figure>
+  );
+}
 
 export function Adjust() {
   return (
@@ -120,17 +189,11 @@ export function Adjust() {
           <h2>Final renders</h2>
           <p className="subtitle">Result</p>
           <p>
-            Silicone grip pads on an aluminium frame. Mounted on a wheelchair, ready for a tablet
-            holder.
+            A black anodised aluminium body with silicone grip pads and a stainless-steel pin.
+            Mounted on the wheelchair frame, ready for a tablet holder.
           </p>
         </div>
-        <Photo
-          src="images/web/adjust-wheelchair-mounted.webp"
-          alt="The black (AD)JUST clamp mounted on the frame of a faded light-blue wheelchair."
-          width={1506}
-          height={1521}
-          className="hero-shot"
-        />
+        <MountedDetail />
         <EdgeLabel>(AD)JUST | 18</EdgeLabel>
       </section>
       <ProjectNav project="adjust" />
