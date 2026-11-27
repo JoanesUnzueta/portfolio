@@ -218,7 +218,7 @@ export function Adjust() {
         <ArmWithBubble />
         <figure className="variants">
           <Photo
-            src="images/web/adjust-grip-mechanism-v3.webp"
+            src="images/web/adjust-grip-mechanism-v4.webp"
             alt="Three renders of the grip from above: open, closed around the tube, and locked with the knob."
             width={1664}
             height={917}
